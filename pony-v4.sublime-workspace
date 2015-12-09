@@ -1,0 +1,317 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ta",
+				"target	Attr"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "styles/main.css",
+			"settings":
+			{
+				"buffer_size": 5424,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 17210,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/a522551/Documents/WIP/Ponytizer/ponytizeme_v3/index.html",
+		"/Users/a522551/Documents/WIP/EnterpriseHolidayExperience/SITE - working/holidays/build/land.css",
+		"/Users/a522551/Documents/WIP/EnterpriseHolidayExperience/SITE-working/holidays/includes/pony_share.html",
+		"/Users/a522551/Documents/WIP/EnterpriseHolidayExperience/SITE-working/holidays/pony/index.html",
+		"/Users/a522551/Documents/WIP/EnterpriseHolidayExperience/SITE BACKUP/holidays/includes/main_pushin.html",
+		"/Users/a522551/Documents/WIP/EnterpriseHolidayExperience/DEPLOY/landing/index.html",
+		"/Users/a522551/Documents/chris U435911   au1060734  id 1566196",
+		"/Volumes/W_MKTG_Groups2/I_CLT/1795101_EMEA_Brochure_Flipbook/1795101/files/flash/checkflash.js",
+		"/Volumes/I_CLT-1/1795101_EMEA_Brochure_Flipbook/1795101/files/flash/checkflash.js",
+		"/Users/a522551/Documents/WIP/1808402 Deloitte Microsite Revisions/updated/main.css",
+		"/Users/a522551/Documents/WIP/1808402 Deloitte Microsite Revisions/updated/other.html",
+		"/Users/a522551/Documents/WIP/1808402 Deloitte Microsite Revisions/updated/banking.html",
+		"/Users/a522551/Documents/WIP/rewards2015-mobileAnalytics/files/mobile/index.html",
+		"/Users/a522551/Documents/WIP/1793601 Scott Industries TYF (1293702)/1293702 Scott Equipment TYF/1793601/index.html",
+		"/Users/a522551/Documents/WIP/_ARCHIVE/1792601-CBG webinar Nov12/index_old.html",
+		"/Users/a522551/Documents/WIP/collegeSteps-update-2015-11-9/index.old.html",
+		"/Volumes/W_MKTG_Groups2-1/I_CLT/1263865 WBR FX Deposit Product Guide/deploy/files/flash/checkflash.js",
+		"/Volumes/I_CLT-1/1263865 WBR FX Deposit Product Guide/deploy/index.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/marketingedge/email/email9.html",
+		"/Users/a522551/Documents/WIP/1698801 MDJ&W TYF/deploy/index.html",
+		"/Volumes/W_MKTG_CT2/I_MSP/Repos/mycog.git/README.md",
+		"/Users/a522551/Documents/WIP/1698801 MDJ&W TYF/dev/1698801/index.html",
+		"/Users/a522551/Documents/WIP/1698801 MDJ&W TYF/ref_1632601 Cogsdill Tool Products Inc TYF/1632601/index.html",
+		"/Users/a522551/Desktop/mortgage/2007/077050_Mortgage Flash File - Dynamic/076550_index.html",
+		"/Users/a522551/Desktop/mortgage/2007/076550_Mortgage Flash File Invite/076550_index.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169395/index_distributed.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169587/index_distributed_1.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169639/index_distributed.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169903/index_distributed.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169903/index_centralized.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169639/index_centralized.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169395/index_centralized.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169587/index_distributed_2.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169587/index_centralized_2.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/emails-bref/1169587/index_centralized_1.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/roberts2/skrollr/jumble2.html",
+		"/Users/a522551/Documents/WIP/flipbook/1258015/files/flash/checkflash.js",
+		"/Users/a522551/Documents/wordpress-immanuel -- moving to HR:communications - drops wo",
+		"/Users/a522551/Documents/WIP/1632701-CBG-Regulatory-Webinar-Hosting/index.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/sb-readiness/index.html",
+		"/Users/a522551/Desktop/Holidays  - Steve Lehr, Diane Howse",
+		"/Volumes/W_MKTG_Groups1/Transfer_CLT/CLT_team/Gareth Lewis-Pitt/flipbook/Credit Card Rewards Catalog/v7/files/flash/checkflash.js",
+		"/Users/a522551/Documents/WIP/1632701-CBG-Regulatory-Webinar-Hosting/10142015/video.html",
+		"/Users/a522551/Desktop/WIP/Q4 Rewards Catalog/deploy/v5/files/flash/checkflash.js",
+		"/Users/a522551/Desktop/WIP/Q4 Rewards Catalog/deploy/v5/index.html",
+		"/Users/a522551/Desktop/WIP/Q4 Rewards Catalog/deploy/v6/index.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/rewards2015/6/index.html",
+		"/Volumes/W_Groups4/NCCICMSHR005/MFAL/PROD/rewards2015/5/index.html",
+		"/Volumes/W_MKTG_Groups1/Transfer_CLT/CLT_team/Gareth Lewis-Pitt/flipbook/Credit Card Rewards Catalog/deploy/v5/index.html",
+		"/Users/a522551/Desktop/videoJS package/videojs/demo.html",
+		"/Users/a522551/Desktop/email test/addr.text",
+		"/Users/a522551/Desktop/WIP/1256190 WFW For SmallBizEmailTemplate-winners/build/index.html",
+		"/Volumes/W_MKTG_Groups2/I_CLT/1257262_RewardsCatalog/DEPLOY/index.html",
+		"/Users/a522551/Desktop/WIP/1496601 WFEF Health Brochure e-brochure/deploy/Financial strategies for the healthcare industry/index.html",
+		"/Users/a522551/Desktop/WIP/flipbook/index.html",
+		"/Users/a522551/Documents/Corp Card = Mastercard - 420 Montgomery Street, Sa",
+		"/Volumes/W_MKTG_Groups2/I_CLT/1169903 News and updates high-impact email/EDS HOSTING/content.text"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"%20",
+			"1293702",
+			"/collegesteps",
+			"1698801.",
+			"http://www.wellsfargomedia.com/cb/1169903/images/",
+			"http://www.wellsfargomedia.com/cb/1169639/images/",
+			"main.jpg",
+			"10",
+			"version",
+			"10",
+			"11"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			" ",
+			"1793601",
+			"1698801-1.",
+			"http://ecg.hosting.wellsfargo.com/mfal/emails-bref/images/",
+			"main_busmeeting.jpg"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "styles/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5424,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17210,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "pony-v4.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

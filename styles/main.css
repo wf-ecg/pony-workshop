@@ -1,0 +1,377 @@
+@charset "UTF-8";
+@import url("/lib/fonts/archer.ssm.css");
+    body {
+        overflow:auto;
+        margin:0;
+        padding:0;
+        background-image:url(../images/backgrounds/bgrd-00.jpg);
+        background-position:center center;
+        -webkit-background-size:cover;
+        -moz-background-size:cover;
+        -ms-background-size:cover;
+        -o-background-size:cover;
+        background-size:cover;
+        font-size:100%;
+    }
+
+    h1 {
+        font-family: "Archer SSm A", "Archer SSm B", serif;
+        font-weight: 600;
+        color:#44464a;
+        background-color:#ffffff;
+        text-align:center;
+        font-size:1.5em;
+        width:100%;
+        margin:0px;
+        margin-top:40px;
+        padding:3px;
+    }
+    
+    .alertHeight {
+        position:absolute;
+        background-color:#ffffff;
+        width:100%;
+        height:100%;
+        padding-top: 100px;
+        color:#bb0826;
+        font-family: Verdana, sans-serif;
+        font-size:1.5em;
+        text-align:center;
+        opacity:.9;
+        z-index:999;
+        display:none;
+    }
+    .alertHeight p {
+        width:50%;
+        margin:0px auto;
+        background-color:#bb0826;
+        color:#ffffff;
+        padding:10px 5px;
+    }
+    .center {
+        width:100px;
+        display:block;
+        margin:0px auto;
+        text-align:center;
+        z-index:999;
+        position:relative;
+    }
+    
+    .footer {
+        position:fixed;
+        bottom:0px;
+        left:0px;
+        width:100%;
+        height: auto;
+        display:block;
+        background-color:#44464a;
+        color:#ffffff;
+        font-family:Verdana, Geneva, sans-serif;
+        font-size:11px; 
+        padding:10px 20px;
+        text-align:center;
+        z-index:1000;
+    }
+    
+    .header {
+        position:fixed;
+        top:0px;
+        height:40px;
+        margin:0;
+        padding:0;
+        width:100%;
+        background-color:#bb0826;
+        background-image: url("../images/_common/wf-logo-bg.png");
+        background-repeat: repeat-x;
+        text-align:center;
+        z-index:1000;
+    }
+    
+    .header img {
+        width:300px;
+        height:40px;
+        margin:0 auto;
+    }
+    
+    .hide-bg {
+    background-image: none;
+    }
+
+    .ponyPositioned{
+        /*set pony size and position to background image */
+        margin-left:-10px;
+        margin-top:-10px;
+        width:20px;
+        height:20px;
+        border-radius:10px;
+        background-color:#F00;
+        position:fixed;
+    }
+
+    .preview {
+        border:0px dashed #ffffff;
+        /* Firefox */
+        height: -moz-calc(100% - 280px);
+        /* WebKit */
+        height: -webkit-calc(100% - 280px);
+        /* Opera */
+        height: -o-calc(100% - 280px);
+        /* Standard */
+        height: calc(100% - 280px);
+        width:100%;
+        margin:10px auto 0 auto;
+        text-align:center;
+        overflow:hidden;
+        position:relative;
+    }
+    .preview div {
+        position:absolute;
+        height: 100%;
+        width:100%;
+        overflow:hidden;
+        text-align:center;
+        margin:0 auto;
+        top:-30px;
+    }
+    .preview img {
+        position:relative;
+        display:block;
+        height:100%;
+        width:auto;
+        margin:0px auto;
+    }
+    
+    .previewScaled {
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out; 
+        }
+        
+    .previewScaled {
+        /*scale pony to 300x300 for final preview */
+        width:300px;
+        height:300px;
+    }
+    
+    
+    
+    .outerSelector {
+        position:fixed;
+        width:100%;
+        height:auto;
+        padding:20px 0;
+        margin: 0 0 0 -50%;
+        overflow:hidden;
+        bottom:20px;
+        left:50%;
+    }
+    .progress {
+        position: fixed;
+        width:170px;
+        border:0px solid #00698c;
+        background: rgb(0, 105, 140);
+        background: rgba(0, 0, 0, .4);
+        top:100px;
+        left:10px;
+        padding: 5px 10px 10px 10px;
+        font-family:Verdana, Arial, sans-serif;
+        font-size:.8em;
+        color:#ffffff;
+        height:auto;
+        overflow: none;
+    }
+    
+    .progressItem {
+        background-image: url("../images/_common/check-white.png");
+        background-size: 1em 1em;
+        background-position:8px center;
+        background-repeat: no-repeat;
+        width:100%;
+        height:14px;
+        overflow:none;
+        display:inline-block;
+        padding: 5% 2em;
+        position:relative;
+        transform-origin: center left;
+        opacity:.4;
+    }
+
+    .selector {
+        width:550px;
+        margin: 0px auto 10px auto;
+        padding: 0px;
+        height: 100px;
+        position:relative;
+    }
+    
+    .step {
+        display:inline-block;
+        height:140px;
+        width:100%;
+        margin:0px auto;
+        padding:20px 0;
+        max-width:800px;
+        position:absolute;
+        bottom:-1000px;
+        opacity:0;
+        overflow:visible;
+    }
+    
+    #step0, #step10 {
+        text-align:center;
+    }
+    
+    .step img {
+        width:100px;
+        height:100px;
+        background: rgb(237, 237, 237); /*fallback for non-alpha supported browsers */
+        background: rgba(237, 237, 237, .3);
+        cursor: pointer;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    
+    #stepName {
+        width:150px;
+        color:#fff;
+        background-color:#F60;
+        border:1px dashed #fff;
+        margin: 2em 0 0 0;
+        padding: .5em 1em;
+        font-family:Verdana, Geneva, sans-serif;
+        font-size:.8em;
+        font-weight: bold;
+        text-transform: uppercase;
+        z-index:999;
+    }
+    
+    .grow { 
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out; 
+    }
+    
+    .grow:hover { 
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        transform: scale(1.2);
+        }
+    
+    .grow2 { 
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out; 
+    }
+    
+    .grow2 {
+        /*effects for current progressItem*/
+        opacity:1;
+        }
+        
+        .pushDown, .pushDownUndo, .pushLeft, .pushLeftUndo, .pushUp, .pushUpUndo, .pushRight, .pushRightUndo {
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out; 
+        }
+        
+    .pushDown {
+        -webkit-transform: translateY(150px);
+        -moz-transform: translateY(150px);
+        -ms-transform: translateY(150px);
+        -o-transform: translateY(150px);
+        transform: translateY(150px);
+        opacity:1;
+    }
+    .pushDownUndo {
+        -webkit-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+        transform: translateY(0px);
+        opacity:1;
+    }
+    .pushUp {
+        -webkit-transform: translateY(-150px);
+        -moz-transform: translateY(-150px);
+        -ms-transform: translateY(-150px);
+        -o-transform: translateY(-150px);
+        transform: translateY(-150px);
+        opacity:0;
+    }
+    .pushUpUndo {
+        -webkit-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+        transform: translateY(0px);
+        opacity:1;
+    }
+    .pushLeft {
+        -webkit-transform: translateX(-250px);
+        -moz-transform: translateX(-250px);
+        -ms-transform: translateX(-250px);
+        -o-transform: translateX(-250px);
+        transform: translateX(-250px);
+        opacity:0;
+    }
+    .pushLeftUndo {
+        -webkit-transform: translateX(0px);
+        -moz-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+        -o-transform: translateX(0px);
+        transform: translateX(0px);
+        opacity:1;
+    }
+    .pushRight {
+        -webkit-transform: translateX(250px);
+        -moz-transform: translateX(250px);
+        -ms-transform: translateX(250px);
+        -o-transform: translateX(250px);
+        transform: translateX(250px);
+        opacity:0;
+    }
+    .pushRightUndo {
+        -webkit-transform: translateX(0px);
+        -moz-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+        -o-transform: translateX(0px);
+        transform: translateX(0px);
+        opacity:1;
+    }
+    
+@media screen and (max-width: 479px) {
+    .progress {
+        display:none;
+    }
+}
+@media screen and (max-width: 989px) {
+    .progress {
+        width:120px;
+        left:5px;
+        font-size:.6em;
+    }
+    .progressItem {
+        height:10px;
+    }
+}
+@media screen and (max-height: 479px), screen and (max-width: 659px) {
+    .alertHeight {
+        display:block;
+    }
+}
+@media screen and (min-height: 480px), screen and (min-width: 660px {
+    .alertHeight {
+        display:none;
+    }
+}
