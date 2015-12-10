@@ -29,38 +29,27 @@ define(['imgWrap'], function (Img) {
     }
     // - - - - - - - - - - - - - - - - - -
 
-    var canvas = D.getElementById('effectsCanvas');
-    var context = canvas.getContext('2d');
-    var destX = 0;
-    var destY = 0;
-    var imageEle = new Image();
-    var img = new Img(imageEle);
+    var canE = D.getElementById('effectsCanvas');
+    var canO = canE.getContext('2d');
+    var imgE = new Image();
 
-    W.Main = {
-        imgO: img, // my wrapper
-        canE: canvas, // html element
-        imgE: imageEle, // html element
-        canO: context, // canvas innards
+    imgE.onload = function () {
+        var wrap = new Img(imgE, canE);
+
+        wrap.draw(); // dump in the file top-left
+        wrap.makeGray();
+        wrap.modAlpha(0.5);
+
+        W.Main = {
+            canE: canE, // html element
+            canO: canO, // canvas innards
+            imgE: imgE, // html element
+            wrap: wrap, // my wrapper
+        };
+        C.debug(Nom, W.Main);
     };
+    imgE.src = './images/backgrounds/background_spring.png';
 
-    imageEle.onload = function () {
-        var imgData, pixels;
-
-        context.drawImage(imageEle, destX, destY);
-
-        imgData = context.getImageData(0, 0, canvas.width, canvas.height);
-        pixels = imgData.data;
-
-        img.setData(pixels);
-        img.makeGray();
-        img.modAlpha(2);
-
-        context.putImageData(imgData, 0, 0);
-    };
-
-    imageEle.src = './images/backgrounds/background_spring.png';
-
-    C.warn(Main);
 });
 /*
 
