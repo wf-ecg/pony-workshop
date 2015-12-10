@@ -29,26 +29,36 @@ define(['img'], function (Img) {
     }
     // - - - - - - - - - - - - - - - - - -
 
-    var img = new Img();
     var canvas = D.getElementById('effectsCanvas');
     var context = canvas.getContext('2d');
     var destX = 0;
     var destY = 0;
-    var imageObj = new Image();
+    var imageEle = new Image();
+    var img = new Img(imageEle);
 
-    imageObj.onload = function () {
+    W.Main = {
+        imgO: img, // my wrapper
+        canE: canvas, // html element
+        imgE: imageEle, // html element
+        canO: context, // canvas innards
+    };
+
+    imageEle.onload = function () {
         var imgData, pixels;
-        context.drawImage(imageObj, destX, destY);
+
+        context.drawImage(imageEle, destX, destY);
 
         imgData = context.getImageData(0, 0, canvas.width, canvas.height);
         pixels = imgData.data;
+
         img.setData(pixels);
         img.makeGray();
         img.modAlpha(2);
+
         context.putImageData(imgData, 0, 0);
     };
 
-    imageObj.src = './images/backgrounds/background_spring.png';
+    imageEle.src = './images/backgrounds/background_spring.png';
 
 });
 /*
