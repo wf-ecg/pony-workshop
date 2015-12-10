@@ -25,6 +25,8 @@ require.config({
 });
 
 require(['modern', 'console', 'lodash'], function () {
+    var statToken;
+
     try {
         W.SHIET.init();
 
@@ -39,25 +41,24 @@ require(['modern', 'console', 'lodash'], function () {
     } catch (err) {
         C.error('config', err);
     }
+    _.delay(function () {
+        if (W.debug < 2) {
+            require(['stats'], function (stats) {
+                stats.init(statToken);
+            });
+        } else {
+            require(['lr'], function () {
+                C.warn('LiveReloading @ ' + W.debug);
+            }, function () {
+                W.debug--;
+                C.info('no LiveReloading @ ' + W.debug);
+            });
+        }
+    }, 1e3);
 
     /// CUSTOM
-    require(['jqmobi', '_main'], function () {
 
-        _.delay(function () {
-            if (W.debug < 2) {
-                require(['stats'], function (stats) {
-                    stats.init('WFW-Q1');
-                });
-            } else {
-                require(['lr'], function () {
-                    C.warn('LiveReloading');
-                }, function () {
-                    C.info('no LiveReloading');
-                    W.debug--;
-                });
-            }
-        }, 1e3);
-    });
+    statToken = statToken || 'PONY-Work';
+    //require(['jqmobi', '_main']);
 });
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

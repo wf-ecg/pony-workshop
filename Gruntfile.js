@@ -59,6 +59,7 @@ module.exports = function (grunt) {
                 updateOnly: false, // true = Don't remove any files from `dest` (works around 30% faster)
                 updateAndDelete: true,
                 verbose: true,
+                compareUsing: 'md5', // 'mtime'
             },
             update: {
                 files: [{
