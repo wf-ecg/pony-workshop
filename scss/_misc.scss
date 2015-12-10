@@ -1,0 +1,36 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* MISC */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.msie img {
+    max-width: inherit!important;
+}
+
+.clearfix {
+    @include clearfix;
+}
+
+.left { float: left; }
+.lite { font-weight: 200; }
+.right { float: right; }
+
+.debug *:hover {
+    outline-color: transparentize( orange, 0.7 );
+    outline-offset: 0.5px;
+    outline-style: solid;
+    outline-width: 1px;
+}
+
+@media print {
+    body {
+        background: none;
+    }
+    .noprint {
+        display: none;
+    }
+    #Popup {
+        display: block;
+    }
+    #Wrap {
+        display: none;
+    }
+}

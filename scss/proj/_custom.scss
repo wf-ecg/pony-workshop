@@ -1,0 +1,106 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* PROJ / Custom */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('/mfal/lib/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?v=4.3.0');
+    src: url('/mfal/lib/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+        url('/mfal/lib/font-awesome/4.3.0/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'),
+        url('/mfal/lib/font-awesome/4.3.0/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'),
+        url('/mfal/lib/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'),
+        url('/mfal/lib/font-awesome/4.3.0/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* -------------------------- */
+[class^=w-icon-], [class*=" w-icon-"] {
+    font-family: FontAwesome, webflow-icons;
+}
+.w-icon-slider-right:before {
+    content: "\f105";
+    font-size: 1.1em;
+    position: absolute; left: 0.3em; top: -0.1em;
+}
+.w-icon-slider-left:before {
+    content: "\f104";
+    font-size: 1.1em;
+    position: absolute; left: 0.25em; top: -0.1em;
+}
+.w-icon-nav-menu:before {
+    content:"\f0c9";
+    font-size: 66%;
+}
+.w-icon-arrow-down:before, .w-icon-dropdown-toggle:before {
+    content:"\f107";
+    font-size: 110%;
+}
+.w-icon-closer:before {
+    content: "\f00d";
+    font-size: 2em;
+    position: absolute; left: 0.1em; top: -0.1em;
+}
+.ui-page {
+    background-color: $foot;
+    height: 100%;
+    overflow: hidden !important;
+}
+.c-main {
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    height: 100%; max-height: 97%;
+    margin: auto;
+    overflow-y: scroll;
+    position: relative;
+    width: 100%;
+}
+.c-hide {
+    display: none;
+    opacity: .15;
+}
+.c-divider {
+    background-color: $lite;
+}
+.c-reveal {
+    background-image: url('../images/bkgr/default.png');
+    background-color: rgba(66,66,66,0.9);
+    background-size: cover;
+    .lt-ie9 & {
+        background-image: none;
+        background-color: gray;
+    }
+    border-bottom: $gap solid $lite;
+    box-shadow: black 0px -3px 99px;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    z-index: 99;
+}
+.c-copyright {
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 9pt;
+}
+.w-icon-closer {
+    color: $lite;
+    cursor: not-allowed;
+    height: 2em; width: 2em;
+    position: absolute;
+    right: 1em; top: 1em;
+}
+/* MEDIUM and lower */
+@media screen and (max-width:991px) {
+    .w-slider { font-size: 0.8em !important; }
+    .c-logo-right { display: none; }
+}
+/* SMALL and lower */
+@media screen and (max-width:767px) {
+    .w-slider { font-size: 0.6em !important; }
+}
+@media screen and (max-height:767px) {
+    .debug body { background-color: orange; }
+}
+@media screen and (max-height:479px) {
+    .debug body { background-color: red; }
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

@@ -1,0 +1,40 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* PROJ */
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+
+$lib:   '/lib/';
+$break: 768px; //$break: 750px;
+$sans:  'myriad-pro', sans-serif;
+$serif: 'Archer SSm A', 'Archer SSm B', serif;
+$trans: transparent;
+
+$gap: 3px;
+$red: #ba0725;
+$blu: #00688b;
+$lite: #eee;
+$dark: #333;
+$foot: #4e4e4e;
+
+@mixin shadgrad($clr1: rgba(11, 11, 11, 0.5), $clr2: rgba(0, 0, 0, 0) ){
+    @include background-image( linear-gradient(top, $clr1 70%, $clr2 90%) );
+}
+
+@mixin darktext(){
+    color: $dark;
+    text-shadow: $lite 0px 1px 1px;
+}
+@mixin litetext(){
+    color: $lite;
+    text-shadow: $dark 0px 1px 1px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+@import "_ada";
+@import "_ani";
+@import "_base";
+@import "_custom";
+@import "_nav";
+@import "_overlay";
+@import "_quiz";
+@import "_slider";
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

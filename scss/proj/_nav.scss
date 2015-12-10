@@ -1,0 +1,89 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* PROJ / Nav */
+
+.w-nav {
+    @include nosel();
+    background-color: $red;
+    box-shadow: black -3px 7px 22px -11px;
+    display: block;
+    font-weight: 600;
+    height: 3%; min-height: 26px;
+
+    hr {
+        border: 0;
+        color: $lite;
+    }
+    .j-dropdown {
+        cursor: context-menu;
+        height: 19px;
+        overflow: hidden;
+        position: relative;
+        text-align: right;
+        white-space: normal;
+
+        &.active {
+            //font-weight: bold;
+            overflow: visible;
+        }
+        div {
+            background-color: $red;
+            box-shadow: black 0px 11px 22px -11px;
+            cursor: default;
+            padding: 1em;
+            position: absolute;
+            right: -1em;
+            width: 20em;
+            * {
+                padding: 0;
+                text-transform: none;
+            }
+            a {
+                padding: 0 3px;
+                text-decoration: none;
+            }
+        }
+    }
+}
+.w-nav .c-navcon {
+    float: left;
+    font-size: 0.9em;
+    height: 18px;
+    line-height: 10px;
+    margin: auto; position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+    padding: 0 1em;
+    white-space: nowrap;
+    width: 100%; max-width: 1500px;
+
+    a, > * {
+        color: $lite;
+        line-height: 20px;
+        padding: 0px 10px 0px 10px;
+        text-transform: uppercase;
+
+        &.active {
+            color: $wf_yellow;
+            cursor: default;
+        }
+        &.right {
+            color: $lite;
+        }
+    }
+    a:hover {
+        color: transparentize( $wf_yellow, 0.25 );
+    }
+}
+.w-nav-button {
+    float: left;
+    padding: 0 10px 0 1px;
+
+    .w-icon-nav-menu {
+        line-height: 0.5;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .w-nav-link span { display: none; }
+    .w-nav-button { display: inline; }
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

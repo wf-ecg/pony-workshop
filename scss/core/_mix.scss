@@ -1,0 +1,162 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* CORE / mixins */
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// POSITION
+
+@mixin clearfix(){
+    &:after { /* clearfix */
+        clear: both;
+    }
+    &:after, &:before {
+        border-collapse: collapse;
+        content: ' ';
+        display: table;
+    }
+}
+
+@mixin centify(){
+    left: 0; right: 0; position: absolute;
+    margin-left: auto; margin-right: auto;
+}
+
+@mixin middify(){
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: auto; position: absolute;
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// IMAGE
+
+@mixin coverize(){
+    @include background-size( cover );
+}
+
+@mixin setTrans($color, $opacity: 0.5) {
+    background-color: $color; /* fallback2 */
+    background-color: lighten($color, percentage($opacity/2)); /* fallback1 */
+    background-color: setTrans($color, $opacity);
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// GRADS
+
+@mixin vgrad($clr1: white, $clr2: black){
+    background-color: $clr1;
+    @include background-image( linear-gradient(top, $clr1 22%, $clr2 88%) );
+}
+
+@mixin hgrad($clr1: white, $clr2: black){
+    background-color: $clr1;
+    @include background-image( linear-gradient(left, $clr1 11%, $clr2 55%, $clr1 88%) );
+}
+
+@mixin backGrad($clr1: white, $clr2: black){
+    //background-color: $clr1;  do not double the opacity
+    @include background-image( linear-gradient(top, $clr1 1%, $clr2 99%) );
+    $clr1: ie-hex-str(adjTrans($clr1, 0.2));
+    $clr2: ie-hex-str(adjTrans($clr2, 0.2));
+    //filter:      progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=$clr1, endColorstr=$clr2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000, endColorstr=#00000000);
+    -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='+$clr1+', endColorstr='+$clr2+')';
+    .lt-ie9 & {
+    }
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// OPACITY
+
+@mixin ieopacity($dec: 0.5) {
+    .lt-ie9 & {
+        filter: alpha(opacity=($dec*100));
+        opacity: $dec;
+    }
+}
+
+@mixin oldAlpha($color) {
+    $hex: ie-hex-str($color);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000, endColorstr=#00000000);
+    -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr='+$hex+', endColorstr='+$hex+')';
+}
+
+@mixin backTrans($color, $opacity: 0.5) {
+    $color: adjTrans($color, $opacity);
+    @include oldAlpha($color);
+    /* end fallbacks */
+    background-color: $color;
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// ANIMATION
+
+@mixin ani($time: 0.25s){
+    @include transition( all $time ease-in-out 0 );
+}
+
+@mixin bulge(){
+    @include transform( translate(0px, 1px) scale(1.1)  );
+}
+
+@mixin fxreset(){
+    @include backface-visibility( hidden );
+    @include perspective( 1000px );
+    @include transform( scale(1) translate3d(0,0,0) rotate(0deg) );
+    @include transform-style( preserve-3d );
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// TEXT
+
+@mixin columny($w: 16em){
+    -webkit-columns: $w;
+    -webkit-column-width: $w;
+    -webkit-column-count: auto;
+    -moz-columns: $w;
+    columns: $w;
+}
+@mixin text-size-adjust ($foo: none) {
+    -webkit-text-size-adjust: $foo;
+    -moz-text-size-adjust: $foo;
+    -ms-text-size-adjust: $foo;
+    -o-text-size-adjust: $foo;
+    text-size-adjust: $foo;
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// MISC
+
+@mixin nosel(){
+    -webkit-user-drag: none;
+    @include user-select(none);
+    // cursor: move;
+}
+
+@mixin outline($color: $hilite, $width: 4) {
+    outline: {
+        color: yellow; /* fallback */
+        color: $color;
+        offset: $width * -0.5px;
+        style: auto;
+        width: $width * 1px;
+    }
+    .lt-ie9 & { outline-color: $color; }
+}
+
+// UNITS
+
+@mixin rex($prop, $rem){
+    //#{$prop}: $rem * $remx;
+    //#{$prop}: $rem * 1rem;
+}
+
+@mixin pos($x:0, $y:0){
+    @include rex('left', $x);
+    @include rex('top', $y);
+}
+
+@mixin siz($w:0, $h:0){
+    @include rex('width', $w);
+    @include rex('height', $h);
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

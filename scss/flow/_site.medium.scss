@@ -1,0 +1,31 @@
+@media screen and (max-width:991px) {
+    .debug body {
+        background-color: #ffa !important;
+    }
+
+    .w-container {
+        max-width:728px
+    }
+    .w-hidden-main {
+        display:inherit!important
+    }
+    .w-hidden-medium {
+        display:none!important
+    }
+
+    .w-nav[data-collapse=medium] .w-dropdown, .w-nav[data-collapse=medium] .w-dropdown-toggle {
+        display:block
+    }
+    .w-nav[data-collapse=medium] .w-dropdown-list {
+        position:static
+    }
+
+    .w-nav[data-collapse=medium] .w-nav-menu {
+        display:none
+    }
+    .w-nav[data-collapse=medium] .w-nav-button {
+        display:block
+    }
+}
+
+

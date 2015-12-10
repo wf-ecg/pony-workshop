@@ -1,0 +1,31 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* CORE / functions */
+
+@function gM($num: 1){
+    @return $rem * $num;
+}
+@function setTrans($color, $amount: 0.1) { // pos only
+    @return change-color($color, $alpha: $amount);
+}
+@function adjTrans($color, $amount: 0.1) { // pos or neg linear
+    @return adjust-color($color, $alpha: $amount);
+}
+@function scaTrans($color, $amount: 0.1) { // pos or neg percent
+    $amount: percentage($amount);
+    @return scale-color($color, $alpha: $amount);
+}
+@function simAlpha($color) {
+    @return lighten(setTrans($color, 1), percentage(1 - alpha($color)) / 2);
+}
+@mixin oldAlpha($color) {
+    $hex: ie-hex-str($color);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000, endColorstr=#00000000);
+    -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr='+$hex+', endColorstr='+$hex+')';
+}
+@mixin backTrans($color, $opacity: 0.5) {
+    $color: adjTrans($color, $opacity);
+    @include oldAlpha($color);
+    /* end fallbacks */
+    background-color: $color;
+}
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
