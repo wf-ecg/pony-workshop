@@ -61,7 +61,7 @@ module.exports = function (grunt) {
                 verbose: true,
                 compareUsing: 'md5', // 'mtime'
             },
-            update: {
+            fast: {
                 files: [{
                         cwd: 'app',
                         src: ['**/*'],
@@ -73,17 +73,12 @@ module.exports = function (grunt) {
         },
         connect: {
             options: {
+                base: '<%= pkg.bases %>',
                 port: '<%= pkg.port1 %>',
-            },
-            base: {
-                options: {
-                    base: '<%= pkg.bases %>',
-                    open: false,
-                },
+                open: false,
             },
             full: {
                 options: {
-                    base: '<%= pkg.bases %>',
                     //hostname: 'localhost', // Change this to '0.0.0.0' to access the server from outside
                     open: 'http://localhost:<%= pkg.port1 %>', // target url to open
                 },
@@ -96,14 +91,14 @@ module.exports = function (grunt) {
             },
             css: {
                 files: ['scss/**/*.scss'],
-                tasks: ['sass:full'],
+                tasks: ['sass'],
             },
             reloads: {
                 options: {
                     livereload: '<%= pkg.port0 %>',
                 },
                 files: ['app/**/*', '!app/**/*.map'], // '<%= jshint.files %>',
-                tasks: ['jshint', 'sync:update'], // 'qunit'
+                tasks: ['jshint', 'sync:fast'], // 'qunit'
             },
             wait: {
                 options: {
@@ -155,8 +150,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['jshint', 'qunit']);
 
-    grunt.registerTask('default', ['jshint', 'sass:full', 'sync:clean', 'connect:full', 'watch']);
-    grunt.registerTask('package', ['jshint', 'sass:full', 'requirejs', 'sync:clean']);
+    grunt.registerTask('default', ['jshint', 'sass', 'sync:fast', 'connect', 'watch']);
+    grunt.registerTask('package', ['sass', 'requirejs', 'sync:clean']);
 };
 
 //        qunit: {
