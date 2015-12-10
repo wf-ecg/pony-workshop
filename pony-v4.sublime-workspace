@@ -11,22 +11,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "styles/main.css",
-			"settings":
-			{
-				"buffer_size": 5424,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 17210,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -60,6 +44,8 @@
 	},
 	"file_history":
 	[
+		"/Users/turgd01/Public/WORKING/12-09/ d 1923002 EMS Holiday Digital Experience/pony/index.html",
+		"/Users/turgd01/Public/WORKING/12-09/ d 1923002 EMS Holiday Digital Experience/pony/styles/main.css",
 		"/Users/a522551/Documents/WIP/Ponytizer/ponytizeme_v3/index.html",
 		"/Users/a522551/Documents/WIP/EnterpriseHolidayExperience/SITE - working/holidays/build/land.css",
 		"/Users/a522551/Documents/WIP/EnterpriseHolidayExperience/SITE-working/holidays/includes/pony_share.html",
@@ -167,68 +153,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "styles/main.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5424,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17210,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],

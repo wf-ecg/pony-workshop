@@ -3,7 +3,7 @@
   <title>Pony Workshop</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=9;IE=10;IE=Edge,chrome=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
   <link rel="stylesheet" type="text/css" href="lib/slick-1.5.7/slick/slick.css">
   <link rel="stylesheet" type="text/css" href="lib/slick-1.5.7/slick/slick-theme.css">
 <link rel="stylesheet" type="text/css" href="styles/main.css"> 
@@ -29,20 +29,20 @@
     <div style="display:none;"></div> <!--hidden preview div -->
   </div><!-- end progress -->
   <div class="preview" id="previewPony">
-    <div style="z-index:1"><img src=""  id="layer-mane" /></div>
-    <div style="z-index:2"><img src=""  id="layer-body" /></div>
-    <div style="z-index:3"><img src=""  id="layer-back" /></div>
-    <div style="z-index:4"><img src=""  id="layer-nose" /></div>
-    <div style="z-index:5"><img src=""  id="layer-fash" /></div>
-    <div style="z-index:6"><img src=""  id="layer-head" /></div>
-    <div style="z-index:7"><img src=""  id="layer-foot" /></div>
-    <div style="z-index:8"><img src=""  id="layer-sock" /></div>
-    <div style="z-index:9"><img src="images/pieces/eyes-01.png"  id="layer-eyes" /></div>
-  </div>
-  
+    <div style="z-index:11"><img src="images/_common/clear.png"  id="layer-mane"></div>
+    <div style="z-index:12"><img src="images/_common/clear.png"  id="layer-body"></div>
+    <div style="z-index:13"><img src="images/_common/clear.png"  id="layer-back"></div>
+    <div style="z-index:14"><img src="images/_common/clear.png"  id="layer-nose"></div>
+    <div style="z-index:15"><img src="images/_common/clear.png"  id="layer-fash"></div>
+    <div style="z-index:16"><img src="images/_common/clear.png"  id="layer-head"></div>
+    <div style="z-index:17"><img src="images/_common/clear.png"  id="layer-foot"></div>
+    <div style="z-index:18"><img src="images/_common/clear.png"  id="layer-sock"></div>
+    <div style="z-index:19"><img src="images/pieces/eyes-01.png"  id="layer-eyes"></div>
+    <div style="z-index:20" id="stickerDiv"><img src="images/_common/clear.png" id="layer-stkr"></div>
+  </div><!--close preview div -->
   
   <div class="outerSelector" id="outerSelector">
-  <div class="center grow"><img src="images/_common/up-arrow-icon.png" width="32" height="32" alt="previous step" id="previousArrow"></div>
+  <div class="center grow"><img src="images/_common/up-arrow-icon.png" width="43" height="24" alt="previous step" id="previousArrow"></div>
   <div class="selector">
     <div class="step" id="step0">
     INSTRUCTIONS...
@@ -76,7 +76,9 @@
      <div class="step" id="step3"> <!--eyes-->
           <div class="grow" onClick='push(this.id);' id="c1"><img src="images/thumbs/eyes-01.png" alt="eyes1" /></div>
           <div class="grow" onClick='push(this.id);' id="c2"><img src="images/thumbs/eyes-02.png" alt="eyes2" /></div>
-          <div class="grow" onClick='push(this.id);' id="c3"><img src="images/thumbs/eyes-03.png" alt="eyes3" /></div>          
+          <div class="grow" onClick='push(this.id);' id="c3"><img src="images/thumbs/eyes-03.png" alt="eyes3" /></div>
+          <div class="grow" onClick='push(this.id);' id="c4"><img src="images/thumbs/eyes-04.png" alt="eyes4" /></div>
+          <div class="grow" onClick='push(this.id);' id="c5"><img src="images/thumbs/eyes-05.png" alt="eyes5" /></div>            
     </div><!-- END step3 -->
   
   
@@ -139,11 +141,15 @@
     
     
     <div class="step" id="step9"><!--backgrounds-->
-          <div class="grow" onClick='push(this.id);' id="i0"><img src="images/thumbs/bgrd-00.png" alt="bgrd0" /></div>
+          <!-- <div class="grow" onClick='push(this.id);' id="i0"><img src="images/thumbs/bgrd-00.png" alt="bgrd0" /></div> -->
           <div class="grow" onClick='push(this.id);' id="i1"><img src="images/thumbs/bgrd-01.png" alt="bgrd1" /></div>
           <div class="grow" onClick='push(this.id);' id="i2"><img src="images/thumbs/bgrd-02.png" alt="bgrd2" /></div>
           <div class="grow" onClick='push(this.id);' id="i3"><img src="images/thumbs/bgrd-03.png" alt="bgrd3" /></div>
           <div class="grow" onClick='push(this.id);' id="i4"><img src="images/thumbs/bgrd-04.png" alt="bgrd4" /></div>
+          <div class="grow" onClick='push(this.id);' id="i5"><img src="images/thumbs/bgrd-05.png" alt="bgrd5" /></div>
+          <div class="grow" onClick='push(this.id);' id="i6"><img src="images/thumbs/bgrd-06.png" alt="bgrd6" /></div>
+          <div class="grow" onClick='push(this.id);' id="i7"><img src="images/thumbs/bgrd-07.png" alt="bgrd7" /></div>
+          <div class="grow" onClick='push(this.id);' id="i8"><img src="images/thumbs/bgrd-08.png" alt="bgrd8" /></div>
     </div><!-- END step9 -->
     
      <div class="step" id="step10"><!--stickers-->
@@ -167,16 +173,18 @@
     
   
   </div><!-- end selector -->
-  <div class="center grow"><img src="images/_common/down-arrow-icon.png" width="32" height="32" alt="next step" id="nextArrow"></div>
+  <div class="center grow"><img src="images/_common/down-arrow-icon.png" width="43" height="24" alt="next step" id="nextArrow"></div>
   </div><!-- end outerSelector -->
   
   <div class="footer" id="footer">&copy; 2015 Wells Fargo Bank, N.A. All rights reserved. For internal use only.</div>
+  <div class="backgroundFaded" id="backgroundFaded"></div>
 
   <script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="lib/slick-1.5.7/slick/slick.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
+        //document.getElementById("previewPony").classList.add('previewScaled');
         stepName = ["Intro", "1. Select Pony", "2. Choose Saddle", "3. Choose Back", "4. Choose Head", "5. Choose Mane", "6. Choose Nose", "7. Choose Feet", "8. Choose Socks", "9. Pick a Background", "Download/Share"];
         currentStep = 0;
         totalSteps = stepName.length;
@@ -239,12 +247,14 @@
     
 function gotoPrevStep() {
     //check if user is going back from background selection screen -- if so, resize pony to regular size
-    
     if (currentStep > 1) {
         document.getElementById("nextArrow").style.opacity = 1;
         if (currentStep == backgroundStep) {
         // user is moving backwards from backgrounds selection
-        document.body.style.backgroundImage = "url('images/backgrounds/bgrd-00.jpg')";
+        document.getElementById("previewPony").classList.remove('previewScaled');
+        setBG('bgrd-clear');    
+        document.body.style.backgroundImage = 'url(images/backgrounds/bgrd-body.jpg)';
+        document.getElementById("progressBar").classList.remove('progressBackground');
         }
         currentStep--;
         if (currentStep > backgroundStep) {
@@ -281,8 +291,11 @@ function gotoNextStep() {
         currentStep++;
         if (currentStep==backgroundStep) {
         //perform any actions on move to background step
-        
+        document.getElementById("previewPony").classList.add('previewScaled');
+        setBG('bgrd-01');
+        document.getElementById("progressBar").classList.add('progressBackground');     
         }
+        
         if (currentStep == (backgroundStep+1)) {
         //perform any actions on move to sticker step
         //
@@ -348,11 +361,13 @@ function gotoNextStep() {
     }
     
     function setBG(imageFile) {
-        document.body.style.backgroundImage = 'url(images/backgrounds/' + imageFile + '.jpg)';
-        document.body.style.backgroundPosition = "center top";
-        document.body.style.backgroundSize = "100%";
-        document.body.style.backgroundRepeat = "none";
-        //document.getElementById("previewPony").classList.add('previewScaled');
+        
+        document.getElementById("previewPony").style.backgroundImage = 'url(images/backgrounds/' + imageFile + '.jpg)';
+        document.getElementById("previewPony").style.backgroundSize = "contain";
+        document.getElementById("backgroundFaded").style.backgroundImage = 'url(images/backgrounds/' + imageFile + '.jpg)';
+        document.getElementById("backgroundFaded").style.backgroundSize = "cover";
+        document.body.style.backgroundImage = 'url(images/backgrounds/bgrd-clear.jpg)';
+        
     }
     
     function renderPreview() {
@@ -379,6 +394,7 @@ function gotoNextStep() {
         document.getElementById("progressBar").classList.remove('pushLeft');
         document.getElementById("title").classList.remove('pushUp');
     }
+    
     
   </script>
 
