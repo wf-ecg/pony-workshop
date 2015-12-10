@@ -1,84 +1,39 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
   <head>
-    <script>
-      var Img = {
-          _a: 1,  //  alpha
-          _d: {}, //  data
-          _i: 0, //   index
-          setData: function (dat) {
-              this._d = dat;
-          },
-          getData: function () {
-              return this._d;
-          },
-          makeGray: function () {
-              var d = this.getData(), i, n;
-
-              for (i = 0, n = d.length; i < n; i += 4) {
-                  this.picGray(i);
-              }
-          },
-          modAlpha: function (a) { // a is alpha
-              var d = this.getData(), i, n;
-
-              for (i = 0, n = d.length; i < n; i += 4) {
-                  this.picAlpha(i, a);
-              }
-          },
-          picAlpha: function (i, a) { // i is offset
-              var d = this.getData();
-              a = a || this._a || 1;
-              i = i || this._i || 0;
-
-              d[i + 3] *= a;
-          },
-          picGray: function (i) { // i is offset
-              var d = this.getData(), g;
-              i = i || this._i || 0;
-
-              g = (d[i + 0] / 3) + (d[i + 1]) + (d[i + 2] / 9);
-              d[i + 0] = g;
-              d[i + 1] = g;
-              d[i + 2] = g;
-          },
-      };
-
-      window.onload = function () {
-          var D = window.document;
-
-          if (!D.createElement('canvas').getContext) {
-              D.writeln('Your browser does not support Canvas.');
-              return;
-          }
-
-          var canvas = D.getElementById('effectsCanvas');
-          var context = canvas.getContext('2d');
-          var destX = 0;
-          var destY = 0;
-          var imageObj = new Image();
-
-          imageObj.onload = function () {
-              var imgData, pixels;
-              context.drawImage(imageObj, destX, destY);
-
-              imgData = context.getImageData(0, 0, canvas.width, canvas.height);
-              pixels = imgData.data;
-              Img.setData(pixels);
-              Img.makeGray();
-              Img.modAlpha(2);
-              context.putImageData(imgData, 0, 0);
-          };
-
-          imageObj.src = 'images/tiles/credit.png';
-      };
-    </script>
+    <title>canvas test</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="cache-control" content="max-age=0, must-revalidate">
+    <meta name="viewport" content="width=device-width">
+    <!--  -->
+    <script>(function(l,i,s,t){s=l.pathname;t=s.toLowerCase().replace(/index/,i||'index');t=t.match
+        (/\w+\.\w+$/)?t:t.replace(/\/*$/,'/index.html');if(t!==s)l.pathname=t;}(location));</script>
+    <meta name="author" content="WF-ECG INTERACTIVE">
+    <!-- static -->
     <style>
-      body {background-color: pink;}
-      canvas {border: 1em solid gray;}
     </style>
+    <!-- css -->
+    <link rel="stylesheet" href="/mfal/lib/jquery/mobile/custom/jquery.mobile.min.css">
+    <link rel="stylesheet" href="./canvas.css">
+    <!--  -->
+    <script src="/mfal/lib/requirejs/2.1.17/require.js"
+            data-main="./config"
+            data-main="./build/app"
+    ></script>
   </head>
-  <body>
-    <h1>HTML5 Canvas Effects Demo</h1>
-    <canvas id="effectsCanvas" width="500" height="550" > </canvas>
+  <body class="loading"><div data-role="page" class="pony">
+      <!--[if lt IE 10]><div class="upgradeframe"><h3>You are using an OUTDATED browser.</h3>
+      <p>Please consider installing and using a <a href="http://whatbrowser.org">modern<br>
+      browser</a> to improve your web experience.</p> </div><![endif]-->
+
+      <h1>HTML5 Canvas Effects Demo</h1>
+      <canvas id="effectsCanvas" width="999" height="666" > </canvas>
+
+      <!-- end ui-page -->
+    </div>
+
+    <script>require(['scripts/_main_canvas']);</script>
+
   </body>
 </html>

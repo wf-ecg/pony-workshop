@@ -24,7 +24,7 @@ require.config({
     }
 });
 
-require(['modern', 'console', 'lodash'], function () {
+require(['modern', 'console', 'lodash', 'jqmobi'], function () {
     var statToken;
 
     try {
@@ -59,6 +59,6 @@ require(['modern', 'console', 'lodash'], function () {
     /// CUSTOM
 
     statToken = statToken || 'PONY-Work';
-    //require(['jqmobi', '_main']);
+    //require(['_main']);
 });
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
