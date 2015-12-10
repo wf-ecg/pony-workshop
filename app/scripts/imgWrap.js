@@ -36,7 +36,7 @@ define(['jquery', 'lodash'], function
     function draw(cano, ele, x, y) {
         return cano.drawImage(ele, x || 0, y || 0);
     }
-    function dump(cano, dat, x, y) {
+    function stamp(cano, dat, x, y) {
         return cano.putImageData(dat, x || 0, y || 0);
     }
 
@@ -66,24 +66,24 @@ define(['jquery', 'lodash'], function
             var d = this._sampleImage().data, i, n;
 
             for (i = 0, n = d.length; i < n; i += 4) { // each pixel group
-                this.pixGray(i);
+                this._pixGray(i);
             }
-            return this.dump();
+            return this.stamp();
         },
         modAlpha: function (a) { // a is alpha
             var d = this._sampleImage().data, i, n;
 
             for (i = 0, n = d.length; i < n; i += 4) { // each pixel group
-                this.pixAlpha(i, a);
+                this._pixAlpha(i, a);
             }
-            return this.dump();
+            return this.stamp();
         },
-        pixAlpha: function (i, a) { // i is offset
+        _pixAlpha: function (i, a) { // i is offset
             a = a || this._a || 1;
             i = i || 0;
             this._rd[i + 3] *= a; // modify current alpha
         },
-        pixGray: function (i) { // i is offset
+        _pixGray: function (i) { // i is offset
             var d = this._rd, g;
             i = i || 0;
 
@@ -99,14 +99,14 @@ define(['jquery', 'lodash'], function
         pixIdx: function (x, y) {
             return (x * 4) + (this.rowIdx(y));
         },
-        draw: function () {
-            return this.dupeAt(0, 0);
+        dump: function () {
+            return this.dumpAt(0, 0);
         },
-        dupeAt: function (x, y) {
+        dumpAt: function (x, y) {
             return draw(this._co, this._ie, x, y);
         },
-        dump: function () {
-            return dump(this._co, this._id);
+        stamp: function (x, y) {
+            return stamp(this._co, this._id, x, y);
         },
     };
 

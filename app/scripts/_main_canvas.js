@@ -36,9 +36,11 @@ define(['imgWrap'], function (Img) {
     imgE.onload = function () {
         var wrap = new Img(imgE, canE);
 
-        wrap.draw(); // dump in the file top-left
+        wrap.dump(); // dump in the file top-left
         wrap.makeGray();
         wrap.modAlpha(0.5);
+        wrap.dump(); // dump in the file top-left
+        wrap.stamp(99, 99);
 
         W.Main = {
             canE: canE, // html element
