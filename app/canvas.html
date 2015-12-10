@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <script>
+      var Img = {
+          _a: 1,  //  alpha
+          _d: {}, //  data
+          _i: 0, //   index
+          setData: function (dat) {
+              this._d = dat;
+          },
+          getData: function () {
+              return this._d;
+          },
+          makeGray: function () {
+              var d = this.getData(), i, n;
+
+              for (i = 0, n = d.length; i < n; i += 4) {
+                  this.picGray(i);
+              }
+          },
+          modAlpha: function (a) { // a is alpha
+              var d = this.getData(), i, n;
+
+              for (i = 0, n = d.length; i < n; i += 4) {
+                  this.picAlpha(i, a);
+              }
+          },
+          picAlpha: function (i, a) { // i is offset
+              var d = this.getData();
+              a = a || this._a || 1;
+              i = i || this._i || 0;
+
+              d[i + 3] *= a;
+          },
+          picGray: function (i) { // i is offset
+              var d = this.getData(), g;
+              i = i || this._i || 0;
+
+              g = (d[i + 0] / 3) + (d[i + 1]) + (d[i + 2] / 9);
+              d[i + 0] = g;
+              d[i + 1] = g;
+              d[i + 2] = g;
+          },
+      };
+
+      window.onload = function () {
+          var D = window.document;
+
+          if (!D.createElement('canvas').getContext) {
+              D.writeln('Your browser does not support Canvas.');
+              return;
+          }
+
+          var canvas = D.getElementById('effectsCanvas');
+          var context = canvas.getContext('2d');
+          var destX = 0;
+          var destY = 0;
+          var imageObj = new Image();
+
+          imageObj.onload = function () {
+              var imgData, pixels;
+              context.drawImage(imageObj, destX, destY);
+
+              imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+              pixels = imgData.data;
+              Img.setData(pixels);
+              Img.makeGray();
+              Img.modAlpha(2);
+              context.putImageData(imgData, 0, 0);
+          };
+
+          imageObj.src = 'images/tiles/credit.png';
+      };
+    </script>
+    <style>
+      body {background-color: pink;}
+      canvas {border: 1em solid gray;}
+    </style>
+  </head>
+  <body>
+    <h1>HTML5 Canvas Effects Demo</h1>
+    <canvas id="effectsCanvas" width="500" height="550" > </canvas>
+  </body>
+</html>
