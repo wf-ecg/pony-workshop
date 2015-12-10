@@ -10,7 +10,7 @@
  document a bit
  */
 
-define(['img'], function (Img) {
+define(['imgWrap'], function (Img) {
     'use strict';
     var Nom = 'Main';
     var W = (W && W.window || window),
@@ -60,6 +60,7 @@ define(['img'], function (Img) {
 
     imageEle.src = './images/backgrounds/background_spring.png';
 
+    C.warn(Main);
 });
 /*
 

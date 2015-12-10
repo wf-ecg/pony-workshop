@@ -16,9 +16,10 @@ define(['jquery', 'lodash'], function
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE
 
-    var Nom = 'Img';
+    var Nom = 'ImgWrap';
     var W = (W && W.window || window),
-        C = (W.C || W.console || {});
+        C = (W.C || W.console || {}),
+        self;
 
     var ImageData = {
         data: [],
@@ -33,19 +34,19 @@ define(['jquery', 'lodash'], function
         return (str || '') + '.' + Nom;
     }
 
-    var _Img = {
+    var _self = {
         _a: 1, //  alpha
         _d: [], // raw-data
         _i: 0, //  index
-        _o: {}, // image-data
+        _e: {}, // image-data
         setData: function (dat) {
             this._d = dat || ImageData;
         },
         getData: function () {
-            return this._d || ImageData;
+            return this._d;
         },
         getSelf: function () {
-            return this._o || ImageData;
+            return this._e;
         },
         makeGray: function () {
             var d = this.getData(), i, n;
@@ -85,20 +86,21 @@ define(['jquery', 'lodash'], function
             return (x * 4) + (this.rowIdx(y));
         },
     };
+    C.info('test', Nom);
     // - - - - - - - - - - - - - - - - - -
     // CONSTRUCT
 
-    function Img(obj) {
-        if (!obj) {
+    self = function ImgWrap(ele) {
+        if (!ele) {
             throw new Error('bad arg');
         }
-        this._o = obj;
-    }
+        this._e = ele;
+    };
 
-    Img.prototype = _Img;
-    Img.constructor = Img;
+    self.prototype = _self;
+    self.constructor = self;
 
-    return Img;
+    return self;
 });
 /*
 
