@@ -10,31 +10,39 @@
  */
 define(['tests/pair'], function (Pair) {
     function Box(w, h) {
-        this.tl = new Pair(0, 0);
-        this.br = new Pair(w || 1, h || 1);
+        this.lt = new Pair(0, 0);
+        this.rb = new Pair(w || 1, h || 1);
     }
     Box.prototype = {constructor: Box,
         getLeft: function () {
-            return this.tl.a;
-        }, getTop: function () {
-            return this.tl.b;
+            return this.lt.a;
+        },
+        getTop: function () {
+            return this.lt.b;
         },
         getRight: function () {
-            return this.br.a;
-        }, getBottom: function () {
-            return this.br.b;
+            return this.rb.a;
+        },
+        getBottom: function () {
+            return this.rb.b;
+        },
+        getWidth: function () {
+            return Math.abs(this.rb.a - this.lt.a);
+        },
+        getHeight: function () {
+            return Math.abs(this.rb.b - this.lt.b);
         },
         getRect: function () {
             return [this.getLeft(), this.getTop(), this.getRight(), this.getBottom()];
         },
-        moveBy: function (x, y) {
-            this.tl.moveBy(x, y);
-            this.br.moveBy(x, y);
+        moveBy: function (n1, n2) {
+            this.lt.moveBy(n1, n2);
+            this.rb.moveBy(n1, n2);
             return this.getRect();
         },
-        moveTo: function (x, y) {
-            this.br.moveBy(this.tl.diffWith(x, y));
-            this.tl = new Pair(x, y);
+        moveTo: function (n1, n2) {
+            this.rb.moveBy(this.lt.diffWith(n1, n2));
+            this.lt = new Pair(n1, n2);
             return this.getRect();
         },
         toString: function () {

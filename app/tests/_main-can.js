@@ -38,11 +38,11 @@ require(['../config'], function () {
         }
         function linkDownloadName(ele, ctx, nom) {
             ele.download = nom + '.png';
-            ele.href = makeStream(o.c3);
+            ele.href = makeStream(ctx);
         }
 
         o.b = new Box();
-        console.debug(o.b, o.b.br.moveBy(99), o.b.moveTo(-33));
+        console.debug(o.b, o.b.rb.moveBy(99), o.b.moveTo(-33));
 
         // set colors
         o.c1.fillStyle = o.s1;
