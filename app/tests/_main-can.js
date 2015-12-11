@@ -61,8 +61,9 @@ require(['../config'], function () {
         o.d1 = o.c1.getImageData(0, 0, o.c1.canvas.width, o.c1.canvas.height);
         o.d2 = o.c2.canvas;
 
-        o.c3.putImageData(o.d1, 0, 0);
-        o.c3.drawImage(o.d2, 0, 0);
+        o.c3.putImageData(o.d1, 0, 0); // image data
+        o.c3.drawImage(o.d2, 0, 0); // canvas element
+        o.c3.save();
 
         console.log('o', o);
 
