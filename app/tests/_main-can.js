@@ -26,18 +26,21 @@ require(['../config'], function () {
             s3: 'rgba(0, 0, 200, 0.5)',
             i1: id('img1'),
             i2: id('img2'),
-            i3: id('img3'),
             c1: id('can1').getContext('2d'),
             c2: id('can2').getContext('2d'),
             c3: id('can3').getContext('2d'),
+            dl: id('downloader'),
         };
 
-        function saveCanvas(ctx) {
-            o.w1 = window.open();
-            o.w1.document.title = 'foo';
-            o.w1.location = ctx.canvas.toDataURL('image/png');
-            return o.w1;
+        function makeStream(ctx) {
+            var str = ctx.canvas.toDataURL();
+            return str.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
         }
+        function linkDownloadName(ele, ctx, nom) {
+            ele.download = nom + '.png';
+            ele.href = makeStream(o.c3);
+        }
+
         o.b = new Box();
         console.debug(o.b, o.b.br.moveBy(99), o.b.moveTo(-33));
 
@@ -60,7 +63,10 @@ require(['../config'], function () {
 
         o.c3.putImageData(o.d1, 0, 0);
         o.c3.drawImage(o.d2, 0, 0);
-        console.log('o', o); //, saveCanvas(o.c3)
+
+        console.log('o', o);
+
+        linkDownloadName(o.dl, o.c3, 'foobar');
     });
 
 });
