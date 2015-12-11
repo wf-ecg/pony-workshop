@@ -10,6 +10,7 @@
  document a bit
  */
 require(['../config'], function () {
+    require.config({baseUrl: '..'});
 
     require(['jquery', 'tests/box'], function ($, Box) {
         function id(str) {
