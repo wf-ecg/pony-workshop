@@ -19,13 +19,7 @@ define(['jquery', 'lodash'], function
     var Nom = 'ImgWrap';
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
-        self;
-
-    var ImageData = {
-        data: [],
-        height: 0,
-        width: 0,
-    };
+        U, _self, self;
 
     function db(num) {
         return W.debug > (num || 0);
@@ -40,13 +34,13 @@ define(['jquery', 'lodash'], function
         return cano.putImageData(dat, x || 0, y || 0);
     }
 
-    var _self = {
+    _self = {
         _a: 1, //  alpha
-        _id: null, // image data cache
-        _rd: null, // raw data cache
-        _ie: {}, // image-element
-        _ce: null, // canvas element
-        _co: null, // canvas object
+        _id: U, // image data cache
+        _rd: U, // raw data cache
+        _ie: U, // image-element
+        _ce: U, // canvas element
+        _co: U, // canvas object
         _setImage: function (ele) {
             this._ie = ele;
         },
@@ -55,8 +49,10 @@ define(['jquery', 'lodash'], function
             this._co = ele.getContext('2d');
         },
         _sampleImage: function () {
-            this._id = dataChunk(this._co, 0, 0, this._ce.width, this._ce.height);
-            this._rd = this._id.data;
+            if (!this._id) {
+                this._id = dataChunk(this._co, 0, 0, this._ce.width, this._ce.height);
+                this._rd = this._id.data;
+            }
             return this._id;
         },
         getSelf: function () {
@@ -68,7 +64,6 @@ define(['jquery', 'lodash'], function
             for (i = 0, n = d.length; i < n; i += 4) { // each pixel group
                 this._pixGray(i);
             }
-            return this.stamp();
         },
         modAlpha: function (a) { // a is alpha
             var d = this._sampleImage().data, i, n;
@@ -76,7 +71,6 @@ define(['jquery', 'lodash'], function
             for (i = 0, n = d.length; i < n; i += 4) { // each pixel group
                 this._pixAlpha(i, a);
             }
-            return this.stamp();
         },
         _pixAlpha: function (i, a) { // i is offset
             a = a || this._a || 1;
@@ -100,7 +94,12 @@ define(['jquery', 'lodash'], function
             return (x * 4) + (this.rowIdx(y));
         },
         dump: function () {
-            return this.dumpAt(0, 0);
+            this.dumpAt(0, 0);
+            this._co.fillStyle = "blue";
+            this._co.fillRect(10, 10, 100, 100);
+
+            this._co.fillStyle = "red";
+            this._co.fillRect(50, 50, 100, 100);
         },
         dumpAt: function (x, y) {
             return draw(this._co, this._ie, x, y);
