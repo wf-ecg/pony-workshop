@@ -112,7 +112,7 @@ define(['jquery', 'lodash'], function
     // - - - - - - - - - - - - - - - - - -
     // CONSTRUCT
 
-    self = function ImgWrap(imgEle, canEle) {
+    function ImgWrap(imgEle, canEle) {
         if (!imgEle || !canEle) {
             throw new Error('bad args');
         }
@@ -123,7 +123,7 @@ define(['jquery', 'lodash'], function
             C.info('test', Nom, this);
         }
     };
-
+    self = ImgWrap;
     self.prototype = _self;
     self.constructor = self;
 

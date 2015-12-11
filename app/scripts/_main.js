@@ -18,7 +18,7 @@
 define(['jquery', 'lodash',
     'libs/hover', 'libs/hash', 'libs/ratio', 'libs/speed',
     'quiz', 'reveal', 'slider',
-    'jqxtn'], function
+    'jqxtn', 'jqmobi'], function
     ($, _, Hover, Hash, Ratio, Speed, Quiz, Reveal, Slider) {
     'use strict';
 

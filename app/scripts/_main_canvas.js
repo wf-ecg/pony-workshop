@@ -10,7 +10,7 @@
  document a bit
  */
 
-define(['imgWrap'], function (Img) {
+require(['imgWrap'], function (Img) {
     'use strict';
     var Nom = 'Main';
     var W = (W && W.window || window),
@@ -25,7 +25,7 @@ define(['imgWrap'], function (Img) {
     }
 
     if (!D.createElement('canvas').getContext) {
-        return D.writeln('Your browser does not support Canvas.');
+        return D.writeln('no canvas support');
     }
     // - - - - - - - - - - - - - - - - - -
 

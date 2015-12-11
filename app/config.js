@@ -24,7 +24,7 @@ require.config({
     }
 });
 
-require(['modern', 'console', 'lodash', 'jqmobi'], function () {
+require(['modern', 'console', 'lodash'], function () {
     var statToken;
 
     try {
