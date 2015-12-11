@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test</title>
+<style>
+    * { margin: 0; }
+    body { background-color: pink; }
+    canvas { border: 1px solid red; }
+    img { border: 1px solid green; }
+</style>
+</head>
+
+<body>
+<canvas id="can1" width="222" height="222"></canvas>1
+<canvas id="can2" width="222" height="222"></canvas>2
+<canvas id="can3" width="222" height="222"></canvas>3
+<br>
+<img    id="img2" src="./images/icons/wf-square.svg" width="222">1
+<img    id="img1" src="./images/icons/stage-rev.png" width="222">2
+<img    id="img3" alt="img" width="222">3
+
+<script>
+function id(id) { return document.getElementById(id)}
+var o = {
+    s1: 'rgba(200, 0, 0, 0.5)',         s2: 'rgba(0, 200, 0, 0.5)',         s3: 'rgba(0, 0, 200, 0.5)',
+    i1: id('img1'),                     i2: id('img2'),                     i3: id('img3'),
+    c1: id('can1').getContext('2d'),    c2: id('can2').getContext('2d'),    c3: id('can3').getContext('2d'),
+};
+
+function saveCanvas(ctx) {
+    o.w1 = window.open();
+    o.w1.document.title = 'foo';
+    o.w1.location = ctx.canvas.toDataURL('image/png');
+    return o.w1;
+}
+
+function Pair (a,b) {this.a=a||0;this.b=b||a||0}
+Pair.prototype = {constructor: Pair,
+    check:    function(a,b) {if(a.constructor!==Pair){a=new Pair(a||0,b||a||0)}; return a},
+    moveBy:   function(a,b) {a=this.check(a,b); this.a+=a.a;this.b+=a.b; return this},
+    diffWith: function(a,b) {a=this.check(a,b); return new Pair(a.a-this.a,a.b-this.b)},
+    toString: function() {return JSON.stringify(this)}
+};
+function Box (w,h) {this.tl=new Pair(0,0); this.br=new Pair(w||1, h ||1)}
+Box.prototype = {constructor: Box,
+    getLeft:  function () {return this.tl.a}, getTop:     function () {return this.tl.b},
+    getRight: function () {return this.br.a}, getBottom:  function () {return this.br.b},
+    getRect:  function () {return [this.getLeft(),this.getTop(),this.getRight(),this.getBottom()]},
+    moveBy:   function (x, y) {this.tl.moveBy(x, y);this.br.moveBy(x,y); return this.getRect()},
+    moveTo:   function (x, y) {this.br.moveBy(this.tl.diffWith(x,y));this.tl=new Pair(x,y); return this.getRect()},
+    toString: function () {return JSON.stringify(this.getRect())}
+};
+o.b = new Box(); console.debug(o.b, o.b.br.moveBy(99), o.b.moveTo(-33));
+
+o.i2.onload = function () {
+    // set colors
+    o.c1.fillStyle = o.s1;
+    o.c2.fillStyle = o.s2;
+    o.c3.fillStyle = o.s3;
+    // draw squares
+    o.c1.fillRect(22, 33, 55, 55); // red
+    o.c2.fillRect(33, 44, 55, 55); // green
+
+    o.c1.globalAlpha = 0.5; // start applying @ 50%
+    o.c1.save();
+
+    o.c1.drawImage(o.i1, 0, 0);
+    o.c2.drawImage(o.i2, 55, 55);
+
+    o.d1 = o.c1.getImageData(0, 0, o.c1.canvas.width, o.c1.canvas.height);
+    o.d2 = o.c2.canvas;
+
+    o.c3.putImageData(o.d1, 0, 0);
+    o.c3.drawImage(o.d2, 0, 0);
+};
+    console.log('o', o); //, saveCanvas(o.c3)
+
+</script>
+</body>
+</html>
