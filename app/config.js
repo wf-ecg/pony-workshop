@@ -8,7 +8,7 @@ W.SHIET = {};
 W.debug = Number(new Date('2016/01/01') > new Date());
 
 require.config({
-    baseUrl: 'scripts',
+    baseUrl: '.',
     paths: {
         lr: 'http://localhost:7002/livereload.js?snipver=1',
         jquery: '/mfal/lib/jquery/1.8.2/jquery',
@@ -16,10 +16,10 @@ require.config({
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
         modern: '/mfal/lib/modernizr/2.6.2/modernizr.min',
         //
-        beacon: 'libs/ecg-beacon',
-        console: 'libs/console',
-        jqxtn: 'libs/jq-xtn',
-        stats: 'libs/ecg-stats',
+        beacon: 'scripts/libs/ecg-beacon',
+        console: 'scripts/libs/console',
+        jqxtn: 'scripts/libs/jq-xtn',
+        stats: 'scripts/libs/ecg-stats',
         //
     }
 });

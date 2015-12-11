@@ -11,7 +11,7 @@
  */
 require(['../config'], function () {
 
-    require(['jquery', 'test/box'], function ($, Box) {
+    require(['jquery', 'tests/box'], function ($, Box) {
         function id(str) {
             return document.getElementById(str);
         }

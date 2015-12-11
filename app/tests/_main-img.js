@@ -9,8 +9,9 @@
  TODO
  document a bit
  */
+require(['../config'], function () {
 
-require(['imgWrap'], function (Img) {
+require(['tests/imgwrap'], function (Img) {
     'use strict';
     var Nom = 'Main';
     var W = (W && W.window || window),
@@ -52,6 +53,7 @@ require(['imgWrap'], function (Img) {
     };
     imgE.src = './images/backgrounds/background_spring.png';
 
+});
 });
 /*
 

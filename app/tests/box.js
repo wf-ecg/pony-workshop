@@ -8,7 +8,7 @@
  TODO
 
  */
-define(['test/pair'], function (Pair) {
+define(['tests/pair'], function (Pair) {
     function Box(w, h) {
         this.tl = new Pair(0, 0);
         this.br = new Pair(w || 1, h || 1);
