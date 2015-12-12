@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("/mfal/lib/fonts/archer.ssm.css");
+@import url("/mfal/lib/fonts/myriad.css");
     body {
         overflow:hidden;
         margin:0;
@@ -15,19 +16,28 @@
     }
     
 
-    h1 {
+    #title {
         position:relative;
+        display: inline-block;;
         font-family: "Archer SSm A", "Archer SSm B", serif;
         font-weight: 600;
         color:#44464a;
         background-color:#ffffff;
         text-align:center;
-        font-size:1.2em;
+        font-size:1.5em;
         width:100%;
         margin:0px;
         margin-top:40px;
         padding:3px;
         z-index:2;
+    }
+    #introTitle {
+        display:inline-block;
+        margin: 40px auto;
+        font-family: "Archer SSm A", "Archer SSm B", serif;
+        font-weight: 600;
+        color:#ffffff;
+        text-align:center;
     }
     
     .alertHeight {
@@ -60,7 +70,7 @@
         left:0px;
         margin:0;
         padding:0;
-        opacity:.3;
+        opacity:1;
         z-index:0;
     }
     
@@ -72,21 +82,56 @@
         z-index:999;
         position:relative;
     }
-    .ctaContainer {
-        width:300px;
-        padding:.5em 1em;
-        background-color:#d1b472;
-        color:#ffffff;
-        font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
-        font-size: 2em;
-        text-align:center;
-    }
+    
     .ctaButton {
         padding:.5em 1em;
+        margin:.5em;
+        width:auto;
         background-color:#dedabe;
         color:#000000;
-        font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
-        font-size:1em;
+        font-family: "myriad-pro", sans-serif;
+        font-weight:400;
+        font-size:.7em;
+        text-decoration:none;
+        float:left;
+    }
+    .ctaButton a {
+        color:#000000;
+        text-decoration:none;
+    }
+    .ctaButtonContainer {
+        position: relative;
+        display:inline-block;
+        text-align:center;
+        overflow:auto;
+        margin:auto;
+    }
+    .ctaContainerOuter {
+        position:absolute;
+        display: inline-block;
+        bottom:7px;
+        left: 50%;
+        -webkit-transform: translate(-50%, 0);
+        -moz-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        -o-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+        
+        width:300px;
+        margin:0px auto;
+        text-align:center;
+        opacity:0;
+    }
+    .ctaContainerInner {
+        display: inline-block;
+        margin:7px auto 0 auto;
+        padding:.5em 1em 1em 1em;
+        background-color:#d1b472;
+        color:#ffffff;
+        font-family: "myriad-pro", sans-serif;
+        font-weight:600;
+        font-size: 1.3em;
+        text-align:center;
     }
     
     .footer {
@@ -130,10 +175,36 @@
     }
     
     #layer-stkr { 
-        width:40%;
-        height:auto;
-        left:40%;
-        top:55%;
+        /*positioning is now handles in the custom classes that follow below*/
+    }
+
+    .sticker0 { 
+        width:0% !important;
+        height:auto !important;
+    }
+    .sticker1 { 
+        width:35% !important;
+        height:auto !important;
+        left:52% !important;
+        top:62% !important;
+    }
+    .sticker2 { 
+        width:35% !important;
+        height:auto !important;
+        left:52% !important;
+        top:-20% !important;
+    }
+    .sticker3 { 
+        width:45% !important;
+        height:auto !important;
+        left:-33% !important;
+        top:-20% !important;
+    }
+    .sticker4 { 
+        width:35% !important;
+        height:auto !important;
+        left:-42% !important;
+        top:-14% !important;
     }
 
     .preview {
@@ -184,15 +255,15 @@
         width:60%;
         height:0px;
         padding-bottom:40%;
-        border:3px solid #cccccc;
+        border:2px solid #ffffff;
         top:0px;
         opacity:1;
     }
     
     .previewScaled div {
-        width:80%;
-        height:80%;
-        margin:5% 10% 15% 10%;
+        width:74%;
+        height:74%;
+        margin:10%;
         opacity:1;
     }
     
@@ -206,6 +277,9 @@
         bottom:20px;
         left:50%;
         z-index:100;
+    }
+    #previousArrow {
+        margin-bottom:7px;
     }
     .progress {
         position: fixed;
@@ -223,6 +297,7 @@
         color:#ffffff;
         height:auto;
         overflow: none;
+        z-index:2;
     }
     .progressBackground {
         background: rgb(0, 105, 140);
@@ -243,7 +318,12 @@
         transform-origin: center left;
         opacity:.4;
     }
-
+    
+    #sectionIntro { position:relative; width:100%; margin: 1em; text-align:center; color:#ffffff;}
+    #sectionIntroContent {width:50%; margin:0 auto;}
+    #sectionIntroContent img {width:30%; height:auto;}
+    #sectionBuild { opacity:0; }
+    
     .selector {
         width:550px;
         margin: 0px auto 10px auto;
@@ -274,6 +354,7 @@
         height:100px;
         background: rgb(237, 237, 237); /*fallback for non-alpha supported browsers */
         background: rgba(237, 237, 237, .3);
+        background-image:url(../images/_common/thumbBG_tile300bg.jpg);
         cursor: pointer;
         margin: 0px;
         padding: 0px;
@@ -300,14 +381,15 @@
         -ms-transition: all .2s ease-in-out;
         -o-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out; 
+        cursor: pointer;
     }
     
     .grow:hover { 
-        -webkit-transform: scale(1.2);
-        -moz-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        -o-transform: scale(1.2);
-        transform: scale(1.2);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        transform: scale(1.1);
         }
     
     .grow2 { 
@@ -316,11 +398,13 @@
         -ms-transition: all .2s ease-in-out;
         -o-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out; 
+        cursor: pointer;
     }
     
     .grow2 {
         /*effects for current progressItem*/
         opacity:1;
+        z-index:999;
         }
         
         .pushDown, .pushDownUndo, .pushLeft, .pushLeftUndo, .pushUp, .pushUpUndo, .pushRight, .pushRightUndo {
@@ -332,11 +416,11 @@
         }
         
     .pushDown {
-        -webkit-transform: translateY(150px);
-        -moz-transform: translateY(150px);
-        -ms-transform: translateY(150px);
-        -o-transform: translateY(150px);
-        transform: translateY(150px);
+        -webkit-transform: translateY(250px);
+        -moz-transform: translateY(250px);
+        -ms-transform: translateY(250px);
+        -o-transform: translateY(250px);
+        transform: translateY(250px);
         opacity:1;
     }
     .pushDownUndo {
@@ -348,11 +432,11 @@
         opacity:1;
     }
     .pushUp {
-        -webkit-transform: translateY(-150px);
-        -moz-transform: translateY(-150px);
-        -ms-transform: translateY(-150px);
-        -o-transform: translateY(-150px);
-        transform: translateY(-150px);
+        -webkit-transform: translateY(-250px);
+        -moz-transform: translateY(-250px);
+        -ms-transform: translateY(-250px);
+        -o-transform: translateY(-250px);
+        transform: translateY(-250px);
         opacity:0;
     }
     .pushUpUndo {
