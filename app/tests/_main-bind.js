@@ -12,7 +12,7 @@
 require(['../config'], function () {
     require.config({baseUrl: '..'});
 
-    require(['jquery', 'tests/user'], function ($, User) {
+    require(['jquery', 'tests/gs', 'tests/user'], function ($, GS, User) {
         var W = (W && W.window || window),
             C = (W.C || W.console || {}),
             D = W.document,
@@ -22,11 +22,15 @@ require(['../config'], function () {
         var user = new User(123);
         user.set('name', 'Wolfgang');
 
-        X = {
-            u: user,
+        W.x = X = {
             U: User,
+            G: GS,
+            u: user,
+            o: new GS(),
         };
-        W.x = X;
+        X.o.gs('g');
+
+        C.info(X);
     });
 
 });
