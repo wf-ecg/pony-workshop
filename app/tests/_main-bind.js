@@ -19,13 +19,19 @@ require(['../config'], function () {
             U, X;
 
 
-        var user = new User(123);
-        user.set('name', 'Wolfgang');
+        var u1 = new User(1);
+        u1.set('name', 'Bob');
+        u1.set('number', '111');
+
+        var u2 = new User(2);
+        u2.set('name', 'Cat');
+        u2.set('number', '222');
 
         W.x = X = {
             U: User,
             G: GS,
-            u: user,
+            u1: u1,
+            u2: u2,
             o: new GS(),
         };
         X.o.gs('g');

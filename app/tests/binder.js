@@ -12,40 +12,43 @@ define(['jquery', 'tests/box'], function ($) {
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
         D = W.document,
-        U;
+        U, count = 0;
 
-    function Binder(object_id) {
-        // Use a jQuery object as simple PubSub
-        var pubSub = $({});
+    function Binder(uid) {
+        this.id = uid + ':change';
+        this.binder_idx = count++;
+        this.$$ = {}; // cache
+        this.ps = $({}); // queue
 
-        // We expect a `data` element specifying the binding
-        // in the form: data-bind-<object_id>='<property_name>'
-        var data_attr = 'bind-' + object_id,
-            message = object_id + ':change';
+        // select elements with `data-bind-<uid>=<key>`
+        var attr = 'bind-' + uid,
+            self = this;
 
-        // Listen to change events on elements with the data-binding attribute and proxy
-        // them to the PubSub, so that the change is 'broadcasted' to all connected objects
-        $(document).on('change', '[data-' + data_attr + ']', function (evt) {
-            var $input = $(this);
+        // publish from elements with data-bind proxy to objects
+        $(D).on('change', '[data-' + attr + ']', function (e) {
+            var ele = $(this);
 
-            pubSub.trigger(message, [$input.data(data_attr), $input.val()]);
+            self.pub(self.id, [ele.data(attr), ele.val()]);
         });
 
-        // PubSub propagates changes to all bound elements, setting value of
-        // input tags or HTML content of other tags
-        pubSub.on(message, function (evt, prop_name, new_val) {
-            $('[data-' + data_attr + '=' + prop_name + ']').each(function () {
-                var $bound = $(this);
+        // subscribe to object and element changes
+        self.sub(self.id, function (e, key, val, from) {
+            self.$$[key] = val;
+            if (from !== self) {
+                return;
+            }
+            // propagate to key bound elements
+            $('[data-' + attr + '=' + key + ']').each(function () {
+                var ele = $(this);
 
-                if ($bound.is('input, textarea, select')) {
-                    $bound.val(new_val);
+                if (ele.is('input, textarea, select')) {
+                    ele.val(val);
                 } else {
-                    $bound.html(new_val);
+                    ele.html(val);
                 }
             });
         });
 
-        return pubSub;
     }
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE
@@ -56,6 +59,18 @@ define(['jquery', 'tests/box'], function ($) {
     Binder.prototype = {constructor: Binder,
         toString: function () {
             return JSON.stringify(this);
+        },
+        set: function (key, val) {
+            this.pub(this.id, [key, val, this]);
+        },
+        get: function (key) {
+            return this.$$[key];
+        },
+        sub: function () {
+            this.ps.on.apply(this.ps, arguments);
+        },
+        pub: function () {
+            this.ps.trigger.apply(this.ps, arguments);
         },
     };
 

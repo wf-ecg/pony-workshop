@@ -12,33 +12,22 @@ define(['jquery', 'tests/binder'], function ($, Binder) {
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
         D = W.document,
-        U;
+        U, count = 0;
 
     function User(uid) {
-        var binder, user;
+        var self = this,
+            binder = new Binder(uid);
 
-        binder = new Binder(uid);
-        user = {
-            attributes: {},
-            // The attribute setter publish changes using the Binder PubSub
-            set: function (attr, val) {
-                this.attributes[attr] = val;
-                binder.trigger(uid + ':change', [attr, val, this]);
-            },
-            get: function (attr) {
-                return this.attributes[attr];
-            },
-            _binder: binder
+        // proxy get/set changes to Binder
+        self.set = function (attr, val) {
+            binder.set(attr, val);
+            return this;
         };
+        self.get = function (attr) {
+            return binder.get(attr);
+        };
+        self.user_idx = count++;
 
-        // Subscribe to the PubSub
-        binder.on(uid + ':change', function (evt, attr, val, initiator) {
-            if (initiator !== user) {
-                user.set(attr, val);
-            }
-        });
-
-        return user;
     }
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE
