@@ -25,10 +25,17 @@ define(['jquery', 'tests/box'], function ($) {
     // CONSTRUCT
 
     function Binder(uid) {
-        this.id = uid + ':change';
+        var $$ = {}; // cache
+        var id = uid + ':change';
+
         this.binder_idx = count++;
-        this.$$ = {}; // cache
         this.ps = $({}); // queue
+        this.set = function (key, val) {
+            self.pub(id, [key, val, self]);
+        };
+        this.get = function (key) {
+            return $$[key];
+        };
 
         // select elements with `data-bind-<uid>=<key>`
         var attr = 'bind-' + uid,
@@ -38,12 +45,12 @@ define(['jquery', 'tests/box'], function ($) {
         $(D).on('change', '[data-' + attr + ']', function (e) {
             var ele = $(this);
 
-            self.pub(self.id, [ele.data(attr), ele.val()]);
+            self.pub(id, [ele.data(attr), ele.val()]);
         });
 
         // subscribe to object and element changes
-        self.sub(self.id, function (e, key, val, from) {
-            self.$$[key] = val;
+        self.sub(id, function (e, key, val, from) {
+            $$[key] = val;
             if (from !== self) {
                 return;
             }
@@ -62,12 +69,6 @@ define(['jquery', 'tests/box'], function ($) {
     Binder.prototype = {constructor: Binder,
         toString: function () {
             return JSON.stringify(this);
-        },
-        set: function (key, val) {
-            this.pub(this.id, [key, val, this]);
-        },
-        get: function (key) {
-            return this.$$[key];
         },
         sub: function () {
             this.ps.on.apply(this.ps, arguments);
