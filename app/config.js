@@ -11,10 +11,11 @@ require.config({
     baseUrl: 'scripts',
     paths: {
         lr: 'http://localhost:7002/livereload.js?snipver=1',
-        jquery: '/mfal/lib/jquery/1.8.2/jquery',
+        jquery: '/mfal/lib/jquery/1.11.3/jquery.min',
         jqmobi: '/mfal/lib/jquery/mobile/custom/jquery.mobile',
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
         modern: '/mfal/lib/modernizr/2.6.2/modernizr.min',
+        slick: '/mfal/lib/slick/1.5.7/slick.min',
         //
         beacon: 'libs/ecg-beacon',
         console: 'libs/console',
@@ -24,7 +25,7 @@ require.config({
     }
 });
 
-require(['modern', 'console', 'lodash'], function () {
+require(['console', 'lodash'], function () {
     var statToken;
 
     try {
@@ -59,6 +60,8 @@ require(['modern', 'console', 'lodash'], function () {
     /// CUSTOM
 
     statToken = statToken || 'PONY-Work';
-    //require(['jqmobi', '_main']);
+    require(['jquery', 'slick'], function ($, slick) {
+        require(['gareth']);
+    });
 });
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
