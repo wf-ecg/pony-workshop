@@ -1,17 +1,20 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-.msie img {
-    max-width: inherit!important;
+
+.slick-prev {
+    left: -45px;
+}
+.slick-prev:before {
+    content: url(../../../images/_common/left-arrow-icon.png);
+}
+.slick-next:before {
+    content: url(../../../images/_common/right-arrow-icon.png);
 }
 
 .clearfix {
     @include clearfix;
 }
-
-.left { float: left; }
-.lite { font-weight: 200; }
-.right { float: right; }
 
 .debug *:hover {
     outline-color: transparentize( orange, 0.7 );
@@ -19,18 +22,11 @@
     outline-style: solid;
     outline-width: 1px;
 }
-
 @media print {
     body {
         background: none;
     }
     .noprint {
-        display: none;
-    }
-    #Popup {
-        display: block;
-    }
-    #Wrap {
         display: none;
     }
 }
