@@ -9,10 +9,20 @@
 
  */
 define(['jquery', 'tests/box'], function ($) {
+    'use strict';
+    // - - - - - - - - - - - - - - - - - -
+    // PRIVATE
+
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
         D = W.document,
         U, count = 0;
+
+    function db(num) {
+        return W.debug > (num || 0);
+    }
+    // - - - - - - - - - - - - - - - - - -
+    // CONSTRUCT
 
     function Binder(uid) {
         this.id = uid + ':change';
@@ -48,14 +58,7 @@ define(['jquery', 'tests/box'], function ($) {
                 }
             });
         });
-
     }
-    // - - - - - - - - - - - - - - - - - -
-    // PRIVATE
-
-    // - - - - - - - - - - - - - - - - - -
-    // CONSTRUCT
-
     Binder.prototype = {constructor: Binder,
         toString: function () {
             return JSON.stringify(this);

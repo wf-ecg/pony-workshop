@@ -8,11 +8,22 @@
  TODO
 
  */
-define(['jquery', 'tests/binder'], function ($, Binder) {
+define(['jquery', 'tests/binder'], function
+    ($, Binder) {
+    'use strict';
+    // - - - - - - - - - - - - - - - - - -
+    // PRIVATE
+
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
         D = W.document,
         U, count = 0;
+
+    function db(num) {
+        return W.debug > (num || 0);
+    }
+    // - - - - - - - - - - - - - - - - - -
+    // CONSTRUCT
 
     function User(uid) {
         var self = this,
@@ -27,14 +38,8 @@ define(['jquery', 'tests/binder'], function ($, Binder) {
             return binder.get(attr);
         };
         self.user_idx = count++;
-
+        self.binder = binder;
     }
-    // - - - - - - - - - - - - - - - - - -
-    // PRIVATE
-
-    // - - - - - - - - - - - - - - - - - -
-    // CONSTRUCT
-
     User.prototype = {constructor: User,
         toString: function () {
             return JSON.stringify(this);
