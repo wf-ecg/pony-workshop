@@ -1,14 +1,13 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 /* PROJ / Base */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+* {
+    box-sizing: border-box;
+}
 html, body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-}
-html {
-    font-family: $serif;
-    font-size: 10px;
-    overflow: hidden;
+    height: 100%;
 }
 
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
