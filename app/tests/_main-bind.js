@@ -32,9 +32,11 @@ require(['../config'], function () {
             G: GS,
             u1: u1,
             u2: u2,
-            o: new GS(),
+            o1: new GS(),
+            o2: new GS(),
         };
-        X.o.gs('g');
+        X.o1.gs('test');
+        X.o2.gs('test');
 
         C.info(X);
     });
