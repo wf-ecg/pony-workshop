@@ -149,13 +149,13 @@ define(['jquery', 'slick'], function ($) {
     function randomPony() {
         var randomBody = Math.floor((Math.random() * 10) + 1);
         $('#layer-body')[0].src = 'images/pieces/body-' + pad2(randomBody) + '.png';
-        var randomMane = Math.floor((Math.random() * 9) + 1);
+        var randomMane = Math.floor((Math.random() * 10) + 1);
         $('#layer-mane')[0].src = 'images/pieces/mane-' + pad2(randomMane) + '.png';
         var randomNose = Math.floor((Math.random() * 8) + 1);
         $('#layer-nose')[0].src = 'images/pieces/nose-' + pad2(randomNose) + '.png';
         var randomSock = Math.floor((Math.random() * 4) + 1);
         $('#layer-sock')[0].src = 'images/pieces/sock-' + pad2(randomSock) + '.png';
-        var randomFeet = Math.floor((Math.random() * 6) + 1);
+        var randomFeet = Math.floor((Math.random() * 5) + 1);
         $('#layer-foot')[0].src = 'images/pieces/foot-' + pad2(randomFeet) + '.png';
     }
 
