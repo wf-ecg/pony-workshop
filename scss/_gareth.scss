@@ -33,35 +33,69 @@ body {
     z-index: 2;
 }
 
-#sectionIntro h1 {
+#sectionIntro {
     color: #fff;
-    display: block;
-    font-family: "Archer SSm A","Archer SSm B",serif;
-    font-size: 3em;
-    font-weight: 600;
-    margin: 80px auto 0;
-    padding: 0;
+    position: relative;
     text-align: center;
-}
+    z-index: 1;
 
-#sectionIntro h2 {
-    color: #fff;
-    display: block;
-    font-family: "Archer SSm A","Archer SSm B",serif;
-    font-size: 1.5em;
-    font-weight: 400;
-    padding: 0;
-    text-align: center;
-}
-
-#sectionIntro h3 {
-    color: #fff;
-    display: block;
-    font-family: "myriad-pro",sans-serif;
-    font-size: 1.2em;
-    font-weight: 400;
-    padding: 0;
-    text-align: center;
+    div {
+        margin: 0 auto;
+        width: 50%;
+    }
+    h1 {
+        color: #fff;
+        display: block;
+        font-family: "Archer SSm A","Archer SSm B",serif;
+        font-size: 3em;
+        font-weight: 600;
+        margin: 80px auto 0;
+        padding: 0;
+        text-align: center;
+    }
+    h2 {
+        color: #fff;
+        display: block;
+        font-family: "Archer SSm A","Archer SSm B",serif;
+        font-size: 1.5em;
+        font-weight: 400;
+        padding: 0;
+        text-align: center;
+    }
+    h3 {
+        color: #fff;
+        display: block;
+        font-family: "myriad-pro",sans-serif;
+        font-size: 1.2em;
+        font-weight: 400;
+        padding: 0;
+        text-align: center;
+    }
+    .ctaButton {
+        background-color: #006A85;
+        border-radius: 3px;
+        color: #fff;
+        display: inline-block;
+        font-family: "myriad-pro",sans-serif;
+        font-size: 1em;
+        font-weight: 400;
+        margin: 0.5em;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        width: auto;
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+    .introPonyPic {
+        display: block;
+        margin: auto;
+        img {
+            height: auto;
+            width: 15em;
+        }
+    }
 }
 
 .alertHeight {
@@ -159,25 +193,6 @@ body {
     text-align: center;
 }
 
-#sectionIntro .ctaButton {
-    background-color: #006A85;
-    border-radius: 3px;
-    color: #fff;
-    display: inline-block;
-    font-family: "myriad-pro",sans-serif;
-    font-size: 1em;
-    font-weight: 400;
-    margin: 0.5em;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    width: auto;
-}
-
-#sectionIntro .ctaButton a {
-    color: #fff;
-    text-decoration: none;
-}
-
 .footer {
     background-color: #44464a;
     bottom: 0;
@@ -216,16 +231,6 @@ body {
 
 .hide-bg {
     background-image: none;
-}
-
-#introPonyPic {
-    display: block;
-    margin: auto;
-}
-
-#introPonyPic img {
-    height: auto;
-    width: 15em;
 }
 
 .preload {
@@ -375,15 +380,7 @@ body {
     width: 100%;
 }
 
-#sectionIntro {
-    color: #fff;
-    text-align: center;
-}
 
-#sectionIntroContent {
-    margin: 0 auto;
-    width: 50%;
-}
 
 #sectionBuild {
     opacity: 0;
