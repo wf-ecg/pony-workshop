@@ -1,17 +1,13 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-.msie img {
-    max-width: inherit!important;
+html, body {
+    min-height: 100%;
 }
 
 .clearfix {
     @include clearfix;
 }
-
-.left { float: left; }
-.lite { font-weight: 200; }
-.right { float: right; }
 
 .debug *:hover {
     outline-color: transparentize( orange, 0.7 );
@@ -25,12 +21,6 @@
         background: none;
     }
     .noprint {
-        display: none;
-    }
-    #Popup {
-        display: block;
-    }
-    #Wrap {
         display: none;
     }
 }
