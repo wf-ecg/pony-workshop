@@ -43,7 +43,7 @@ require(['console', 'lodash'], function () {
         C.error('config', err);
     }
     _.delay(function () {
-        if (W.debug < 2) {
+        if (W.debug < 0) {
             require(['stats'], function (stats) {
                 stats.init(statToken);
             });

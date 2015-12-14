@@ -1,21 +1,23 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.preview {
+    @include nosel;
+}
 
 .slick-prev {
     left: -45px;
 }
 .slick-prev:before {
-    content: url(../../../images/_common/left-arrow-icon.png);
+    content: url(../images/_common/left-arrow-icon.png);
 }
 .slick-next:before {
-    content: url(../../../images/_common/right-arrow-icon.png);
+    content: url(../images/_common/right-arrow-icon.png);
 }
 
 .clearfix {
     @include clearfix;
 }
-
 .debug *:hover {
     outline-color: transparentize( orange, 0.7 );
     outline-offset: 0.5px;
