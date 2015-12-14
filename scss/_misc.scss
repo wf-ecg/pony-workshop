@@ -1,8 +1,11 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-html, body {
-    min-height: 100%;
+* {
+    box-sizing: border-box;
+}
+html, body, #sectionBuild {
+    height: 100%;
 }
 
 .clearfix {
@@ -15,7 +18,6 @@ html, body {
     outline-style: solid;
     outline-width: 1px;
 }
-
 @media print {
     body {
         background: none;
