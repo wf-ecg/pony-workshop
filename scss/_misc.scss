@@ -8,6 +8,16 @@ html, body, #sectionBuild {
     height: 100%;
 }
 
+.slick-prev {
+    left: -45px;
+}
+.slick-prev:before {
+    content: url(../../../images/_common/left-arrow-icon.png);
+}
+.slick-next:before {
+    content: url(../../../images/_common/right-arrow-icon.png);
+}
+
 .clearfix {
     @include clearfix;
 }
