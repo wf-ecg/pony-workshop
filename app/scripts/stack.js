@@ -15,7 +15,7 @@ define(['pair', 'box'], function (Pair, Box) {
         U;
 
     function Stack() {
-        this.size = new Box(640, 480);
+        this.size = new Box(1920, 1280);
         this.context = newcontext();
         this.origin = new Pair();
         this.stack = [];
