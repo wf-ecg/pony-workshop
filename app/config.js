@@ -60,8 +60,6 @@ require(['console', 'lodash'], function () {
     /// CUSTOM
 
     statToken = statToken || 'PONY-Work';
-    require(['jquery', 'slick'], function ($, slick) {
-        require(['gareth']);
-    });
+    require(['gareth']);
 });
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
