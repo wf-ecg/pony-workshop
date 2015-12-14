@@ -68,7 +68,7 @@ function gotoPrevStep() {
     //check if user is going back from background selection screen -- if so, resize pony to regular size and remove background image and sticker
     if (currentStep > 1) {
         document.getElementById('nextArrow').style.opacity = 1;
-        if (currentStep == backgroundStep) {
+        if (currentStep === backgroundStep) {
             // user is moving backwards from backgrounds selection
             document.getElementById('previewPony').classList.remove('previewScaled');
             setBG('bgrd-clear');
@@ -94,21 +94,21 @@ function gotoPrevStep() {
             bottom: '0px'
         }, 300);
     }
-    if (currentStep == 1) {
+    if (currentStep === 1) {
         //reached the beginning
         document.getElementById("previousArrow").style.opacity = 0.3;
     }
 
-    if (currentStep == (backgroundStep - 1)) {
+    if (currentStep === (backgroundStep - 1)) {
         //document.getElementById("previewPony").classList.remove('previewScaled');
     }
 }
 
 function gotoNextStep() {
     if (currentStep <= totalSteps) {
-        document.getElementById("previousArrow").style.opacity = .3 + (.7 * (currentStep > 0));
+        document.getElementById("previousArrow").style.opacity = 0.3 + (0.7 * (currentStep > 0));
         currentStep++;
-        if (currentStep == backgroundStep) {
+        if (currentStep === backgroundStep) {
             //perform any actions on move to background step
             document.getElementById("previewPony").classList.add('previewScaled');
             setBG(bgChoice);
@@ -116,12 +116,11 @@ function gotoNextStep() {
             //document.getElementById("progressBar").classList.add('progressBackground');
         }
 
-        if (currentStep == (backgroundStep + 1)) {
+        if (currentStep === (backgroundStep + 1)) {
             //perform any actions on move to sticker step
-
         }
 
-        if (currentStep == (backgroundStep + 2)) {
+        if (currentStep === (backgroundStep + 2)) {
             //perform any actions on move to preview mode
             renderPreview();
         }
@@ -140,7 +139,7 @@ function gotoNextStep() {
             bottom: '0px'
         }, 300);
     }
-    if (currentStep == totalSteps) {
+    if (currentStep === totalSteps) {
         //reached the end
         document.getElementById("nextArrow").style.opacity = 0.3;
 
@@ -165,13 +164,13 @@ function push(id) {
     var imageURL = document.getElementById(id).getElementsByTagName('img')[0].src;
     imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4)); //extract string following images/thumbs but without file type
     var itemType = imageFile.substring(0, 4); //extract four-character item type from file name
-    if (itemType == "bgrd") {
+    if (itemType === "bgrd") {
         bgChoice = imageFile;
         setBG(imageFile); //run setBG function
-    } else if (itemType != null) {
+    } else if (itemType !== null) {
         document.getElementById("layer-" + itemType).src = "images/pieces/" + imageFile + ".png";
     }
-    if (itemType == "stkr") {
+    if (itemType === "stkr") {
         //set custom positioning of sticker
         var stickerNumber = Number(imageFile.substr(imageFile.length - 1));
         document.getElementById('layer-stkr').style.display = "none";
@@ -212,7 +211,7 @@ function randomPony() {
 }
 
 function pad2(number) {
-    return (number < 10 ? '0' : '') + number
+    return (number < 10 ? '0' : '') + number;
 }
 
 function setBG(bgChoice) {
