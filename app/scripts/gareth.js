@@ -60,29 +60,29 @@ $(document).ready(function () {
 });
 
 function gotoBuild() {
-    document.getElementById('sectionIntro').style.display = 'none';
-    document.getElementById('sectionBuild').style.opacity = '1';
+    $('#sectionIntro').hide();
+    $('#sectionBuild').css('opacity', 1);
 }
 
 function gotoPrevStep() {
     //check if user is going back from background selection screen -- if so, resize pony to regular size and remove background image and sticker
     if (currentStep > 1) {
-        document.getElementById('nextArrow').style.opacity = 1;
+        $('#nextArrow').css('opacity', 1);
         if (currentStep === backgroundStep) {
             // user is moving backwards from backgrounds selection
-            document.getElementById('previewPony').classList.remove('previewScaled');
+            $('#previewPony').removeClass('previewScaled');
             setBG('bgrd-clear');
-            document.getElementById('layer-stkr').style.display = 'none';
+            $('#layer-stkr').hide();
             document.body.style.backgroundImage = 'url(images/backgrounds/bgrd-body.jpg)';
-            document.getElementById('backgroundFaded').style.opacity = '0';
+            $('#backgroundFaded').css('opacity', 0);
         }
         currentStep--;
         if (currentStep > backgroundStep) {
             //user has moved backwards from preview mode to sticker selection
             removePreview();
         }
-        document.getElementById('progressBar').getElementsByTagName('div')[currentStep + 1].classList.remove('grow2');
-        document.getElementById('progressBar').getElementsByTagName('div')[currentStep].classList.add('grow2');
+        $('#progressBar div').eq(currentStep + 1).removeClass('grow2');
+        $('#progressBar div').eq(currentStep).addClass('grow2');
 
         $('#step' + (currentStep + 1)).animate({
             opacity: -1,
@@ -96,24 +96,24 @@ function gotoPrevStep() {
     }
     if (currentStep === 1) {
         //reached the beginning
-        document.getElementById('previousArrow').style.opacity = 0.3;
+        $('#previousArrow')[0].style.opacity = 0.3;
     }
 
     if (currentStep === (backgroundStep - 1)) {
-        //document.getElementById('previewPony').classList.remove('previewScaled');
+        //$('#previewPony')[0].classList.remove('previewScaled');
     }
 }
 
 function gotoNextStep() {
     if (currentStep <= totalSteps) {
-        document.getElementById('previousArrow').style.opacity = 0.3 + (0.7 * (currentStep > 0));
+        $('#previousArrow')[0].style.opacity = 0.3 + (0.7 * (currentStep > 0));
         currentStep++;
         if (currentStep === backgroundStep) {
             //perform any actions on move to background step
-            document.getElementById('previewPony').classList.add('previewScaled');
+            $('#previewPony').addClass('previewScaled');
             setBG(bgChoice);
-            document.getElementById('layer-stkr').style.display = 'block';
-            //document.getElementById('progressBar').classList.add('progressBackground');
+            $('#layer-stkr').show();
+            //$('#progressBar').classList.add('progressBackground');
         }
 
         if (currentStep === (backgroundStep + 1)) {
@@ -125,9 +125,9 @@ function gotoNextStep() {
             renderPreview();
         }
 
-        //document.getElementById('stepName').innerHTML = stepName[currentStep];
-        document.getElementById('progressBar').getElementsByTagName('div')[currentStep - 1].classList.remove('grow2');
-        document.getElementById('progressBar').getElementsByTagName('div')[currentStep].classList.add('grow2');
+        //$('#stepName').innerHTML = stepName[currentStep];
+        $('#progressBar div').eq(currentStep - 1).removeClass('grow2');
+        $('#progressBar div').eq(currentStep).addClass('grow2');
 
         $('#step' + (currentStep - 1)).animate({
             opacity: -1,
@@ -141,7 +141,7 @@ function gotoNextStep() {
     }
     if (currentStep === totalSteps) {
         //reached the end
-        document.getElementById('nextArrow').style.opacity = 0.3;
+        $('#nextArrow').css('opacity', 0.3);
 
     }
 }
@@ -161,53 +161,53 @@ $('#btnBuild').click(function () {
 });
 
 function push(id) {
-    var imageURL = document.getElementById(id).getElementsByTagName('img')[0].src;
+    var imageURL = $('#' + id + ' img')[0].src;
     imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4)); //extract string following images/thumbs but without file type
     var itemType = imageFile.substring(0, 4); //extract four-character item type from file name
     if (itemType === 'bgrd') {
         bgChoice = imageFile;
         setBG(imageFile); //run setBG function
     } else if (itemType !== null) {
-        document.getElementById('layer-' + itemType).src = 'images/pieces/' + imageFile + '.png';
+        $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
     }
     if (itemType === 'stkr') {
         //set custom positioning of sticker
         var stickerNumber = Number(imageFile.substr(imageFile.length - 1));
-        document.getElementById('layer-stkr').style.display = 'none';
-        document.getElementById('layer-stkr').classList.remove('sticker1', 'sticker2', 'sticker3', 'sticker4');
+        var ele = $('#layer-stkr').hide();
+
+        ele.removeClass('sticker1 sticker2 sticker3 sticker4');
         switch (stickerNumber) {
             case 1:
-                document.getElementById('layer-stkr').classList.add('sticker1');
+                ele.addClass('sticker1');
                 break;
             case 2:
-                document.getElementById('layer-stkr').classList.add('sticker2');
+                ele.addClass('sticker2');
                 break;
             case 3:
-                document.getElementById('layer-stkr').classList.add('sticker3');
+                ele.addClass('sticker3');
                 break;
             case 4:
-                document.getElementById('layer-stkr').classList.add('sticker4');
+                ele.addClass('sticker4');
                 break;
             default:
-                document.getElementById('layer-stkr').classList.add('sticker0');
-                break;
+                ele.addClass('sticker0');
         }
-        document.getElementById('layer-stkr').style.display = 'block';
+        $('#layer-stkr').show();
     }
 
 }
 
 function randomPony() {
     var randomBody = Math.floor((Math.random() * 10) + 1);
-    document.getElementById('layer-body').src = 'images/pieces/body-' + pad2(randomBody) + '.png';
+    $('#layer-body')[0].src = 'images/pieces/body-' + pad2(randomBody) + '.png';
     var randomMane = Math.floor((Math.random() * 9) + 1);
-    document.getElementById('layer-mane').src = 'images/pieces/mane-' + pad2(randomMane) + '.png';
+    $('#layer-mane')[0].src = 'images/pieces/mane-' + pad2(randomMane) + '.png';
     var randomNose = Math.floor((Math.random() * 8) + 1);
-    document.getElementById('layer-nose').src = 'images/pieces/nose-' + pad2(randomNose) + '.png';
+    $('#layer-nose')[0].src = 'images/pieces/nose-' + pad2(randomNose) + '.png';
     var randomSock = Math.floor((Math.random() * 4) + 1);
-    document.getElementById('layer-sock').src = 'images/pieces/sock-' + pad2(randomSock) + '.png';
+    $('#layer-sock')[0].src = 'images/pieces/sock-' + pad2(randomSock) + '.png';
     var randomFeet = Math.floor((Math.random() * 6) + 1);
-    document.getElementById('layer-foot').src = 'images/pieces/foot-' + pad2(randomFeet) + '.png';
+    $('#layer-foot')[0].src = 'images/pieces/foot-' + pad2(randomFeet) + '.png';
 }
 
 function pad2(number) {
@@ -216,70 +216,69 @@ function pad2(number) {
 
 function setBG(bgChoice) {
     var imageNumber = Number(bgChoice.substr(bgChoice.length - 1));
-    document.getElementById('previewPony').style.backgroundImage = 'url(images/backgrounds/' + bgChoice + '.jpg)';
-    document.getElementById('previewPony').style.backgroundSize = 'contain';
-    document.getElementById('backgroundFaded').style.opacity = '1';
+    $('#previewPony').css('backgroundImage', 'url(images/backgrounds/' + bgChoice + '.jpg)');
+    $('#previewPony').css('backgroundSize', 'contain');
+    $('#backgroundFaded').css('opacity', 1);
     switch (imageNumber) {
         case 1:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#84b3c5';
+            $('#backgroundFaded').css('backgroundColor', '#84b3c5');
             break;
         case 2:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#95b73f';
+            $('#backgroundFaded').css('backgroundColor', '#95b73f');
             break;
         case 3:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#e5b523';
+            $('#backgroundFaded').css('backgroundColor', '#e5b523');
             break;
         case 4:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#268855';
+            $('#backgroundFaded').css('backgroundColor', '#268855');
             break;
         case 5:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#654d7d';
+            $('#backgroundFaded').css('backgroundColor', '#654d7d');
             break;
         case 6:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#267f9d';
+            $('#backgroundFaded').css('backgroundColor', '#267f9d');
             break;
         case 7:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#654d7d';
+            $('#backgroundFaded').css('backgroundColor', '#654d7d');
             break;
         case 8:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#fcce30';
+            $('#backgroundFaded').css('backgroundColor', '#fcce30');
             break;
         default:
-            document.getElementById('backgroundFaded').style.backgroundColor = '#ffffff';
-            break;
+            $('#backgroundFaded').css('backgroundColor', '#ffffff');
     }
 
 }
 
 function renderPreview() {
     //after sticker step, render preview and bring in download/email buttons
-    document.getElementById('outerSelector').classList.add('pushDown');
-    document.getElementById('footer').classList.add('pushDown');
-    document.getElementById('progressBar').classList.add('pushLeft');
-    document.getElementById('title').classList.add('pushUp');
-    document.getElementById('header').classList.add('pushUp');
-    document.getElementById('previewPony').classList.add('previewScaled100pc');
-    document.getElementById('cta').classList.add('grow2');
-    document.getElementById('outerSelector').classList.remove('pushDownUndo');
-    document.getElementById('footer').classList.remove('pushDownUndo');
-    document.getElementById('progressBar').classList.remove('pushLeftUndo');
-    document.getElementById('title').classList.remove('pushUpUndo');
-    document.getElementById('header').classList.remove('pushUpUndo');
+    $('#outerSelector').addClass('pushDown');
+    $('#footer').addClass('pushDown');
+    $('#progressBar').addClass('pushLeft');
+    $('#title').addClass('pushUp');
+    $('#header').addClass('pushUp');
+    $('#previewPony').addClass('previewScaled100pc');
+    $('#cta').addClass('grow2');
+    $('#outerSelector').removeClass('pushDownUndo');
+    $('#footer').removeClass('pushDownUndo');
+    $('#progressBar').removeClass('pushLeftUndo');
+    $('#title').removeClass('pushUpUndo');
+    $('#header').removeClass('pushUpUndo');
 }
 
 function removePreview() {
     //leave preview mode, returning elements to normal positions
-    document.getElementById('outerSelector').classList.add('pushDownUndo');
-    document.getElementById('footer').classList.add('pushDownUndo');
-    document.getElementById('progressBar').classList.add('pushLeftUndo');
-    document.getElementById('title').classList.add('pushUpUndo');
-    document.getElementById('header').classList.add('pushUpUndo');
-    document.getElementById('outerSelector').classList.remove('pushDown');
-    document.getElementById('footer').classList.remove('pushDown');
-    document.getElementById('progressBar').classList.remove('pushLeft');
-    document.getElementById('title').classList.remove('pushUp');
-    document.getElementById('header').classList.remove('pushUp');
-    document.getElementById('previewPony').classList.remove('previewScaled100pc');
-    document.getElementById('cta').classList.remove('grow2');
+    $('#outerSelector').addClass('pushDownUndo');
+    $('#footer').addClass('pushDownUndo');
+    $('#progressBar').addClass('pushLeftUndo');
+    $('#title').addClass('pushUpUndo');
+    $('#header').addClass('pushUpUndo');
+    $('#outerSelector').removeClass('pushDown');
+    $('#footer').removeClass('pushDown');
+    $('#progressBar').removeClass('pushLeft');
+    $('#title').removeClass('pushUp');
+    $('#header').removeClass('pushUp');
+    $('#previewPony').removeClass('previewScaled100pc');
+    $('#cta').removeClass('grow2');
 }
 
