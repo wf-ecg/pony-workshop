@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="styles/main.css"> 
   </head>
   <body>
-  <div class="header">
+  <div class="header" id="header">
     <img src="images/_common/wf-logo-bar-300.png" width="300" height="40" alt="Wells Fargo" />
   </div>
   
@@ -18,14 +18,54 @@
   <div id="sectionIntro">
     <div id="sectionIntroContent">
         <h1 id="introTitle">Pony Workshop</h1>
-        <h2>Design and style your own Wells Fargo Pony!</h2>
-        <img src="images/intro/introPony.png" alt="">
-        <h3>This holiday season, show a team member you’re thinking of them by sharing a custom pony of your design. Or keep it for yourself by creating a custom desktop wallpaper.</h3>
+        <h2>Design and style your own Wells&nbsp;Fargo Pony!</h2>
+        <div id="introPonyPic"><img src="images/intro/introPony.png" alt=""></div>
+        <h3>This holiday season, show a team member you’re thinking of them by sharing a custom pony of your design. Or keep it for yourself by creating a custom desktop&nbsp;wallpaper.</h3>
         <div class="ctaButtonContainer">
-            <div class="center grow2 ctaButton" id="btnBuild">Build Your Pony</div>
+            <div class="ctaButton" id="btnBuild"><a href="#">Build&nbsp;Your&nbsp;Pony</a></div>
         </div>
     </div><!--end sectionIntroContent-->
   </div><!--close sectionIntro-->
+  
+  <!-- preload large images -->
+  <div class="preload">
+  <img src="images/pieces/body-01.png">
+  <img src="images/pieces/body-02.png">
+  <img src="images/pieces/body-03.png">
+  <img src="images/pieces/body-04.png">
+  <img src="images/pieces/body-05.png">
+  <img src="images/pieces/body-06.png">
+  <img src="images/pieces/body-07.png">
+  <img src="images/pieces/body-08.png">
+  <img src="images/pieces/body-09.png">
+  <img src="images/pieces/body-10.png">
+  <img src="images/pieces/mane-01.png">
+  <img src="images/pieces/mane-02.png">
+  <img src="images/pieces/mane-03.png">
+  <img src="images/pieces/mane-04.png">
+  <img src="images/pieces/mane-05.png">
+  <img src="images/pieces/mane-06.png">
+  <img src="images/pieces/mane-07.png">
+  <img src="images/pieces/mane-08.png">
+  <img src="images/pieces/mane-09.png">
+  <img src="images/pieces/head-01.png">
+  <img src="images/pieces/head-02.png">
+  <img src="images/pieces/head-03.png">
+  <img src="images/pieces/head-04.png">
+  <img src="images/pieces/head-05.png">
+  <img src="images/pieces/head-06.png">
+  <img src="images/pieces/head-07.png">
+  <img src="images/pieces/head-08.png">
+  <img src="images/pieces/head-09.png">
+  <img src="images/pieces/bgrd-01.png">
+  <img src="images/pieces/bgrd-02.png">
+  <img src="images/pieces/bgrd-03.png">
+  <img src="images/pieces/bgrd-04.png">
+  <img src="images/pieces/bgrd-05.png">
+  <img src="images/pieces/bgrd-06.png">
+  <img src="images/pieces/bgrd-07.png">
+  <img src="images/pieces/bgrd-08.png">
+  </div><!-- close preload -->
   
   <div id = "sectionBuild">
   <h1 id="title">Pony Workshop</h1>
@@ -65,116 +105,115 @@
       </div>
       
       <div class="step" id="step1"> <!--body -->
-            <div class="grow" onClick='push(this.id);' id="a1"><img src="images/thumbs/body-01.jpg" alt="pony1" /></div>
-            <div class="grow" onClick='push(this.id);' id="a2"><img src="images/thumbs/body-02.jpg" alt="pony2" /></div>
-            <div class="grow" onClick='push(this.id);' id="a3"><img src="images/thumbs/body-03.jpg" alt="pony3" /></div>
-            <div class="grow" onClick='push(this.id);' id="a4"><img src="images/thumbs/body-04.jpg" alt="pony4" /></div>
-            <div class="grow" onClick='push(this.id);' id="a5"><img src="images/thumbs/body-05.jpg" alt="pony5" /></div>
-            <div class="grow" onClick='push(this.id);' id="a6"><img src="images/thumbs/body-06.jpg" alt="pony5" /></div>
-            <div class="grow" onClick='push(this.id);' id="a7"><img src="images/thumbs/body-07.jpg" alt="pony7" /></div>
-            <div class="grow" onClick='push(this.id);' id="a8"><img src="images/thumbs/body-08.jpg" alt="pony8" /></div>
-            <div class="grow" onClick='push(this.id);' id="a9"><img src="images/thumbs/body-09.jpg" alt="pony9" /></div>
-            <div class="grow" onClick='push(this.id);' id="a10"><img src="images/thumbs/body-10.jpg" alt="pony10" /></div>
+            <div class="grow" onClick="push(this.id);" id="a1"><img src="images/thumbs/body-01.jpg" alt="pony1" /></div>
+            <div class="grow" onClick="push(this.id);" id="a2"><img src="images/thumbs/body-02.jpg" alt="pony2" /></div>
+            <div class="grow" onClick="push(this.id);" id="a3"><img src="images/thumbs/body-03.jpg" alt="pony3" /></div>
+            <div class="grow" onClick="push(this.id);" id="a4"><img src="images/thumbs/body-04.jpg" alt="pony4" /></div>
+            <div class="grow" onClick="push(this.id);" id="a5"><img src="images/thumbs/body-05.jpg" alt="pony5" /></div>
+            <div class="grow" onClick="push(this.id);" id="a6"><img src="images/thumbs/body-06.jpg" alt="pony5" /></div>
+            <div class="grow" onClick="push(this.id);" id="a7"><img src="images/thumbs/body-07.jpg" alt="pony7" /></div>
+            <div class="grow" onClick="push(this.id);" id="a8"><img src="images/thumbs/body-08.jpg" alt="pony8" /></div>
+            <div class="grow" onClick="push(this.id);" id="a9"><img src="images/thumbs/body-09.jpg" alt="pony9" /></div>
+            <div class="grow" onClick="push(this.id);" id="a10"><img src="images/thumbs/body-10.jpg" alt="pony10" /></div>
       </div><!-- END step1 -->
       
       <div class="step" id="step2"> <!--mane and tail-->
-            <div class="grow" onClick='push(this.id);' id="b1"><img src="images/thumbs/mane-01.jpg" alt="mane1" /></div>
-            <div class="grow" onClick='push(this.id);' id="b2"><img src="images/thumbs/mane-02.jpg" alt="mane2" /></div>
-            <div class="grow" onClick='push(this.id);' id="b3"><img src="images/thumbs/mane-03.jpg" alt="mane3" /></div>
-            <div class="grow" onClick='push(this.id);' id="b4"><img src="images/thumbs/mane-04.jpg" alt="mane4" /></div>
-            <div class="grow" onClick='push(this.id);' id="b5"><img src="images/thumbs/mane-05.jpg" alt="mane5" /></div>
-            <div class="grow" onClick='push(this.id);' id="b6"><img src="images/thumbs/mane-06.jpg" alt="mane6" /></div>
-            <div class="grow" onClick='push(this.id);' id="b7"><img src="images/thumbs/mane-07.jpg" alt="mane7" /></div>
-            <div class="grow" onClick='push(this.id);' id="b8"><img src="images/thumbs/mane-08.jpg" alt="mane8" /></div>
-            <div class="grow" onClick='push(this.id);' id="b9"><img src="images/thumbs/mane-09.jpg" alt="mane9" /></div>
-            <div class="grow" onClick='push(this.id);' id="b10"><img src="images/thumbs/mane-10.jpg" alt="mane10" /></div>
+            <div class="grow" onClick="push(this.id);" id="b1"><img src="images/thumbs/mane-01.jpg" alt="mane1" /></div>
+            <div class="grow" onClick="push(this.id);" id="b2"><img src="images/thumbs/mane-02.jpg" alt="mane2" /></div>
+            <div class="grow" onClick="push(this.id);" id="b3"><img src="images/thumbs/mane-03.jpg" alt="mane3" /></div>
+            <div class="grow" onClick="push(this.id);" id="b4"><img src="images/thumbs/mane-04.jpg" alt="mane4" /></div>
+            <div class="grow" onClick="push(this.id);" id="b5"><img src="images/thumbs/mane-05.jpg" alt="mane5" /></div>
+            <div class="grow" onClick="push(this.id);" id="b6"><img src="images/thumbs/mane-06.jpg" alt="mane6" /></div>
+            <div class="grow" onClick="push(this.id);" id="b7"><img src="images/thumbs/mane-07.jpg" alt="mane7" /></div>
+            <div class="grow" onClick="push(this.id);" id="b8"><img src="images/thumbs/mane-08.jpg" alt="mane8" /></div>
+            <div class="grow" onClick="push(this.id);" id="b9"><img src="images/thumbs/mane-09.jpg" alt="mane9" /></div>
+            <div class="grow" onClick="push(this.id);" id="b10"><img src="images/thumbs/mane-10.jpg" alt="mane10" /></div>
       </div><!-- END step2 -->
       
        <div class="step" id="step3"> <!--eyes-->
-            <div class="grow" onClick='push(this.id);' id="c1"><img src="images/thumbs/eyes-01.jpg" alt="eyes1" /></div>
-            <div class="grow" onClick='push(this.id);' id="c2"><img src="images/thumbs/eyes-02.jpg" alt="eyes2" /></div>
-            <div class="grow" onClick='push(this.id);' id="c3"><img src="images/thumbs/eyes-03.jpg" alt="eyes3" /></div>
-            <div class="grow" onClick='push(this.id);' id="c4"><img src="images/thumbs/eyes-04.jpg" alt="eyes4" /></div>
-            <div class="grow" onClick='push(this.id);' id="c5"><img src="images/thumbs/eyes-05.jpg" alt="eyes5" /></div>
-            <div class="grow" onClick='push(this.id);' id="c6"><img src="images/thumbs/eyes-06.jpg" alt="eyes6" /></div>
-            <div class="grow" onClick='push(this.id);' id="c7"><img src="images/thumbs/eyes-07.jpg" alt="eyes7" /></div>
-            <div class="grow" onClick='push(this.id);' id="c8"><img src="images/thumbs/eyes-08.jpg" alt="eyes8" /></div>
-            <div class="grow" onClick='push(this.id);' id="c9"><img src="images/thumbs/eyes-09.jpg" alt="eyes9" /></div>
-            <div class="grow" onClick='push(this.id);' id="c10"><img src="images/thumbs/eyes-10.jpg" alt="eyes10" /></div>
-            <div class="grow" onClick='push(this.id);' id="c11"><img src="images/thumbs/eyes-11.jpg" alt="eyes11" /></div>            
+            <div class="grow" onClick="push(this.id);" id="c1"><img src="images/thumbs/eyes-01.jpg" alt="eyes1" /></div>
+            <div class="grow" onClick="push(this.id);" id="c2"><img src="images/thumbs/eyes-02.jpg" alt="eyes2" /></div>
+            <div class="grow" onClick="push(this.id);" id="c3"><img src="images/thumbs/eyes-03.jpg" alt="eyes3" /></div>
+            <div class="grow" onClick="push(this.id);" id="c4"><img src="images/thumbs/eyes-04.jpg" alt="eyes4" /></div>
+            <div class="grow" onClick="push(this.id);" id="c5"><img src="images/thumbs/eyes-05.jpg" alt="eyes5" /></div>
+            <div class="grow" onClick="push(this.id);" id="c6"><img src="images/thumbs/eyes-06.jpg" alt="eyes6" /></div>
+            <div class="grow" onClick="push(this.id);" id="c7"><img src="images/thumbs/eyes-07.jpg" alt="eyes7" /></div>
+            <div class="grow" onClick="push(this.id);" id="c8"><img src="images/thumbs/eyes-08.jpg" alt="eyes8" /></div>
+            <div class="grow" onClick="push(this.id);" id="c9"><img src="images/thumbs/eyes-09.jpg" alt="eyes9" /></div>
+            <div class="grow" onClick="push(this.id);" id="c10"><img src="images/thumbs/eyes-10.jpg" alt="eyes10" /></div>
+            <div class="grow" onClick="push(this.id);" id="c11"><img src="images/thumbs/eyes-11.jpg" alt="eyes11" /></div>            
       </div><!-- END step3 -->
     
     
        <div class="step" id="step4"> <!--nose-->
-            <div class="grow" onClick='push(this.id);' id="d0"><img src="images/thumbs/nose-00.jpg" alt="default" /></div>
-            <div class="grow" onClick='push(this.id);' id="d1"><img src="images/thumbs/nose-01.jpg" alt="nose1" /></div>
-            <div class="grow" onClick='push(this.id);' id="d2"><img src="images/thumbs/nose-02.jpg" alt="nose2" /></div>
-            <div class="grow" onClick='push(this.id);' id="d3"><img src="images/thumbs/nose-03.jpg" alt="nose3" /></div>
-            <div class="grow" onClick='push(this.id);' id="d4"><img src="images/thumbs/nose-04.jpg" alt="nose4" /></div>
-            <div class="grow" onClick='push(this.id);' id="d5"><img src="images/thumbs/nose-05.jpg" alt="nose5" /></div>
-            <div class="grow" onClick='push(this.id);' id="d6"><img src="images/thumbs/nose-06.jpg" alt="nose6" /></div>
-            <div class="grow" onClick='push(this.id);' id="d7"><img src="images/thumbs/nose-07.jpg" alt="nose7" /></div>
+            <div class="grow" onClick="push(this.id);" id="d0"><img src="images/thumbs/nose-00.jpg" alt="default" /></div>
+            <div class="grow" onClick="push(this.id);" id="d1"><img src="images/thumbs/nose-01.jpg" alt="nose1" /></div>
+            <div class="grow" onClick="push(this.id);" id="d2"><img src="images/thumbs/nose-02.jpg" alt="nose2" /></div>
+            <div class="grow" onClick="push(this.id);" id="d3"><img src="images/thumbs/nose-03.jpg" alt="nose3" /></div>
+            <div class="grow" onClick="push(this.id);" id="d4"><img src="images/thumbs/nose-04.jpg" alt="nose4" /></div>
+            <div class="grow" onClick="push(this.id);" id="d5"><img src="images/thumbs/nose-05.jpg" alt="nose5" /></div>
+            <div class="grow" onClick="push(this.id);" id="d6"><img src="images/thumbs/nose-06.jpg" alt="nose6" /></div>
+            <div class="grow" onClick="push(this.id);" id="d7"><img src="images/thumbs/nose-07.jpg" alt="nose7" /></div>
       </div><!-- END step4 -->
       
       <div class="step" id="step5"> <!--socks-->
-            <div class="grow" onClick='push(this.id);' id="e0"><img src="images/thumbs/sock-00.jpg" alt="default" /></div>
-            <div class="grow" onClick='push(this.id);' id="e1"><img src="images/thumbs/sock-01.jpg" alt="sock1" /></div>
-            <div class="grow" onClick='push(this.id);' id="e2"><img src="images/thumbs/sock-02.jpg" alt="sock2" /></div>
-            <div class="grow" onClick='push(this.id);' id="e3"><img src="images/thumbs/sock-03.jpg" alt="sock3" /></div>
-            <div class="grow" onClick='push(this.id);' id="e4"><img src="images/thumbs/sock-04.jpg" alt="sock4" /></div>
+            <div class="grow" onClick="push(this.id);" id="e0"><img src="images/thumbs/sock-00.jpg" alt="default" /></div>
+            <div class="grow" onClick="push(this.id);" id="e1"><img src="images/thumbs/sock-01.jpg" alt="sock1" /></div>
+            <div class="grow" onClick="push(this.id);" id="e2"><img src="images/thumbs/sock-02.jpg" alt="sock2" /></div>
+            <div class="grow" onClick="push(this.id);" id="e3"><img src="images/thumbs/sock-03.jpg" alt="sock3" /></div>
+            <div class="grow" onClick="push(this.id);" id="e4"><img src="images/thumbs/sock-04.jpg" alt="sock4" /></div>
       </div><!-- END step5 -->
       
      <div class="step" id="step6"> <!--hooves-->
-            <div class="grow" onClick='push(this.id);' id="f1"><img src="images/thumbs/foot-01.jpg" alt="foot1" /></div>
-            <div class="grow" onClick='push(this.id);' id="f2"><img src="images/thumbs/foot-02.jpg" alt="foot2" /></div>
-            <div class="grow" onClick='push(this.id);' id="f3"><img src="images/thumbs/foot-03.jpg" alt="foot3" /></div>
-            <div class="grow" onClick='push(this.id);' id="f4"><img src="images/thumbs/foot-04.jpg" alt="foot4" /></div>
-            <div class="grow" onClick='push(this.id);' id="f5"><img src="images/thumbs/foot-05.jpg" alt="foot5" /></div>
+            <div class="grow" onClick="push(this.id);" id="f1"><img src="images/thumbs/foot-01.jpg" alt="foot1" /></div>
+            <div class="grow" onClick="push(this.id);" id="f2"><img src="images/thumbs/foot-02.jpg" alt="foot2" /></div>
+            <div class="grow" onClick="push(this.id);" id="f3"><img src="images/thumbs/foot-03.jpg" alt="foot3" /></div>
+            <div class="grow" onClick="push(this.id);" id="f4"><img src="images/thumbs/foot-04.jpg" alt="foot4" /></div>
+            <div class="grow" onClick="push(this.id);" id="f5"><img src="images/thumbs/foot-05.jpg" alt="foot5" /></div>
       </div><!-- END step6 -->
       
       
        <div class="step" id="step7"> <!--head-wear-->
-            <div class="grow" onClick='push(this.id);' id="g0"><img src="images/thumbs/head-00.jpg" alt="default" /></div>
-            <div class="grow" onClick='push(this.id);' id="g1"><img src="images/thumbs/head-01.jpg" alt="head1" /></div>
-            <div class="grow" onClick='push(this.id);' id="g2"><img src="images/thumbs/head-02.jpg" alt="head2" /></div>
-            <div class="grow" onClick='push(this.id);' id="g3"><img src="images/thumbs/head-03.jpg" alt="head3" /></div>
-            <div class="grow" onClick='push(this.id);' id="g4"><img src="images/thumbs/head-04.jpg" alt="head4" /></div>
-            <div class="grow" onClick='push(this.id);' id="g5"><img src="images/thumbs/head-05.jpg" alt="head5" /></div>
+            <div class="grow" onClick="push(this.id);" id="g0"><img src="images/thumbs/head-00.jpg" alt="default" /></div>
+            <div class="grow" onClick="push(this.id);" id="g1"><img src="images/thumbs/head-01.jpg" alt="head1" /></div>
+            <div class="grow" onClick="push(this.id);" id="g2"><img src="images/thumbs/head-02.jpg" alt="head2" /></div>
+            <div class="grow" onClick="push(this.id);" id="g3"><img src="images/thumbs/head-03.jpg" alt="head3" /></div>
+            <div class="grow" onClick="push(this.id);" id="g4"><img src="images/thumbs/head-04.jpg" alt="head4" /></div>
+            <div class="grow" onClick="push(this.id);" id="g5"><img src="images/thumbs/head-05.jpg" alt="head5" /></div>
       </div><!-- END step7 -->
       
       
       <div class="step" id="step8"> <!--fashion - saddles, blankets, neckwear -->
-            <div class="grow" onClick='push(this.id);' id="h0"><img src="images/thumbs/fash-00.jpg" alt="default" /></div>
-            <div class="grow" onClick='push(this.id);' id="h1"><img src="images/thumbs/fash-01.jpg" alt="saddle1" /></div>
-            <div class="grow" onClick='push(this.id);' id="h2"><img src="images/thumbs/fash-02.jpg" alt="saddle2" /></div>
-            <div class="grow" onClick='push(this.id);' id="h3"><img src="images/thumbs/fash-03.jpg" alt="saddle3" /></div>
-            <div class="grow" onClick='push(this.id);' id="h4"><img src="images/thumbs/fash-04.jpg" alt="saddle4" /></div>
-            <div class="grow" onClick='push(this.id);' id="h5"><img src="images/thumbs/fash-05.jpg" alt="back1" /></div>
-            <div class="grow" onClick='push(this.id);' id="h6"><img src="images/thumbs/fash-06.jpg" alt="back2" /></div>
-            <div class="grow" onClick='push(this.id);' id="h7"><img src="images/thumbs/fash-07.jpg" alt="back3" /></div>
-            <div class="grow" onClick='push(this.id);' id="h8"><img src="images/thumbs/fash-08.jpg" alt="neck1" /></div>
-            <div class="grow" onClick='push(this.id);' id="h9"><img src="images/thumbs/fash-09.jpg" alt="neck2" /></div>
+            <div class="grow" onClick="push(this.id);" id="h0"><img src="images/thumbs/fash-00.jpg" alt="default" /></div>
+            <div class="grow" onClick="push(this.id);" id="h1"><img src="images/thumbs/fash-01.jpg" alt="saddle1" /></div>
+            <div class="grow" onClick="push(this.id);" id="h2"><img src="images/thumbs/fash-02.jpg" alt="saddle2" /></div>
+            <div class="grow" onClick="push(this.id);" id="h3"><img src="images/thumbs/fash-03.jpg" alt="saddle3" /></div>
+            <div class="grow" onClick="push(this.id);" id="h4"><img src="images/thumbs/fash-04.jpg" alt="saddle4" /></div>
+            <div class="grow" onClick="push(this.id);" id="h5"><img src="images/thumbs/fash-05.jpg" alt="back1" /></div>
+            <div class="grow" onClick="push(this.id);" id="h6"><img src="images/thumbs/fash-06.jpg" alt="back2" /></div>
+            <div class="grow" onClick="push(this.id);" id="h7"><img src="images/thumbs/fash-07.jpg" alt="back3" /></div>
+            <div class="grow" onClick="push(this.id);" id="h8"><img src="images/thumbs/fash-08.jpg" alt="neck1" /></div>
+            <div class="grow" onClick="push(this.id);" id="h9"><img src="images/thumbs/fash-09.jpg" alt="neck2" /></div>
       </div><!-- END step8 -->
       
       
       <div class="step" id="step9"><!--backgrounds-->
-            <!-- <div class="grow" onClick='push(this.id);' id="i0"><img src="images/thumbs/bgrd-00.jpg" alt="bgrd0" /></div> -->
-            <div class="grow" onClick='push(this.id);' id="i1"><img src="images/thumbs/bgrd-01.jpg" alt="bgrd1" /></div>
-            <div class="grow" onClick='push(this.id);' id="i2"><img src="images/thumbs/bgrd-02.jpg" alt="bgrd2" /></div>
-            <div class="grow" onClick='push(this.id);' id="i3"><img src="images/thumbs/bgrd-03.jpg" alt="bgrd3" /></div>
-            <div class="grow" onClick='push(this.id);' id="i4"><img src="images/thumbs/bgrd-04.jpg" alt="bgrd4" /></div>
-            <div class="grow" onClick='push(this.id);' id="i5"><img src="images/thumbs/bgrd-05.jpg" alt="bgrd5" /></div>
-            <div class="grow" onClick='push(this.id);' id="i6"><img src="images/thumbs/bgrd-06.jpg" alt="bgrd6" /></div>
-            <div class="grow" onClick='push(this.id);' id="i7"><img src="images/thumbs/bgrd-07.jpg" alt="bgrd7" /></div>
-            <div class="grow" onClick='push(this.id);' id="i8"><img src="images/thumbs/bgrd-08.jpg" alt="bgrd8" /></div>
+            <div class="grow" onClick="push(this.id);" id="i1"><img src="images/thumbs/bgrd-01.jpg" alt="bgrd1" /></div>
+            <div class="grow" onClick="push(this.id);" id="i2"><img src="images/thumbs/bgrd-02.jpg" alt="bgrd2" /></div>
+            <div class="grow" onClick="push(this.id);" id="i3"><img src="images/thumbs/bgrd-03.jpg" alt="bgrd3" /></div>
+            <div class="grow" onClick="push(this.id);" id="i4"><img src="images/thumbs/bgrd-04.jpg" alt="bgrd4" /></div>
+            <div class="grow" onClick="push(this.id);" id="i5"><img src="images/thumbs/bgrd-05.jpg" alt="bgrd5" /></div>
+            <div class="grow" onClick="push(this.id);" id="i6"><img src="images/thumbs/bgrd-06.jpg" alt="bgrd6" /></div>
+            <div class="grow" onClick="push(this.id);" id="i7"><img src="images/thumbs/bgrd-07.jpg" alt="bgrd7" /></div>
+            <div class="grow" onClick="push(this.id);" id="i8"><img src="images/thumbs/bgrd-08.jpg" alt="bgrd8" /></div>
       </div><!-- END step9 -->
       
        <div class="step" id="step10"><!--stickers-->
-            <div class="grow" onClick='push(this.id);' id="j0"><img src="images/thumbs/stkr-00.jpg" alt="stkr0" /></div>
-            <div class="grow" onClick='push(this.id);' id="j1"><img src="images/thumbs/stkr-01.jpg" alt="stkr1" /></div>
-            <div class="grow" onClick='push(this.id);' id="j2"><img src="images/thumbs/stkr-02.jpg" alt="stkr2" /></div>
-            <div class="grow" onClick='push(this.id);' id="j3"><img src="images/thumbs/stkr-03.jpg" alt="stkr3" /></div>
-            <div class="grow" onClick='push(this.id);' id="j4"><img src="images/thumbs/stkr-04.jpg" alt="stkr4" /></div>
+            <div class="grow" onClick="push(this.id);" id="j0"><img src="images/thumbs/stkr-00.jpg" alt="stkr0" /></div>
+            <div class="grow" onClick="push(this.id);" id="j1"><img src="images/thumbs/stkr-01.jpg" alt="stkr1" /></div>
+            <div class="grow" onClick="push(this.id);" id="j2"><img src="images/thumbs/stkr-02.jpg" alt="stkr2" /></div>
+            <div class="grow" onClick="push(this.id);" id="j3"><img src="images/thumbs/stkr-03.jpg" alt="stkr3" /></div>
+            <div class="grow" onClick="push(this.id);" id="j4"><img src="images/thumbs/stkr-04.jpg" alt="stkr4" /></div>
       </div><!-- END step10 -->
      
     
@@ -187,13 +226,13 @@
       <div class="ctaContainerInner">
       YOU'RE ALL DONE<br>
           <div class="ctaButtonContainer">
-            <div class="ctaButton">Download Wallpaper</div>
-            <div class="ctaButton">Email</div>
+            <div class="ctaButton"><a href="#">Download Wallpaper</a></div>
+            <div class="ctaButton"><a href="#">Email</a></div>
           </div>
       </div>
     </div>
     
-    <div class="footer" id="footer">&copy; 2015 Wells Fargo Bank, N.A. All rights reserved. For internal use only.</div>
+    <div class="footer" id="footer">&copy; 2015 Wells&nbsp;Fargo Bank, N.A. All rights reserved. For internal use only.</div>
   </div><!-- end sectionBuild -->
   <div class="backgroundFaded" id="backgroundFaded"></div>
 
@@ -202,7 +241,6 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
-        //document.getElementById("previewPony").classList.add('previewScaled');
         stepName = ["Intro", "1. Select Pony", "2. Choose Saddle", "3. Choose Back", "4. Choose Head", "5. Choose Mane", "6. Choose Nose", "7. Choose Feet", "8. Choose Socks", "9. Pick a Background", "Download/Share"];
         currentStep = 0;
         totalSteps = stepName.length;
@@ -278,7 +316,6 @@ function gotoPrevStep() {
         setBG('bgrd-clear');    
         document.getElementById('layer-stkr').style.display = "none";
         document.body.style.backgroundImage = 'url(images/backgrounds/bgrd-body.jpg)';
-        //document.getElementById('progressBar').classList.remove('progressBackground');
         document.getElementById('backgroundFaded').style.opacity = '0';
         }
         currentStep--;
@@ -286,7 +323,6 @@ function gotoPrevStep() {
             //user has moved backwards from preview mode to sticker selection
             removePreview();
         }
-        //document.getElementById("stepName").innerHTML = stepName[currentStep-1];
         document.getElementById("progressBar").getElementsByTagName('div')[currentStep+1].classList.remove('grow2');
         document.getElementById("progressBar").getElementsByTagName('div')[currentStep].classList.add('grow2');
         
@@ -421,11 +457,7 @@ function gotoNextStep() {
         var imageNumber = Number(bgChoice.substr(bgChoice.length - 1));
         document.getElementById("previewPony").style.backgroundImage = 'url(images/backgrounds/' + bgChoice + '.jpg)';
         document.getElementById("previewPony").style.backgroundSize = "contain";
-        //document.getElementById("backgroundFaded").style.backgroundImage = 'url(images/backgrounds/' + imageFile + '.jpg)';
-        //document.getElementById("backgroundFaded").style.backgroundSize = "cover";
-        //document.body.style.backgroundImage = 'url(images/backgrounds/bgrd-clear.jpg)';
         document.getElementById("backgroundFaded").style.opacity = "1";
-        //document.getElementById("backgroundFaded").style.backgroundColor = "#b8d4e0";
         switch (imageNumber) {
             case 1:
                 document.getElementById("backgroundFaded").style.backgroundColor = "#84b3c5";
@@ -464,11 +496,14 @@ function gotoNextStep() {
         document.getElementById("footer").classList.add('pushDown');
         document.getElementById("progressBar").classList.add('pushLeft');
         document.getElementById("title").classList.add('pushUp');
+        document.getElementById("header").classList.add('pushUp');
+        document.getElementById("previewPony").classList.add('previewScaled100pc');
         document.getElementById("cta").classList.add('grow2');
         document.getElementById("outerSelector").classList.remove('pushDownUndo');
         document.getElementById("footer").classList.remove('pushDownUndo');
         document.getElementById("progressBar").classList.remove('pushLeftUndo');
-        document.getElementById("title").classList.remove('pushUpUndo');        
+        document.getElementById("title").classList.remove('pushUpUndo');
+        document.getElementById("header").classList.remove('pushUpUndo');       
     }
     
     function removePreview() {
@@ -477,10 +512,13 @@ function gotoNextStep() {
         document.getElementById("footer").classList.add('pushDownUndo');
         document.getElementById("progressBar").classList.add('pushLeftUndo');
         document.getElementById("title").classList.add('pushUpUndo');
+        document.getElementById("header").classList.add('pushUpUndo');
         document.getElementById("outerSelector").classList.remove('pushDown');
         document.getElementById("footer").classList.remove('pushDown');
         document.getElementById("progressBar").classList.remove('pushLeft');
         document.getElementById("title").classList.remove('pushUp');
+        document.getElementById("header").classList.remove('pushUp');
+        document.getElementById("previewPony").classList.remove('previewScaled100pc');
         document.getElementById("cta").classList.remove('grow2');
     }
     
