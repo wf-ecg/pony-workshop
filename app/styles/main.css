@@ -100,15 +100,14 @@ body {
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 0;
+    z-index: -1;
 }
 
 .center {
-    display: inline-block;
     margin: 0 auto;
     overflow: visible;
+    position: relative;
     text-align: center;
-    width: auto;
     z-index: 998;
 }
 
@@ -369,7 +368,7 @@ body {
     font-size: 1em;
     height: auto;
     left: 10px;
-    overflow: none;
+    overflow: hidden;
     padding: 5px 10px 10px;
     position: fixed;
     top: 85px;
@@ -385,10 +384,9 @@ body {
     display: inline-block;
     height: 18px;
     opacity: .4;
-    overflow: none;
+    overflow: hidden;
     padding: 5% 2em;
     position: relative;
-    transform-origin: center left;
     width: 100%;
 }
 
