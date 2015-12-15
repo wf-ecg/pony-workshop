@@ -3,8 +3,12 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .preview {
     @include nosel;
+    @include transform( scale(1) );
+    @include transform-style( preserve-3d );
 }
-
+#sectionBuild {
+    position: relative;
+}
 $Slick: 45px;
 
 .slick-prev {
