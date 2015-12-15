@@ -40,9 +40,8 @@ define(['stack', 'gareth'], function (Stack) {
 
         src = src.match(/(http:.+jpg)/g)[0];
         img.attr('src', src);
-        C.warn(src, img);
+
         img.on('load', function () {
-            C.warn(img, src);
             stak.insertLayer(img[0], 1, 0, 0);
             stak.addLayer(stkr[0], 0, 0);
 
@@ -58,7 +57,6 @@ define(['stack', 'gareth'], function (Stack) {
     }
 
     function doit(evt) {
-        C.warn('doin it');
         addBkgr(stak);
 
         stak.setOrigin(444, 111);
@@ -73,6 +71,7 @@ define(['stack', 'gareth'], function (Stack) {
         lnk = $(lnk).on('mouseover', doit);
         can = $(can).css({
             zIndex: 0,
+            opacity: 0.05,
             position: 'absolute',
         });
         stkr = $(stkr);
