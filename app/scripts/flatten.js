@@ -19,14 +19,10 @@ define(['stack', 'gareth'], function (Stack) {
         U;
 
     var stak = new Stack();
-    var ele = $('#previewPony');
-    var lnk = $('#download');
-    var can = $('#can').css({
-        zIndex: 111,
-        position: 'relative',
-    }).hide();
-
-    var stkr = $('#stickerDiv img');
+    var ele = '#previewPony';
+    var lnk = '#download';
+    var can = '#can';
+    var stkr = '#stickerDiv img';
 
     function makeStream(can) {
         var str = can.toDataURL('image/jpeg', 0.75);
@@ -35,7 +31,7 @@ define(['stack', 'gareth'], function (Stack) {
         return str;
     }
     function linkDownloadName(ele, can, nom) {
-        ele.attr('download', nom + '.jpg');
+        ele[0].download = nom + '.jpg';
         ele.attr('href', makeStream(can));
     }
     function addBkgr(stak) {
@@ -52,10 +48,16 @@ define(['stack', 'gareth'], function (Stack) {
 
             stak.drawOn(can[0]);
             linkDownloadName(lnk, can[0], 'ponypic');
+
+            if (!lnk.attr('download')) {
+                $('<span>').addClass('download-instruction') //
+                    .text('Right-click to download and save.').insertAfter(lnk);
+            }
         });
     }
 
     function doit(evt) {
+        C.warn('doin it');
         addBkgr(stak);
 
         stak.setOrigin(444, 111);
@@ -65,7 +67,16 @@ define(['stack', 'gareth'], function (Stack) {
             });
     }
 
-    lnk.on('mouseover', doit);
+    function init() {
+        ele = $(ele);
+        lnk = $(lnk).on('mouseover', doit);
+        can = $(can).css({
+            zIndex: 0,
+            position: 'absolute',
+        });
+        stkr = $(stkr);
+    }
 
     W.s = stak;
+    $(init);
 });
