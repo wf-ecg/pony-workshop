@@ -30,6 +30,7 @@ define(['stack', 'gareth'], function (Stack) {
 
     function makeStream(can) {
         var str = can.toDataURL('image/jpeg', 0.75);
+
         str = str.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
         return str;
     }
@@ -38,10 +39,14 @@ define(['stack', 'gareth'], function (Stack) {
         ele.href = makeStream(can);
     }
     function addBkgr(stak) {
-        var bkgr = ele.css('background-image').match(/([^"]+)/g)[1];
-        var img = $('<img>').attr('src', bkgr).appendTo('body');
+        var src = ele.css('background-image');
+        var img = $('<img>').appendTo('body');
+
+        src = src.match(/(http:.+jpg)/g)[0];
+        img.attr('src', src);
+        C.warn(src, img);
         img.on('load', function () {
-            C.warn(img, bkgr);
+            C.warn(img, src);
             stak.insertLayer(img[0], 1, 0, 0);
             stak.drawOn(can[0]);
             linkDownloadName(lnk[0], can[0], 'ponypic');
