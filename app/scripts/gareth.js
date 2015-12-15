@@ -296,6 +296,6 @@ define(['jquery', 'slick'], function ($) {
         });
     }
 
-    init();
+    $(init);
 
 });
