@@ -6,6 +6,9 @@
     @include transform( scale(1) );
     @include transform-style( preserve-3d );
 }
+.grow2 {
+    @include nosel;
+}
 #sectionBuild {
     position: relative;
 }

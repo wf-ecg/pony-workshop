@@ -165,7 +165,9 @@ define(['jquery', 'slick'], function ($) {
 
     function setBG(bgChoice) {
         var imageNumber = Number(bgChoice.substr(bgChoice.length - 1));
-        $('#previewPony').css('backgroundImage', 'url(images/backgrounds/' + bgChoice + '.jpg)');
+
+        bgChoice += (bgChoice === 'bgrd-clear') ? '.png' : '.jpg';
+        $('#previewPony').css('backgroundImage', 'url(images/backgrounds/' + bgChoice + ')');
         $('#previewPony').css('backgroundSize', 'contain');
         $('#backgroundFaded').css('opacity', 1);
         switch (imageNumber) {
