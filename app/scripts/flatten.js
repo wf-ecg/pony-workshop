@@ -50,7 +50,7 @@ define(['stack', 'gareth'], function (Stack) {
 
             if (!lnk.attr('download') && !lnk.next().is('.dl-note')) {
                 $('<div>').addClass('dl-note') //
-                    .text('Right-click to download and save.') //
+                    .text('Right-click to name and save this jpeg.') //
                     .insertAfter(lnk);
             }
         });
