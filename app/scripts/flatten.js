@@ -49,9 +49,10 @@ define(['stack', 'gareth'], function (Stack) {
             stak.drawOn(can[0]);
             linkDownloadName(lnk, can[0], 'ponypic');
 
-            if (!lnk.attr('download')) {
-                $('<span>').addClass('download-instruction') //
-                    .text('Right-click to download and save.').insertAfter(lnk);
+            if (!lnk.attr('download') && !lnk.next().is('.dl-note')) {
+                $('<div>').addClass('dl-note') //
+                    .text('Right-click to download and save.') //
+                    .insertAfter(lnk);
             }
         });
     }

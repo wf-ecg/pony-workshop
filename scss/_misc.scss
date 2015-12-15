@@ -14,7 +14,9 @@
 .slick-next:before {
     content: url(../images/_common/right-arrow-icon.png);
 }
-
+.dl-note {
+    font-size: 0.7em;
+}
 .clearfix {
     @include clearfix;
 }
