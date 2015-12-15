@@ -29,12 +29,12 @@ define(['stack', 'gareth'], function (Stack) {
     var stkr = $('#stickerDiv img');
 
     function makeStream(can) {
-        var str = can.toDataURL();
+        var str = can.toDataURL('image/jpeg', 0.75);
         str = str.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
         return str;
     }
     function linkDownloadName(ele, can, nom) {
-        ele.download = nom + '.png';
+        ele.download = nom + '.jpg';
         ele.href = makeStream(can);
     }
     function addBkgr(stak) {
@@ -42,25 +42,13 @@ define(['stack', 'gareth'], function (Stack) {
         var img = $('<img>').attr('src', bkgr).appendTo('body');
         img.on('load', function () {
             C.warn(img, bkgr);
-            stak.insertLayer(img[0], 0, 0, 0);
+            stak.insertLayer(img[0], 1, 0, 0);
             stak.drawOn(can[0]);
             linkDownloadName(lnk[0], can[0], 'ponypic');
         });
     }
-    function addStkr(stak) {
-        var o = {};
-        o.frac = ele.width() / 1920;
-        o.p1 = stkr.offset();
-        o.p2 = stkr.offsetParent().offset();
-        o.pl = (o.p1.left - o.p2.left) / o.frac | 0;
-        o.pt = (o.p1.top - o.p2.top) / o.frac | 0;
-        C.warn(o);
-        stak.setOrigin(o.pl, o.pt);
-        stak.addLayer(stkr[0]);
-    }
 
     function doit(evt) {
-        evt.preventDefault();
         addBkgr(stak);
 
         stak.setOrigin(444, 111);
@@ -68,10 +56,9 @@ define(['stack', 'gareth'], function (Stack) {
             .each(function (i, e) {
                 stak.addLayer(e);
             });
-        //addStkr(stak);
     }
 
-    lnk.one('click', doit);
+    lnk.on('mouseover', doit);
 
     W.s = stak;
 });
