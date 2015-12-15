@@ -83,7 +83,7 @@ define(['pair', 'box'], function (Pair, Box) {
         },
         addLayer: function (lay, x, y, idx) { // resolve layer and add to stack at index (or at end)
             var img = resolve(lay),
-                pos = x ? new Pair(x, y) : this.origin;
+                pos = (x !== U) ? new Pair(x, y) : this.origin;
 
             idx = idx || this.stack.length;
 
