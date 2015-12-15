@@ -35,8 +35,8 @@ define(['stack', 'gareth'], function (Stack) {
         return str;
     }
     function linkDownloadName(ele, can, nom) {
-        ele.download = nom + '.jpg';
-        ele.href = makeStream(can);
+        ele.attr('download', nom + '.jpg');
+        ele.attr('href', makeStream(can));
     }
     function addBkgr(stak) {
         var src = ele.css('background-image');
@@ -48,8 +48,10 @@ define(['stack', 'gareth'], function (Stack) {
         img.on('load', function () {
             C.warn(img, src);
             stak.insertLayer(img[0], 1, 0, 0);
+            stak.addLayer(stkr[0], 0, 0);
+
             stak.drawOn(can[0]);
-            linkDownloadName(lnk[0], can[0], 'ponypic');
+            linkDownloadName(lnk, can[0], 'ponypic');
         });
     }
 
@@ -57,7 +59,7 @@ define(['stack', 'gareth'], function (Stack) {
         addBkgr(stak);
 
         stak.setOrigin(444, 111);
-        ele.find('div img') // .not(stkr) //
+        ele.find('div img').not(stkr) //
             .each(function (i, e) {
                 stak.addLayer(e);
             });
