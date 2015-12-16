@@ -13,14 +13,21 @@
     .address {
         @include middify;
         background-color: #d1b472;
-        height: 15em;
+        height: 25em;
         min-width: 500px;
         padding: 2em 3em;
         width: 50%;
-        input {
+        input, textarea {
             font-family: monospace;
             font-size: 0.85em;
-            width: 25em;
+        }
+        input {
+            float: right;
+            width: 30em;
+        }
+        textarea {
+            height: 5em;
+            width: 100%;
         }
     }
 }
