@@ -155,7 +155,7 @@ define(['jquery', 'slick'], function ($) {
         $('#layer-nose')[0].src = 'images/pieces/nose-' + pad2(randomNose) + '.png';
         var randomSock = Math.floor((Math.random() * 4) + 1);
         $('#layer-sock')[0].src = 'images/pieces/sock-' + pad2(randomSock) + '.png';
-        var randomFeet = Math.floor((Math.random() * 6) + 1);
+        var randomFeet = Math.floor((Math.random() * 5) + 1);
         $('#layer-foot')[0].src = 'images/pieces/foot-' + pad2(randomFeet) + '.png';
     }
 
@@ -165,7 +165,9 @@ define(['jquery', 'slick'], function ($) {
 
     function setBG(bgChoice) {
         var imageNumber = Number(bgChoice.substr(bgChoice.length - 1));
-        $('#previewPony').css('backgroundImage', 'url(images/backgrounds/' + bgChoice + '.jpg)');
+
+        bgChoice += (bgChoice === 'bgrd-clear') ? '.png' : '.jpg';
+        $('#previewPony').css('backgroundImage', 'url(images/backgrounds/' + bgChoice + ')');
         $('#previewPony').css('backgroundSize', 'contain');
         $('#backgroundFaded').css('opacity', 1);
         switch (imageNumber) {
@@ -296,6 +298,6 @@ define(['jquery', 'slick'], function ($) {
         });
     }
 
-    init();
+    $(init);
 
 });

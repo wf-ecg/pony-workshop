@@ -249,42 +249,9 @@ body {
     width: 1px;
 }
 
-.sticker0 {
-    height: auto !important;
-    width: 0 !important;
-}
-
-.sticker1 {
-    height: auto !important;
-    left: 52% !important;
-    top: 62% !important;
-    width: 35% !important;
-}
-
-.sticker2 {
-    height: auto !important;
-    left: 52% !important;
-    top: -20% !important;
-    width: 35% !important;
-}
-
-.sticker3 {
-    height: auto !important;
-    left: -33% !important;
-    top: -20% !important;
-    width: 45% !important;
-}
-
-.sticker4 {
-    height: auto !important;
-    left: -42% !important;
-    top: -14% !important;
-    width: 35% !important;
-}
-
 .preview {
     height: calc(100% - 280px);
-    margin: 10px auto 0;
+    margin: 0 auto;
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -310,7 +277,10 @@ body {
 }
 
 #stickerDiv {
+    height: 100%;
+    margin: 0;
     overflow: visible;
+    width: 100%;
 }
 
 .previewScaled {
@@ -346,7 +316,7 @@ body {
     @include transform( translateY(-50%) );
     padding-bottom: 66.6667% !important;
     position: fixed;
-    top: 50%;
+    top: 0%;
     width: 100% !important;
 }
 

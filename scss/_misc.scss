@@ -1,21 +1,47 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.preview {
+    @include nosel;
+    @include transform( scale(1) );
+    @include transform-style( preserve-3d );
+}
+.grow2 {
+    @include nosel;
+}
+#sectionBuild {
+    position: relative;
+}
+$Slick: 45px;
 
 .slick-prev {
-    left: -45px;
+    left: 0 - $Slick;
+    &:before {
+        content: url(../images/_common/left-arrow-icon.png);
+    }
 }
-.slick-prev:before {
-    content: url(../../../images/_common/left-arrow-icon.png);
+.slick-next {
+    right: 0 - $Slick;
+    &:before {
+        content: url(../images/_common/right-arrow-icon.png);
+    }
 }
-.slick-next:before {
-    content: url(../../../images/_common/right-arrow-icon.png);
+.slick-prev,
+.slick-next {
+    height: $Slick;
+    width: $Slick;
+    &:before {
+        font-size: $Slick;
+    }
 }
 
+.dl-note {
+    cursor: context-menu;
+    font-size: 0.7em;
+}
 .clearfix {
     @include clearfix;
 }
-
 .debug *:hover {
     outline-color: transparentize( orange, 0.7 );
     outline-offset: 0.5px;
