@@ -1,6 +1,21 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.sharing {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+
+    .address {
+        @include middify;
+        background-color: wheat;
+        height: 12em;
+        padding: 3em;
+        width: 50%;
+    }
+}
 .preview {
     @include nosel;
     @include transform( scale(1) );
