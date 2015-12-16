@@ -15,11 +15,8 @@
  change 'index' data to 'eq'
  */
 
-define(['jquery', 'lodash',
-    'libs/hover', 'libs/hash', 'libs/ratio', 'libs/speed',
-    'quiz', 'reveal', 'slider',
-    'jqxtn'], function
-    ($, _, Hover, Hash, Ratio, Speed, Quiz, Reveal, Slider) {
+define(['jquery', 'lodash', 'share', 'libs/utils'], function
+    ($, _, Share) {
     'use strict';
 
     var Nom = 'Main';
@@ -27,8 +24,13 @@ define(['jquery', 'lodash',
         C = (W.C || W.console || {});
 
 // EXPOSE
-    var self = {};
+    var self = {}, ele, share;
     W.Main = self;
+
+    ele = {
+        share: '.share-btn',
+        sharing: '.sharing',
+    };
 
     self.lookups = {
         hash: 'flow works offers quiz credit stars video'.split(' '),
@@ -40,36 +42,28 @@ define(['jquery', 'lodash',
         return (str || '') + '.' + Nom;
     }
 
-    function lookupHash(str) {
-        return _.indexOf(self.lookups.hash, str);
-    }
-    function lookupNavs(str) {
-        return _.indexOf(self.lookups.navs, str);
-    }
-    function indexNavs() {
-        var all = $('.w-nav-link[href]');
+    function _shareResult() {
 
-        all.each(function (i, e) {
-            var nav = $(this);
-            var url = nav.attr('href').slice(1).replace(/.*=/, '');
-            var idx = lookupHash(url);
-
-            if (idx > -1) {
-                nav.data('index', idx);
-                self.lookups.navs[i] = url;
-            }
+        if (share) {
+            share.disarm(); // disarm share events + do callback
+        }
+        share = new Share(ele.sharing, {
+            tokens: {// inside template
+                //file_name: rank,
+                //badge_name: rank,
+            },
+            callback: function () { // callback after share
+                //showResult();
+            },
         });
-    }
 
-    function checkHash() {
-        self.hash.check();
-    }
-    function gotoHash(evt, data) {
-        data = self.hash.get();
-        slideByName(data.s);
+        ele.mid.revealOnly(ele.sharing);
     }
 
     function bindings() {
+        $.watchInputDevice();
+        $.reify(ele);
+
         $(W).mediate('resize', 333, ns('resize')) //
             .trigger('resize'); // jiggle the lever
 
@@ -80,24 +74,21 @@ define(['jquery', 'lodash',
             }
         });
 
-        $('.w-nav-link').on(ns('click'), checkHash);
         $('body').removeClass('loading');
 
-        watchInputDevice();
+        ele.share.on(ns('click'), function () {
+            _shareResult();
+        });
+
     }
 
     function init() {
-        $.subscribe(ns('resize'), new Ratio(1.8, '.c-main'));
-
-        self.hash = new Hash();
-
-        $.subscribe(ns('resize'), gotoHash);
-        $.subscribe('change.Hash', gotoHash);
         _.delay(bindings, 333);
     }
 
 // PAGE LOADED
     $(init);
+    require(['flatten']);
 });
 /*
 
