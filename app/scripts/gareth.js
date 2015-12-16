@@ -203,32 +203,24 @@ define(['jquery', 'slick'], function ($) {
 
     function renderPreview() {
         //after sticker step, render preview and bring in download/email buttons
-        $('#outerSelector').addClass('pushDown');
-        $('#footer').addClass('pushDown');
-        $('#progressBar').addClass('pushLeft');
-        $('#title').addClass('pushUp');
-        $('#header').addClass('pushUp');
+        $('footer').addClass('pushDown').removeClass('pushDownUndo');
+        $('header').addClass('pushUp').removeClass('pushUpUndo');
+        $('#outerSelector').addClass('pushDown').removeClass('pushDownUndo');
+        $('#progressBar').removeClass('pushLeftUndo').addClass('pushLeft');
+        $('#title').addClass('pushUp').removeClass('pushUpUndo');
+
         $('#previewPony').addClass('previewScaled100pc');
         $('#cta').addClass('grow2');
-        $('#outerSelector').removeClass('pushDownUndo');
-        $('#footer').removeClass('pushDownUndo');
-        $('#progressBar').removeClass('pushLeftUndo');
-        $('#title').removeClass('pushUpUndo');
-        $('#header').removeClass('pushUpUndo');
     }
 
     function removePreview() {
         //leave preview mode, returning elements to normal positions
-        $('#outerSelector').addClass('pushDownUndo');
-        $('#footer').addClass('pushDownUndo');
-        $('#progressBar').addClass('pushLeftUndo');
-        $('#title').addClass('pushUpUndo');
-        $('#header').addClass('pushUpUndo');
-        $('#outerSelector').removeClass('pushDown');
-        $('#footer').removeClass('pushDown');
-        $('#progressBar').removeClass('pushLeft');
-        $('#title').removeClass('pushUp');
-        $('#header').removeClass('pushUp');
+        $('footer').addClass('pushDownUndo').removeClass('pushDown');
+        $('header').addClass('pushUpUndo').removeClass('pushUp');
+        $('#outerSelector').addClass('pushDownUndo').removeClass('pushDown');
+        $('#progressBar').addClass('pushLeftUndo').removeClass('pushLeft');
+        $('#title').addClass('pushUpUndo').removeClass('pushUp');
+
         $('#previewPony').removeClass('previewScaled100pc');
         $('#cta').removeClass('grow2');
     }
