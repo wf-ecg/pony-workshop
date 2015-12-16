@@ -41,13 +41,14 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
         if (share) {
             share.disarm(); // disarm share events + do callback
         }
-        share = new Share(El.sharing, {
+        self.Share = share = new Share(El.sharing, {
+            subject: 'Happy Holidays to banking’s best marketing team',
             tokens: {// inside template
                 //file_name: rank,
                 //badge_name: rank,
             },
             callback: function () { // callback after share
-                //showResult();
+                El.sharing.hide();
             },
         });
 

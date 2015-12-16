@@ -8,15 +8,20 @@
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 999;
 
     .address {
         @include middify;
         background-color: #d1b472;
-        height: 12em;
+        height: 15em;
         min-width: 500px;
-        padding: 1em 3em;
+        padding: 2em 3em;
         width: 50%;
+        input {
+            font-family: monospace;
+            font-size: 0.85em;
+            width: 25em;
+        }
     }
 }
 .preview {

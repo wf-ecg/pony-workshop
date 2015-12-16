@@ -23,8 +23,8 @@ define(['jquery', 'libs/mailer'], function
     var Df = {
         callback: '',
         invalid: 'Please check addresses for validity',
-        sel: '.q-sharing',
-        subject: 'I played the Cash Flow Challenge',
+        sel: '.sharing',
+        subject: 'Subject',
         template: 'email.html .body',
         test: 'david.turgeon@wellsfargo.com',
         tokens: '',
