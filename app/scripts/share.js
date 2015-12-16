@@ -120,12 +120,12 @@ define(['jquery', 'libs/mailer'], function
 
             head = ele.head.val();
             mess = ele.mess.val();
-            pict = ele.pict.text();
+            pict = ele.pict.val();
 
-            if (head && head !== '(optional') {
+            if (head && head !== '(optional)') {
                 cf.tokens.heading = head;
             }
-            if (mess && mess !== '(optional') {
+            if (mess && mess !== '(optional)') {
                 cf.tokens.message = mess;
             }
             if (!head && !mess) {

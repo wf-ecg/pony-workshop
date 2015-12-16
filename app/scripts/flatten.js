@@ -55,6 +55,7 @@ define(['stack', 'gareth'], function (Stack) {
     function _linkDownloadName(lnk, can, nom) {
         var dat = _makeStream(can);
 
+        $('.picture').val(dat);
         lnk[0]['download'] = nom + '.jpg';
 
         if (!lnk.attr('download')) {
