@@ -44,8 +44,21 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
         self.Share = share = new Share(El.sharing, {
             subject: 'Happy Holidays to banking’s best marketing team',
             tokens: {// inside template
-                //file_name: rank,
-                //badge_name: rank,
+                picture: 'http://ecg.hosting.wellsfargo.com/mfal/em/pony-workshop/images/email/pony.jpg',
+                heading: 'Happy Holidays to banking’s <br>best marketing team.',
+                message: '<p>I hope everyone is getting excited for the holidays and looking forward to spending time with family and friends. \
+The great work you have created and the solutions you have provided throughout this busy year should be celebrated, \
+and I want to thank each and every one of your for reflecting Wells Fargo’s working together&nbsp;spirit.</p>\n\
+<p>So, to help celebrate your unique contributions, I want to invite you to visit the Pony Workshop \
+and create your own Wells Fargo pony. This will be a fun way to kick off the holiday season and \
+the Pony Workshop gives you lots of choices for designing a pony that is truly you. Be creative. \
+Be silly. Be stylish. Once you’re done, please share it with your fellow team members. \
+You can also download it as your desktop wallpaper to remind yourself just how important \
+your unique contributions to Wells Fargo are. I can’t wait to see what everyone comes up&nbsp;with.</p>\n\
+<p>Again, thank you for all of your work and continued dedication as we take on the new and \
+exciting opportunities waiting for us&nbsp;in&nbsp;2016.</p>\n\
+<p>Sincerely, <br>\
+Kellie Krug</p>',
             },
             callback: function () { // callback after share
                 El.sharing.hide();

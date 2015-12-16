@@ -53,6 +53,9 @@ define(['jquery', 'libs/mailer'], function
             ele.addClass('bad');
         },
         makeMessage: function (src, dat) {
+            if (src.has('.wipe')) {
+                src.find('.wipe').remove();
+            }
             var html = $(src).html();
 
             $.each(dat, function (i, e) {
@@ -74,6 +77,9 @@ define(['jquery', 'libs/mailer'], function
         ele = $(sel).first();
         ele = {
             main: ele,
+            head: ele.find('.heading'),
+            mess: ele.find('.message'),
+            pict: ele.find('.picture'),
             mail: ele.find('.mailto'),
             stop: ele.find('.cancel'),
             theirs: ele.find('.theirs, .to'),
@@ -108,6 +114,28 @@ define(['jquery', 'libs/mailer'], function
             $(ele.main.find('*')).off(K.ns());
         }
         function _checkEmails() {
+
+            // CUSTOM
+            var head, mess, pict;
+
+            head = ele.head.val();
+            mess = ele.mess.val();
+            pict = ele.pict.text();
+
+            if (head && head !== '(optional') {
+                cf.tokens.heading = head;
+            }
+            if (mess && mess !== '(optional') {
+                cf.tokens.message = mess;
+            }
+            if (!head && !mess) {
+                // TODO hide row
+            }
+            if (pict) {
+                cf.tokens.picture = pict;
+            }
+            // END
+
             return (K.checkEmail(ele.yours) && K.checkEmail(ele.theirs) && true);
         }
         function _makeMailFrom(src) { // make ready-to-post object
