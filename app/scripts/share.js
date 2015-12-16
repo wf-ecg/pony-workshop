@@ -131,9 +131,6 @@ define(['jquery', 'libs/mailer'], function
             if (!head && !mess) {
                 // TODO hide row
             }
-            if (pict) {
-                cf.tokens.picture = pict;
-            }
             // END
 
             return (K.checkEmail(ele.yours) && K.checkEmail(ele.theirs) && true);

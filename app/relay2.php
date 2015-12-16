@@ -92,7 +92,7 @@ $pair[1]";
                 $hdrs.= "Bcc: david.turgeon@wellsfargo.com\n";
             }
             $hdrs.= "Content-Type: text/html;\n charset=utf-8\n";
-
+            //print_r($msg);
             return mail("$arr[to]", $sub, $msg, $hdrs);
         }
 
@@ -117,13 +117,13 @@ $pair[1]";
                 R = <?php echo $REZ; ?>,
                 S = (R.stat === 'fail') ? 3 : 1;
 
-//            W.setTimeout(function () {
-//                if (S > 1) {
-//                    W.history.go(-1);
-//                } else {
-//                    W.location = R.refr + '#' + R.stat;
-//                }
-//            }, S * 1000);
+            W.setTimeout(function () {
+                if (S > 1) {
+                    W.history.go(-1);
+                } else {
+                    W.location = R.refr + '#' + R.stat;
+                }
+            }, S * 1000);
         </script>
     </body>
 </html>
