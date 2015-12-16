@@ -27,13 +27,42 @@ define(['stack', 'gareth'], function (Stack) {
     function makeStream(can) {
         var str = can.toDataURL('image/jpeg', 0.75);
 
-        str = str.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
         return str;
     }
+    function forceParent(lnk, dat) {
+        var ele = lnk.parent();
+        var img = $('#DL-preview');
+
+        if (!img.length) {
+            img = $('<img>').appendTo(ele);
+        }
+
+        img.hide().css({
+            width: '100%',
+        }).attr({
+            'src': dat,
+            'type': 'image/jpeg',
+            'id': 'DL-preview',
+        }).slideDown();
+    }
+
     function linkDownloadName(ele, can, nom) {
         ele[0].download = nom + '.jpg';
-        ele.attr('href', makeStream(can));
+        var dat = makeStream(can);
+
+        if (!lnk.attr('download')) {
+            forceParent(lnk, dat);
+            if (!lnk.next().is('.dl-note')) {
+                $('<div>').addClass('dl-note') //
+                    .text('Right-click to name and save this jpeg.') //
+                    .insertAfter(lnk);
+            }
+        } else {
+            dat = dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+            ele.attr('href', dat);
+        }
     }
+
     function addBkgr(stak) {
         var src = ele.css('background-image');
         var img = $('<img>').appendTo('body');
@@ -47,12 +76,7 @@ define(['stack', 'gareth'], function (Stack) {
 
             stak.drawOn(can[0]);
             linkDownloadName(lnk, can[0], 'ponypic');
-
-            if (!lnk.attr('download') && !lnk.next().is('.dl-note')) {
-                $('<div>').addClass('dl-note') //
-                    .text('Right-click to name and save this jpeg.') //
-                    .insertAfter(lnk);
-            }
+            img.remove();
         });
     }
 
@@ -68,7 +92,8 @@ define(['stack', 'gareth'], function (Stack) {
 
     function init() {
         ele = $(ele);
-        lnk = $(lnk).on('mouseover', doit);
+        lnk = $(lnk);
+        $('#cta .ctaContainerInner').on('mouseenter', doit);
         can = $(can).css({
             zIndex: 0,
             opacity: 0.05,
