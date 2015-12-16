@@ -19,25 +19,19 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
     ($, _, Share) {
     'use strict';
 
-    var Nom = 'Main';
-    var W = (W && W.window || window),
-        C = (W.C || W.console || {});
+    var Nom = 'Main',
+        W = (W && W.window || window),
+        C = (W.C || W.console || {}),
+        El, self = {}, share;
 
-// EXPOSE
-    var self = {}, ele, share;
-    W.Main = self;
-
-    ele = {
+    El = {
+        email: '#emailer',
         share: '.share-btn',
         sharing: '.sharing',
     };
+    // - - - - - - - - - - - - - - - - - -
+    // HELPERS
 
-    self.lookups = {
-        hash: 'flow works offers quiz credit stars video'.split(' '),
-        navs: []
-    };
-
-// HELPERS
     function ns(str) {
         return (str || '') + '.' + Nom;
     }
@@ -47,7 +41,7 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
         if (share) {
             share.disarm(); // disarm share events + do callback
         }
-        share = new Share(ele.sharing, {
+        share = new Share(El.sharing, {
             tokens: {// inside template
                 //file_name: rank,
                 //badge_name: rank,
@@ -57,26 +51,16 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
             },
         });
 
-        ele.mid.revealOnly(ele.sharing);
+        El.sharing.show();
     }
 
     function bindings() {
         $.watchInputDevice();
-        $.reify(ele);
-
-        $(W).mediate('resize', 333, ns('resize')) //
-            .trigger('resize'); // jiggle the lever
-
-        $('a').on(ns('click'), function (evt) {
-            if ($(this).attr('href') === '#') {
-                evt.preventDefault();
-                W.alert('Go Somewhere / Do Something');
-            }
-        });
+        $.reify(El);
 
         $('body').removeClass('loading');
 
-        ele.share.on(ns('click'), function () {
+        El.email.on('click', function () {
             _shareResult();
         });
 
@@ -84,9 +68,14 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
 
     function init() {
         _.delay(bindings, 333);
-    }
 
-// PAGE LOADED
+        // EXPOSE
+        W.Main = self;
+        self.El = El;
+    }
+    // - - - - - - - - - - - - - - - - - -
+    // LOADED
+
     $(init);
     require(['flatten']);
 });
