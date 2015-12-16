@@ -43,7 +43,7 @@ define(['stack', 'gareth'], function (Stack) {
             img = $('<img>').appendTo(div);
         }
 
-        img.hide().css({
+        img.css({
             width: '100%',
         }).attr({
             id: 'DL-preview',
@@ -99,7 +99,7 @@ define(['stack', 'gareth'], function (Stack) {
         $.reify(El);
 
         El.can.css({
-            opacity: 0.05,
+            opacity: 0.0001,
             position: 'absolute',
             zIndex: 0,
         });
