@@ -2,6 +2,7 @@
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .sharing {
+    background-color: rgba(222, 222, 222, 0.2);
     height: 100%;
     position: absolute;
     top: 0;
@@ -12,7 +13,8 @@
         @include middify;
         background-color: wheat;
         height: 12em;
-        padding: 3em;
+        min-width: 500px;
+        padding: 1em 3em;
         width: 50%;
     }
 }
