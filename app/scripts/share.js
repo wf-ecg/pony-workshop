@@ -53,7 +53,7 @@ define(['jquery', 'libs/mailer'], function
             ele.addClass('bad');
         },
         makeMessage: function (src, dat) {
-            if (src.has('.wipe')) {
+            if (src.has('.wipe')) { // needed?
                 src.find('.wipe').remove();
             }
             var html = $(src).html();
@@ -144,10 +144,11 @@ define(['jquery', 'libs/mailer'], function
                 from: K.checkEmail(ele.yours),
                 sub: cf.subject,
                 msg: K.makeMessage(src, cf.tokens), // user a source element for html
+                pic: cf.picture,
             };
             obj.cc = obj.from;
             // to, from, sub, msg, cc
-            return new Mail(obj.to, obj.from, obj.sub, obj.msg, obj.cc);
+            return new Mail(obj.to, obj.from, obj.sub, obj.msg, obj.cc, obj.pic);
         }
         function _sendMail() {
             var mail, mele = $('<div>').appendTo('body');

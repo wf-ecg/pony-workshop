@@ -43,8 +43,9 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
         }
         self.Share = share = new Share(El.sharing, {
             subject: 'Happy Holidays to banking’s best marketing team',
+            picture: $('.picture').val(), //'Happy Holidays to banking’s best marketing team',
             tokens: {// inside template
-                picture: 'http://ecg.hosting.wellsfargo.com/mfal/em/pony-workshop/images/email/pony.jpg',
+                picture: 'PPPIIICCC', //'http://ecg.hosting.wellsfargo.com/mfal/em/pony-workshop/images/email/pony.jpg',
                 heading: 'Happy Holidays to banking’s <br>best marketing team.',
                 message: 'I hope everyone is getting excited for the holidays and looking forward to spending time with family and friends. \
 The great work you have created and the solutions you have provided throughout this busy year should be celebrated, \

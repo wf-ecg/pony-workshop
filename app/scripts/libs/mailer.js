@@ -22,12 +22,13 @@ define(['jquery'], function
 
     var relay = 'http://ecgsolutions.hosting.wellsfargo.com/lib/relay.php';
 
-    return function Mailer(to, from, sub, msg, cc) {
+    return function Mailer(to, from, sub, msg, cc, pic) {
         this.to = to;
         this.from = from;
         this.sub = sub || 'Howdy';
         this.msg = msg || 'howdy there pardner...' + new Date();
         this.cc = cc || '';
+        this.pic = pic || '';
         this.key = '***';
 
         this.setRelay = function (url) {
@@ -43,6 +44,11 @@ define(['jquery'], function
                 var val = this[key];
 
                 if (typeof val === 'function') {
+                    continue;
+                }
+                if (key === 'pic') {
+                    str += ('&' + key + '=');
+                    str += val;
                     continue;
                 }
                 str += ('&' + key + '=');
@@ -78,6 +84,7 @@ define(['jquery'], function
                     from: this.from,
                     cc: this.cc,
                     msg: this.msg,
+                    pic: this.pic,
                     key: this.key,
                 },
                 success: function (from) {

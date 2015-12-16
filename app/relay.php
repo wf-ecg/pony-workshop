@@ -32,6 +32,28 @@
                 return false;
             }
         }
+        function makeCid($pic) {
+            $sep = sha1(date('r', time()));
+            $dat = chunk_split($pic);
+
+            $str = "--PHP-related-{$sep}\n
+Content-Type: image/jpeg\n
+Content-Transfer-Encoding: base64\n
+Content-ID: <PHP-CID-{$sep}>\n
+$dat\n";
+            $rtn = array($sep, $str);
+
+            return $rtn;
+        }
+
+        function mergePic($pic, $msg1) {
+                $pair = makeCid($pic);
+
+                $msg2 = preg_replace('/PPPIIICCC/', "cid:PHP-CID-$pair[0]", $msg1);
+                $msg3 .= "$msg2\n\n
+$pair[1]";
+                return $msg3;
+        }
 
         function mailer($arr) {
             global $dbg, $SERV;
@@ -54,14 +76,18 @@
             $sub = "$arr[sub]" ? "$arr[sub]" : "Message from $WHO";
             $ref0 = preg_replace('/http.+?\b|\.\w+$/', '', "$SERV[HTTP_REFERER]");
             $ref = preg_replace('/\/|\./', ' ', "$ref0");
+            $pic = "$arr[pic]";
 
             $msg = "<!DOCTYPE HTML><html lang=en>\n
 <head><meta charset=\"utf-8\"></head>\n
 <body style=\"margin:0\">\n $arr[msg]\n
 <small style=\"color: white;\">
     from $SERV[REMOTE_ADDR] via $SERV[REQUEST_METHOD]relay ⌘ $ref
-</small>\n</body>\n</html>";
-
+</small>\n</body>\n</html>\n
+";
+            if (!empty($pic)) {
+                $msg = mergePic($pic, $msg);
+            }
             if ($dbg) {
                 $hdrs.= "Bcc: david.turgeon@wellsfargo.com\n";
             }
@@ -91,13 +117,13 @@
                 R = <?php echo $REZ; ?>,
                 S = (R.stat === 'fail') ? 3 : 1;
 
-            W.setTimeout(function () {
-                if (S > 1) {
-                    W.history.go(-1);
-                } else {
-                    W.location = R.refr + '#' + R.stat;
-                }
-            }, S * 1000);
+//            W.setTimeout(function () {
+//                if (S > 1) {
+//                    W.history.go(-1);
+//                } else {
+//                    W.location = R.refr + '#' + R.stat;
+//                }
+//            }, S * 1000);
         </script>
     </body>
 </html>
