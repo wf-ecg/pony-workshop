@@ -20,12 +20,9 @@ define(['jquery'], function
     var W = (W && W.window || window), C = (W.C || W.console || {});
     var Db = W.debug > 1;
 
-    var relay;
-    relay = 'http://10.89.101.100/wf-ecg/pony-workshop/0/relay2.php';
-    relay = 'http://adp2.hosting.wellsfargo.com/lib/relay2.php';
-    relay = 'http://ecgsolutions.hosting.wellsfargo.com/lib/relay2.php';
+    function Mailer(to, from, sub, msg, cc, pic) {
+        var relay = W.Main.relayLoc + 'lib/relay2.php';
 
-    return function Mailer(to, from, sub, msg, cc, pic) {
         this.to = to;
         this.from = from;
         this.sub = sub || 'Howdy';
@@ -33,6 +30,7 @@ define(['jquery'], function
         this.cc = cc || '';
         this.pic = pic || '';
         this.key = '***';
+        this.relay = relay;
 
         this.setRelay = function (url) {
             relay = url;
@@ -63,6 +61,10 @@ define(['jquery'], function
         this.get = function (cb) {
             var test = $('<div>'),
                 text = this.preview();
+
+            $.ajaxSetup({
+                cache: false,
+            });
 
             test.appendTo('body').hide() //
                 .load(text, function (rez) {
@@ -98,6 +100,8 @@ define(['jquery'], function
             });
         };
     };
+
+    return Mailer;
 });
 /*
 

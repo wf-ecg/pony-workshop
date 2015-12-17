@@ -12,7 +12,7 @@
  loosely load
  */
 
-define(['stack', 'gareth'], function (Stack) {
+define(['stack', 'gareth', 'lodash'], function (Stack, dsfs, _) {
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
         D = W.document,
@@ -30,48 +30,51 @@ define(['stack', 'gareth'], function (Stack) {
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE
 
-    function _makeStream(can) {
-        return can.toDataURL('image/jpeg', 0.75);
+    function db(num) {
+        return W.debug > (num || 0);
     }
-    function _scaleIt(can) {
-        var ctx = can.getContext('2d');
-        ctx.scale(0.1, 0.1);
-
-        return can.toDataURL('image/jpeg', 0.75);
+    function ns(str) {
+        return (str || '') + '.' + Nom;
     }
-    function _forceParent(lnk, dat) {
-        var div = lnk.parent();
-        var img = $('#DL-preview');
+    function _makeStream(can, lvl) {
+        return can.toDataURL('image/jpeg', lvl || 0.5);
+    }
 
-        if (!img.length) {
-            img = $('<img>').appendTo(div);
-        }
-
-        img.css({
-            width: '100%',
-        }).attr({
-            id: 'DL-preview',
-            src: dat,
-            type: 'image/jpeg',
-        }).slideDown();
+    function _makeName() {
+        return 'pony' + $.now() + '::';
     }
 
     function _linkDownloadName(lnk, can, nom) {
         var dat = _makeStream(can);
+        var gen = _makeName();
 
-        lnk[0]['download'] = nom + '.jpg';
+        // set POST data
+        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, gen));
 
-        if (!lnk.attr('download')) {
-            _forceParent(lnk, dat);
-            if (!lnk.next().is('.dl-note')) {
-                $('<div>').addClass('dl-note') //
-                    .text('Right-click to name and save this jpeg.') //
-                    .insertAfter(lnk);
-            }
-        } else {
-            lnk.attr('href', dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream'));
+        lnk[0]['download'] = nom + '.jpg'; // try for download awareness
+
+        if (lnk.attr('download')) {
+            lnk.attr({
+                href: dat,
+            });
+        } else { // using crap browser
+            lnk.attr({
+                download: null,
+                href: dat, //.replace(/^data:image\/[^;]/, 'data:application/octet-stream'),
+                target: '_blank',
+            });
         }
-        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, '')); // _scaleIt(can)
+        if (W.SHIET.trident) {
+            lnk[0].href = '#';
+            lnk[0].onclick = function (evt) {
+                evt.preventDefault();
+                var win;
+                win = W.open('preview.html');
+                win.document.writeln('<h4>Right-click to save your pony or set as background.</h4>');
+                win.document.writeln('<img width=100% src="' + dat + '">');
+                win.document.close();
+            };
+        }
     }
     // - - - - - - - - - - - - - - - - - -
     // DEPENZ
@@ -103,7 +106,7 @@ define(['stack', 'gareth'], function (Stack) {
         $.reify(El);
 
         El.can.css({
-            opacity: 0.0001 + (W.debug > 1 ? 1 : 0),
+            opacity: 0.0001 + (db(2) ? 1 : 0),
             position: 'absolute',
             zIndex: 0,
         });

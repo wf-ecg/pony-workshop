@@ -51,11 +51,11 @@
     }
     .previewScaled {
         @include transition( all 0.5s ease-in-out );
-        border: 2px solid #fff;
+        box-shadow: 0px 0px 0px 2px #ffffff inset; /* (chnaged border solution -- created a 2px inset border rather than outside border – to address the sometimes visible space between bottom of image and bottom border) */
         height: 0;
         opacity: 1;
         padding-bottom: 40%;
-        top: 0;
+        top: 5px; /* to give separation between title bar and preview */
         width: 60%;
 
         @media (max-height: 560px) {
@@ -117,7 +117,7 @@
         @media (max-width: 989px) { height: 10px; }
         margin: 0.5em;
         opacity: 0.4;
-        overflow: hidden;
+        overflow: visible; /* (to address some menu item text being cut off, notably the word ‘background’ - the bottom of the ‘g’) */
         padding-left: 2em;
         position: relative;
         width: 100%;

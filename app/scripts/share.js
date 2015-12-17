@@ -16,10 +16,8 @@ define(['jquery', 'libs/mailer'], function
     KLASS($, Mail) {
     'use strict';
 
-//CLASS
     var Nom = "Share";
     var W = (W && W.window || window), C = (W.C || W.console || {});
-    var Db = W.debug > 1;
     var Df = {
         callback: '',
         invalid: 'Please check addresses for validity',
@@ -29,10 +27,16 @@ define(['jquery', 'libs/mailer'], function
         test: 'david.turgeon@wellsfargo.com',
         tokens: '',
     };
+    // - - - - - - - - - - - - - - - - - -
+    // PRIVATE
+
+    function db(num) {
+        return W.debug > (num || 0);
+    }
+    function ns(str) {
+        return (str || '') + '.' + Nom;
+    }
     var K = {
-        ns: function (str) {
-            return (str || '') + '.' + Nom;
-        },
         isGoodEmail: function (str) {
             if (!str || !str.match('wellsfargo')) {
                 return false;
@@ -41,7 +45,7 @@ define(['jquery', 'libs/mailer'], function
         },
         checkEmail: function (ele) {
             ele = $(ele.originalEvent ? ele.target : ele);
-            if (Db) {
+            if (db(1)) {
                 ele.val(Df.test);
             }
             var str = $(ele).val();
@@ -66,9 +70,10 @@ define(['jquery', 'libs/mailer'], function
             return html.replace(/[\t\ ]+/g, ' ');
         },
     };
+    // - - - - - - - - - - - - - - - - - -
+    // CONSTRUCT
 
-//CONSTRUCT
-    return function Share(sel, cf) { // take a mailto element, {tokens, callback}
+    function Share(sel, cf) { // take a mailto element, {tokens, callback}
         cf = $.extend({}, Df, cf);
         sel = sel || cf.sel;
 
@@ -89,19 +94,19 @@ define(['jquery', 'libs/mailer'], function
 
 //      PRIVATE
         function _bind() {
-            ele.mail.on(K.ns('click'), function () {
+            ele.mail.on(ns('click'), function () {
                 if (_checkEmails()) {
                     _sendMail();
                 } else {
                     alert(cf.invalid);
                 }
             });
-            ele.stop.on(K.ns('click'), destroy);
-            ele.yours.on(K.ns('blur'), K.checkEmail);
-            ele.theirs.on(K.ns('blur'), K.checkEmail);
+            ele.stop.on(ns('click'), destroy);
+            ele.yours.on(ns('blur'), K.checkEmail);
+            ele.theirs.on(ns('blur'), K.checkEmail);
             reset();
 
-            if (Db) {
+            if (db()) {
                 api[Nom + ':' + sel] = {
                     _closure: KLASS,
                     cf: cf,
@@ -111,7 +116,7 @@ define(['jquery', 'libs/mailer'], function
             }
         }
         function _unbind() {
-            $(ele.main.find('*')).off(K.ns());
+            $(ele.main.find('*')).off(ns());
         }
         function _checkEmails() {
 
@@ -154,12 +159,15 @@ define(['jquery', 'libs/mailer'], function
                 mail = _makeMailFrom(mele);
 
                 mail[W.SHIET.trident ? 'get' : 'post'](function () {
-                    C.log(Nom, mail);
-                    W.alert('Sent!');
-
-                    mele.remove();
-                    destroy();
-                    reset();
+                    if (db(2)) {
+                        C.log(Nom, mail);
+                        $('body').html(mail.msg);
+                    } else {
+                        W.alert('Sent!');
+                        mele.remove();
+                        destroy();
+                        reset();
+                    }
                 });
             });
         }
@@ -186,7 +194,9 @@ define(['jquery', 'libs/mailer'], function
         }
         _bind(); // instance
         return api;
-    };
+    }
+
+    return Share;
 });
 /*
 
