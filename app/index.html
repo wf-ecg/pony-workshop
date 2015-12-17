@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!--  -->
+    <meta content="Originally built by WF-ECG INTERACTIVE (Wells Fargo Enterprise Creative Group).
+          We design and develop with a focus on web standards and best practices." name="description">
+    <script>(function(l,i,s,t){s=l.pathname;t=s.toLowerCase().replace(/index/,i||'index');t=t.match
+        (/\w+\.\w+$/)?t:t.replace(/\/*$/,'/index.html');if(t!==s)l.pathname=t;}(location));</script>
+    <!--  -->
     <link rel="stylesheet" type="text/css" href="/mfal/lib/slick/1.5.7/slick.css">
     <link rel="stylesheet" type="text/css" href="/mfal/lib/slick/1.5.7/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="build/screen.css">
@@ -16,11 +22,35 @@
   <body>
     <canvas id="can" width="1920" height="1280"></canvas>
 
-    <div class="header" id="header">
-      <img src="images/_common/wf-logo-bar-300.png" width="300" height="40" alt="Wells Fargo" />
+    <div class="sharing clearfix">
+      <div class="preview clearfix"><p></p></div>
+
+      <div class="address clearfix">
+        <p>Share this page via email.
+          <i>Email addresses must be internal to Wells Fargo. <br>
+            Separate multiple recipient addresses by a semicolon (;).</i>
+        </p>
+        <p>Your email address:&nbsp; <input type="email" class="yours"></p>
+        <p>Their email address: <input type="email" class="theirs"></p>
+        <p>Message heading: <input class="heading" value="(optional)"></p>
+        <p>Message body:
+          <textarea class="message">(optional)</textarea>
+        </p>
+        <p>
+          <input class="picture" type="url" style="display: none;">
+          <button class="mailto">Send</button>
+          <button class="cancel">Cancel</button>
+        </p>
+      </div>
+
+      <!-- end sharing -->
     </div>
 
-    <div class = "alertHeight"><p>Please increase your browser's size to enjoy this experience.</p></div>
+    <header>
+      <img src="images/_common/wf-logo-bar-300.png" width="300" height="40" alt="Wells Fargo" />
+    </header>
+
+    <div class="alertHeight"><p>Please increase your browser’s size to enjoy this experience.</p></div>
 
     <div id="sectionIntro">
       <div>
@@ -59,6 +89,15 @@
       <img src="images/pieces/mane-07.png">
       <img src="images/pieces/mane-08.png">
       <img src="images/pieces/mane-09.png">
+      <img src="images/pieces/ears-01.png">
+      <img src="images/pieces/ears-02.png">
+      <img src="images/pieces/ears-03.png">
+      <img src="images/pieces/ears-04.png">
+      <img src="images/pieces/ears-05.png">
+      <img src="images/pieces/ears-06.png">
+      <img src="images/pieces/ears-07.png">
+      <img src="images/pieces/ears-08.png">
+      <img src="images/pieces/ears-09.png">
       <img src="images/pieces/head-01.png">
       <img src="images/pieces/head-02.png">
       <img src="images/pieces/head-03.png">
@@ -99,6 +138,8 @@
       </div>
 
       <div class="preview" id="previewPony">
+        <div style="z-index:9"><img src="images/pieces/ponyshadow.png"  id="layer-shad"></div>
+        <div style="z-index:10"><img src="images/_common/clear.png"  id="layer-ears"></div>
         <div style="z-index:11"><img src="images/_common/clear.png"  id="layer-mane"></div>
         <div style="z-index:12"><img src="images/_common/clear.png"  id="layer-body"></div>
         <div style="z-index:13"><img src="images/_common/clear.png"  id="layer-back"></div>
@@ -115,6 +156,7 @@
 
       <div class="outerSelector" id="outerSelector">
         <div class="center grow2"><img src="images/_common/up-arrow-icon.png" width="43" height="24" alt="previous step" tabindex="0" id="previousArrow"></div>
+
         <div class="selector">
           <div class="step" id="step0">
             INSTRUCTIONS...
@@ -229,7 +271,7 @@
             <div class="grow" onClick="push(this.id);" id="j1"><img src="images/thumbs/stkr-01.jpg" alt="stkr1" /></div>
             <div class="grow" onClick="push(this.id);" id="j2"><img src="images/thumbs/stkr-02.jpg" alt="stkr2" /></div>
             <div class="grow" onClick="push(this.id);" id="j3"><img src="images/thumbs/stkr-03.jpg" alt="stkr3" /></div>
-            <div class="grow" onClick="push(this.id);" id="j4"><img src="images/thumbs/stkr-04.jpg" alt="stkr4" /></div>
+            <!--<div class="grow" onClick="push(this.id);" id="j4"><img src="images/thumbs/stkr-04.jpg" alt="stkr4" /></div>-->
           </div><!-- END step10 -->
 
           <!-- end selector -->
@@ -241,16 +283,18 @@
       <div class="ctaContainerOuter" id="cta">
         <div class="center grow2"><img src="images/_common/up-arrow-icon.png" width="43" height="24" alt="previous step" id="previousArrowPreview"></div>
         <div class="ctaContainerInner">
+
           <h4>YOU'RE ALL FINISHED!</h4>
           <p>Now share your masterpiece with team members and download for your desktop&nbsp;wallpaper.</p>
           <div class="ctaButtonContainer">
             <div class="ctaButton"><a href="#" id="download">Download Wallpaper</a></div>
-            <div class="ctaButton"><a href="#">Email</a></div>
+            <div class="ctaButton"><a href="#" id="emailer">Email</a></div>
           </div>
         </div>
+        <!-- end #cta -->
       </div>
 
-      <div class="footer" id="footer">&copy; 2015 Wells&nbsp;Fargo Bank, N.A. All rights reserved. For internal use only.</div>
+      <footer>&copy; 2015 Wells&nbsp;Fargo Bank, N.A. All rights reserved. For internal use only.</footer>
 
       <!-- end sectionBuild -->
     </div>

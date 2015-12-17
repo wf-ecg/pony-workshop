@@ -111,14 +111,21 @@ define(['jquery', 'slick'], function ($) {
 
     function push(id) {
         var imageURL = $('#' + id + ' img')[0].src;
-        imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4)); //extract string following images/thumbs but without file type
+        var imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4)); //extract string following images/thumbs but without file type
         var itemType = imageFile.substring(0, 4); //extract four-character item type from file name
+
         if (itemType === 'bgrd') {
             bgChoice = imageFile;
             setBG(imageFile); //run setBG function
         } else if (itemType !== null) {
             $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
         }
+        if (itemType === 'body') {
+            itemType = 'ears';
+            imageFile = imageFile.replace('body', 'ears');
+            $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
+        }
+
         if (itemType === 'stkr') {
             //set custom positioning of sticker
             var stickerNumber = Number(imageFile.substr(imageFile.length - 1));
@@ -147,6 +154,8 @@ define(['jquery', 'slick'], function ($) {
     }
 
     function randomPony() {
+        var randomEars = Math.floor((Math.random() * 10) + 1);
+        $('#layer-ears')[0].src = 'images/pieces/ears-' + pad2(randomEars) + '.png';
         var randomBody = Math.floor((Math.random() * 10) + 1);
         $('#layer-body')[0].src = 'images/pieces/body-' + pad2(randomBody) + '.png';
         var randomMane = Math.floor((Math.random() * 9) + 1);
@@ -203,33 +212,25 @@ define(['jquery', 'slick'], function ($) {
 
     function renderPreview() {
         //after sticker step, render preview and bring in download/email buttons
-        $('#outerSelector').addClass('pushDown');
-        $('#footer').addClass('pushDown');
-        $('#progressBar').addClass('pushLeft');
-        $('#title').addClass('pushUp');
-        $('#header').addClass('pushUp');
-        $('#previewPony').addClass('previewScaled100pc');
+        $('footer').addClass('pushDown').removeClass('pushDownUndo');
+        $('header').addClass('pushUp').removeClass('pushUpUndo');
+        $('#outerSelector').addClass('pushDown').removeClass('pushDownUndo');
+        $('#progressBar').removeClass('pushLeftUndo').addClass('pushLeft');
+        $('#title').addClass('pushUp').removeClass('pushUpUndo');
+
+        //$('#previewPony').addClass('previewScaled100pc');
         $('#cta').addClass('grow2');
-        $('#outerSelector').removeClass('pushDownUndo');
-        $('#footer').removeClass('pushDownUndo');
-        $('#progressBar').removeClass('pushLeftUndo');
-        $('#title').removeClass('pushUpUndo');
-        $('#header').removeClass('pushUpUndo');
     }
 
     function removePreview() {
         //leave preview mode, returning elements to normal positions
-        $('#outerSelector').addClass('pushDownUndo');
-        $('#footer').addClass('pushDownUndo');
-        $('#progressBar').addClass('pushLeftUndo');
-        $('#title').addClass('pushUpUndo');
-        $('#header').addClass('pushUpUndo');
-        $('#outerSelector').removeClass('pushDown');
-        $('#footer').removeClass('pushDown');
-        $('#progressBar').removeClass('pushLeft');
-        $('#title').removeClass('pushUp');
-        $('#header').removeClass('pushUp');
-        $('#previewPony').removeClass('previewScaled100pc');
+        $('footer').addClass('pushDownUndo').removeClass('pushDown');
+        $('header').addClass('pushUpUndo').removeClass('pushUp');
+        $('#outerSelector').addClass('pushDownUndo').removeClass('pushDown');
+        $('#progressBar').addClass('pushLeftUndo').removeClass('pushLeft');
+        $('#title').addClass('pushUpUndo').removeClass('pushUp');
+
+        //$('#previewPony').removeClass('previewScaled100pc');
         $('#cta').removeClass('grow2');
     }
 

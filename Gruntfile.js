@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                 '-W002': true, // allow err as var
                 //'-W033': true, // ???
                 //'-W061': true, // ???
+                '-W069': true, // surpress dot notation is better error
             }
             // https://github.com/gruntjs/grunt-contrib-jshint
         },

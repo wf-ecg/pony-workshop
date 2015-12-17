@@ -60,6 +60,6 @@ require(['console', 'lodash'], function () {
     /// CUSTOM
 
     statToken = statToken || 'PONY-Work';
-    require(['flatten']);
+    require(['_main']);
 });
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -56,9 +56,11 @@ define(['pair', 'box'], function (Pair, Box) {
                     obj._stamp(o);
                 }
             });
+            this.stack = [, ];
         },
         _reset: function () {
             resize(this.canvas, this.size);
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
             return this;
         },
         _stamp: function (obj) { // put image on canvas at origin

@@ -1,6 +1,36 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.sharing {
+    background-color: rgba(111, 111, 111, 0.9);
+    display: none;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+
+    .address {
+        @include middify;
+        background-color: #d1b472;
+        height: 25em;
+        min-width: 500px;
+        padding: 2em 3em;
+        width: 50%;
+        input, textarea {
+            font-family: monospace;
+            font-size: 0.85em;
+        }
+        input {
+            float: right;
+            width: 30em;
+        }
+        textarea {
+            height: 5em;
+            width: 100%;
+        }
+    }
+}
 .preview {
     @include nosel;
     @include transform( scale(1) );
