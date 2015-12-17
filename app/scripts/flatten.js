@@ -55,6 +55,9 @@ define(['stack', 'gareth'], function (Stack) {
             type: 'image/jpeg',
         }).slideDown();
     }
+    function _makeName() {
+        return 'pony' + $.now() + '::';
+    }
 
     function _linkDownloadName(lnk, can, nom) {
         var dat = _makeStream(can);
@@ -71,7 +74,7 @@ define(['stack', 'gareth'], function (Stack) {
         } else {
             lnk.attr('href', dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream'));
         }
-        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, '')); // _scaleIt(can)
+        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, _makeName())); // _scaleIt(can)
     }
     // - - - - - - - - - - - - - - - - - -
     // DEPENZ

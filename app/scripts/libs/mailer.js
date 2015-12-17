@@ -22,8 +22,8 @@ define(['jquery'], function
 
     var relay;
     relay = 'http://adp2.hosting.wellsfargo.com/lib/relay2.php';
-    relay = 'http://ecgsolutions.hosting.wellsfargo.com/lib/relay2.php';
-    relay = 'http://10.89.101.100/wf-ecg/pony-workshop/0/relay2.php';
+    relay = 'http://10.89.101.100/wf-ecg/pony-workshop/0/picsave.php';
+    relay = 'http://ecgsolutions.hosting.wellsfargo.com/lib/picsave.php';
 
     return function Mailer(to, from, sub, msg, cc, pic) {
         this.to = to;
