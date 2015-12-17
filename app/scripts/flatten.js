@@ -60,7 +60,7 @@ define(['stack', 'gareth'], function (Stack) {
         } else { // using crap browser
             lnk.attr({
                 download: null,
-                href: dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream'),
+                href: dat, //.replace(/^data:image\/[^;]/, 'data:application/octet-stream'),
                 target: '_blank',
             });
         }

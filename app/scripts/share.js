@@ -45,7 +45,7 @@ define(['jquery', 'libs/mailer'], function
         },
         checkEmail: function (ele) {
             ele = $(ele.originalEvent ? ele.target : ele);
-            if (db()) {
+            if (db(1)) {
                 ele.val(Df.test);
             }
             var str = $(ele).val();

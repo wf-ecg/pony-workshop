@@ -30,28 +30,22 @@ $dir = '../ponies/';
           }
       }
 
-      function picSaver($arr) {
+      function picSaver($pic) {
           global $dbg, $dir;
 
-          $pic = "$arr[pic]";
-
           if (!empty($pic)) {
-              $pic = "$arr[pic]";
+              $pair = splitData($pic);
           }
-
-          $pair = splitData($pic);
-
           if (!empty($pair[1])) {
               ensureDir($dir);
               file_put_contents($dir . $pair[0] . '.jpg', base64_decode($pair[1]));
           }
-
           if ($dbg) {
-              print_r($pair);
+              //print_r($pair);
           }
       }
 
-      picSaver($_POST);
+      picSaver($_POST[pic]);
       ?>
   </body>
 </html>

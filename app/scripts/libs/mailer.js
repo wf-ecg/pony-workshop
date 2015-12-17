@@ -21,7 +21,7 @@ define(['jquery'], function
     var Db = W.debug > 1;
 
     function Mailer(to, from, sub, msg, cc, pic) {
-        var relay = W.Main.relayLoc + 'relay2.php';
+        var relay = W.Main.relayLoc + 'lib/relay2.php';
 
         this.to = to;
         this.from = from;
