@@ -30,8 +30,8 @@ define(['stack', 'gareth'], function (Stack) {
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE
 
-    function _makeStream(can) {
-        return can.toDataURL('image/jpeg', 0.05);
+    function _makeStream(can, lvl) {
+        return can.toDataURL('image/jpeg', lvl || 0.05);
     }
     function _scaleIt(can) {
         var ctx = can.getContext('2d');
@@ -61,20 +61,18 @@ define(['stack', 'gareth'], function (Stack) {
 
     function _linkDownloadName(lnk, can, nom) {
         var dat = _makeStream(can);
+        var gen = _makeName();
 
         lnk[0]['download'] = nom + '.jpg';
 
-        if (!lnk.attr('download')) {
-            _forceParent(lnk, dat);
-            if (!lnk.next().is('.dl-note')) {
-                $('<div>').addClass('dl-note') //
-                    .text('Right-click to name and save this jpeg.') //
-                    .insertAfter(lnk);
-            }
-        } else {
-            lnk.attr('href', dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream'));
+        if (!lnk.attr('download')) { // using crap browser
+            lnk.attr({
+                download: null,
+                href: dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream'),
+                target: '_blank',
+            });
         }
-        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, _makeName())); // _scaleIt(can)
+        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, gen));
     }
     // - - - - - - - - - - - - - - - - - -
     // DEPENZ
