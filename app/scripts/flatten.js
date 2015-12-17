@@ -31,7 +31,7 @@ define(['stack', 'gareth'], function (Stack) {
     // PRIVATE
 
     function _makeStream(can) {
-        return can.toDataURL('image/jpeg', 0.75);
+        return can.toDataURL('image/jpeg', 0.05);
     }
     function _scaleIt(can) {
         var ctx = can.getContext('2d');

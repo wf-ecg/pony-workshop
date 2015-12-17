@@ -21,9 +21,9 @@ define(['jquery'], function
     var Db = W.debug > 1;
 
     var relay;
-    relay = 'http://10.89.101.100/wf-ecg/pony-workshop/0/relay2.php';
     relay = 'http://adp2.hosting.wellsfargo.com/lib/relay2.php';
     relay = 'http://ecgsolutions.hosting.wellsfargo.com/lib/relay2.php';
+    relay = 'http://10.89.101.100/wf-ecg/pony-workshop/0/relay2.php';
 
     return function Mailer(to, from, sub, msg, cc, pic) {
         this.to = to;
