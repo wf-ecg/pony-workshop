@@ -20,8 +20,8 @@ define(['jquery'], function
     var W = (W && W.window || window), C = (W.C || W.console || {});
     var Db = W.debug > 1;
 
-    var relay = 'http://adp2.hosting.wellsfargo.com/lib/relay2.php';
-    //var relay = 'http://10.89.101.100/wf-ecg/pony-workshop/0/relay2.php';
+    //var relay = 'http://adp2.hosting.wellsfargo.com/lib/relay2.php';
+    var relay = 'http://10.89.101.100/wf-ecg/pony-workshop/0/relay2.php';
 
     return function Mailer(to, from, sub, msg, cc, pic) {
         this.to = to;
@@ -45,11 +45,6 @@ define(['jquery'], function
                 var val = this[key];
 
                 if (typeof val === 'function') {
-                    continue;
-                }
-                if (key === 'pic') {
-                    str += ('&' + key + '=');
-                    str += val;
                     continue;
                 }
                 str += ('&' + key + '=');

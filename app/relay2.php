@@ -34,13 +34,15 @@
         }
         function makeCid($pic) {
             $sep = sha1(date('r', time()));
-            $dat = chunk_split($pic);
+            $dat = chunk_split($pic, 70);
 
-            $str = "--PHP-related-{$sep}\n
-Content-Type: image/jpeg\n
-Content-Transfer-Encoding: base64\n
-Content-ID: <PHP-CID-{$sep}>\n
-$dat\n";
+            $str = "\r\n
+--PHP-related-{$sep}\r\n
+Content-Type: image/jpeg\r\n
+Content-Transfer-Encoding: base64\r\n
+Content-ID: <PHP-CID-{$sep}>\r\n
+Content-Transfer-Encoding: base64\r\n\r\n
+$dat\r\n";
             $rtn = array($sep, $str);
 
             return $rtn;
@@ -50,7 +52,7 @@ $dat\n";
                 $pair = makeCid($pic);
 
                 $msg2 = preg_replace('/PPPIIICCC/', "cid:PHP-CID-$pair[0]", $msg1);
-                $msg3 .= "$msg2\n\n
+                $msg3 .= "$msg2\r\n\r\n
 $pair[1]";
                 return $msg3;
         }
@@ -71,29 +73,37 @@ $pair[1]";
                 $RLY = 'ECG';
             }
             $from = "$arr[from]" ? "$arr[from]" : "$RLY-Mail-Relay";
-            $hdrs = "From: $from\n";
-            $hdrs.= "Cc: $arr[cc]\n";
+            $cc = $arr[cc];
             $sub = "$arr[sub]" ? "$arr[sub]" : "Message from $WHO";
             $ref0 = preg_replace('/http.+?\b|\.\w+$/', '', "$SERV[HTTP_REFERER]");
             $ref = preg_replace('/\/|\./', ' ', "$ref0");
             $pic = "$arr[pic]";
 
-            $msg = "<!DOCTYPE HTML><html lang=en>\n
-<head><meta charset=\"utf-8\"></head>\n
-<body style=\"margin:0\">\n $arr[msg]\n
-<small style=\"color: white;\">
-    from $SERV[REMOTE_ADDR] via $SERV[REQUEST_METHOD]relay ⌘ $ref
-</small>\n</body>\n</html>\n
-";
-            if (!empty($pic)) {
-                $msg = mergePic($pic, $msg);
-            }
+            $headers = array();
+            $headers[] = "MIME-Version: 1.0";
+            $headers[] = "Content-type: text/html; charset=utf-8";
+            $headers[] = "From: <{$from}>";
             if ($dbg) {
-                $hdrs.= "Bcc: david.turgeon@wellsfargo.com\n";
+                $headers[] = "Bcc: <david.turgeon@wellsfargo.com>";
             }
-            $hdrs.= "Content-Type: text/html;\n charset=utf-8\n";
-            //print_r($msg);
-            return mail("$arr[to]", $sub, $msg, $hdrs);
+            $headers[] = "Cc: <{$cc}>";
+            $headers[] = "Reply-To: <{$from}>";
+            $headers[] = "Subject: {$sub}";
+            $headers[] = "X-Mailer: PHP/" . phpversion();
+
+            $msg = array();
+            $msg[] = "<!DOCTYPE HTML><html lang=en>";
+            $msg[] = "<head><meta charset=\"utf-8\"></head>";
+            $msg[] = "<body style=\"margin:0\">";
+            $msg[] = "{$arr[msg]}";
+            $msg[] = "</body></html>";
+
+            if (!empty($pic)) {
+                $msg = mergePic($pic, implode("\r\n", $msg));
+            }
+            print_r($msg);
+
+            //return mail("$arr[to]", $sub, $msg, implode("\r\n", $headers));
         }
 
         if (sendable($_POST)) {
