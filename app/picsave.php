@@ -8,8 +8,6 @@ header('Access-Control-Allow-Origin: *');
     <title>⌘</title>
   </head>
   <body><?php
-      $SERV = $_SERVER;
-      $OK = false;
       $dbg = 1;
       $dir = '../ponies/';
 
@@ -32,7 +30,7 @@ header('Access-Control-Allow-Origin: *');
       }
 
       function maker($arr) {
-          global $dbg, $SERV, $dir;
+          global $dbg, $dir;
 
           $pic = "$arr[pic]";
 
@@ -47,7 +45,9 @@ header('Access-Control-Allow-Origin: *');
               file_put_contents($dir . $pair[0] . '.jpg', base64_decode($pair[1]));
           }
 
-          //print_r($pair);
+          if ($dbg) {
+              print_r($pair);
+          }
       }
 
       maker($_POST);

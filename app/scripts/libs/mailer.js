@@ -67,6 +67,10 @@ define(['jquery'], function
             var test = $('<div>'),
                 text = this.preview();
 
+            $.ajaxSetup({
+                cache: false,
+            });
+
             test.appendTo('body').hide() //
                 .load(text, function (rez) {
                     C.log(text, rez);

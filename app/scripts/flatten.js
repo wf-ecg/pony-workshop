@@ -31,30 +31,9 @@ define(['stack', 'gareth'], function (Stack) {
     // PRIVATE
 
     function _makeStream(can, lvl) {
-        return can.toDataURL('image/jpeg', lvl || 0.05);
+        return can.toDataURL('image/jpeg', lvl || 0.5);
     }
-    function _scaleIt(can) {
-        var ctx = can.getContext('2d');
-        ctx.scale(0.1, 0.1);
 
-        return can.toDataURL('image/jpeg', 0.75);
-    }
-    function _forceParent(lnk, dat) {
-        var div = lnk.parent();
-        var img = $('#DL-preview');
-
-        if (!img.length) {
-            img = $('<img>').appendTo(div);
-        }
-
-        img.css({
-            width: '100%',
-        }).attr({
-            id: 'DL-preview',
-            src: dat,
-            type: 'image/jpeg',
-        }).slideDown();
-    }
     function _makeName() {
         return 'pony' + $.now() + '::';
     }
@@ -63,16 +42,22 @@ define(['stack', 'gareth'], function (Stack) {
         var dat = _makeStream(can);
         var gen = _makeName();
 
-        lnk[0]['download'] = nom + '.jpg';
+        // set POST data
+        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, gen));
 
-        if (!lnk.attr('download')) { // using crap browser
+        lnk[0]['download'] = nom + '.jpg'; // try for download awareness
+
+        if (lnk.attr('download')) {
+            lnk.attr({
+                href: dat,
+            });
+        } else { // using crap browser
             lnk.attr({
                 download: null,
                 href: dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream'),
                 target: '_blank',
             });
         }
-        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, gen));
     }
     // - - - - - - - - - - - - - - - - - -
     // DEPENZ

@@ -40,30 +40,18 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
         var pic = $('.picture').val();
         var nom = pic.split('::')[0];
 
-        nom = 'http://ecgsolutions.hosting.wellsfargo.com/ponies/' + nom + '.jpg';
+        nom = 'src="http://ecgsolutions.hosting.wellsfargo.com/ponies/' + nom + '.jpg"';
 
         if (share) {
             share.disarm(); // disarm share events + do callback
         }
         self.Share = share = new Share(El.sharing, {
-            subject: 'I created my own pony using wells fargo’s pony workshop', //'Happy Holidays to banking’s best marketing team',
-            picture: pic, //$('.picture').val(), //'Happy Holidays to banking’s best marketing team',
+            subject: 'I created my own pony using Wells Fargo Pony Workshop',
+            picture: pic,
             tokens: {// inside template
-                picture: nom, //'PPPIIICCC', //'http://ecg.hosting.wellsfargo.com/mfal/em/pony-workshop/images/email/pony.jpg',
-                heading: 'Happy Holidays to banking’s <br>best marketing team.',
-                message: ['I hope everyone is getting excited for the holidays and looking forward to spending time with family and friends.',
-                    'The great work you have created and the solutions you have provided throughout this busy year should be celebrated, ',
-                    'and I want to thank each and every one of your for reflecting Wells Fargo’s working together&nbsp;spirit.</p>',
-                    '<p>So, to help celebrate your unique contributions, I want to invite you to visit the Pony Workshop',
-                    'and create your own Wells Fargo pony. This will be a fun way to kick off the holiday season and',
-                    'the Pony Workshop gives you lots of choices for designing a pony that is truly you. Be creative.',
-                    'Be silly. Be stylish. Once you’re done, please share it with your fellow team members.',
-                    'You can also download it as your desktop wallpaper to remind yourself just how important',
-                    'your unique contributions to Wells Fargo are. I can’t wait to see what everyone comes up&nbsp;with.</p>',
-                    '<p>Again, thank you for all of your work and continued dedication as we take on the new and',
-                    'exciting opportunities waiting for us&nbsp;in&nbsp;2016.</p>',
-                    '<p>Sincerely, <br>',
-                    'Kellie Krug'].join('\n'),
+                picture: nom,
+                heading: '',
+                message: '',
             },
             callback: function () { // callback after share
                 El.sharing.hide();
