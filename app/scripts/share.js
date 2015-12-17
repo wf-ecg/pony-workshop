@@ -159,7 +159,7 @@ define(['jquery', 'libs/mailer'], function
                 mail = _makeMailFrom(mele);
 
                 mail[W.SHIET.trident ? 'get' : 'post'](function () {
-                    if (db()) {
+                    if (db(2)) {
                         C.log(Nom, mail);
                         $('body').html(mail.msg);
                     } else {

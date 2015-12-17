@@ -61,7 +61,7 @@ $dir = '../ponies/';
               file_put_contents($dir . $pair[0] . '.jpg', base64_decode($pair[1]));
           }
           if ($dbg) {
-              print_r($pair);
+              //print_r($pair);
           }
       }
 

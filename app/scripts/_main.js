@@ -40,7 +40,7 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
         var pic = $('.picture').val();
         var nom = pic.split('::')[0];
 
-        nom = 'src="http://ecgsolutions.hosting.wellsfargo.com/ponies/' + nom + '.jpg"';
+        nom = 'src="' + self.relayLoc + 'ponies/' + nom + '.jpg"';
 
         if (share) {
             share.disarm(); // disarm share events + do callback
@@ -79,6 +79,7 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
         // EXPOSE
         W.Main = self;
         self.El = El;
+        self.relayLoc = 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/lib/';
     }
     // - - - - - - - - - - - - - - - - - -
     // LOADED
@@ -88,6 +89,9 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
 });
 /*
 
+ /adp2.hosting.wellsfargo.com/lib/
+ /ecgsolutions.hosting.wellsfargo.com/lib/
+ /10.89.101.100/wf-ecg/pony-workshop/0/
 
 
  */

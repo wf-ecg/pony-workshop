@@ -30,6 +30,12 @@ define(['stack', 'gareth'], function (Stack) {
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE
 
+    function db(num) {
+        return W.debug > (num || 0);
+    }
+    function ns(str) {
+        return (str || '') + '.' + Nom;
+    }
     function _makeStream(can, lvl) {
         return can.toDataURL('image/jpeg', lvl || 0.5);
     }
@@ -89,7 +95,7 @@ define(['stack', 'gareth'], function (Stack) {
         $.reify(El);
 
         El.can.css({
-            opacity: 0.0001 + (W.debug > 1 ? 1 : 0),
+            opacity: 0.0001 + (db(2) ? 1 : 0),
             position: 'absolute',
             zIndex: 0,
         });

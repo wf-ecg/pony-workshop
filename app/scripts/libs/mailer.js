@@ -20,14 +20,9 @@ define(['jquery'], function
     var W = (W && W.window || window), C = (W.C || W.console || {});
     var Db = W.debug > 1;
 
-    var relay;
-    relay = 'http://adp2.hosting.wellsfargo.com/lib/';
-    relay = 'http://10.89.101.100/wf-ecg/pony-workshop/0/';
-    relay = 'http://ecgsolutions.hosting.wellsfargo.com/lib/';
-
-    relay += 'picsave.php'; // relay2.php
-
     function Mailer(to, from, sub, msg, cc, pic) {
+        var relay = W.Main.relayLoc + 'relay2.php';
+
         this.to = to;
         this.from = from;
         this.sub = sub || 'Howdy';
