@@ -111,14 +111,21 @@ define(['jquery', 'slick'], function ($) {
 
     function push(id) {
         var imageURL = $('#' + id + ' img')[0].src;
-        imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4)); //extract string following images/thumbs but without file type
+        var imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4)); //extract string following images/thumbs but without file type
         var itemType = imageFile.substring(0, 4); //extract four-character item type from file name
+
         if (itemType === 'bgrd') {
             bgChoice = imageFile;
             setBG(imageFile); //run setBG function
         } else if (itemType !== null) {
             $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
         }
+        if (itemType === 'body') {
+            itemType = 'ears';
+            imageFile = imageFile.replace('body', 'ears');
+            $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
+        }
+
         if (itemType === 'stkr') {
             //set custom positioning of sticker
             var stickerNumber = Number(imageFile.substr(imageFile.length - 1));
@@ -147,6 +154,8 @@ define(['jquery', 'slick'], function ($) {
     }
 
     function randomPony() {
+        var randomEars = Math.floor((Math.random() * 10) + 1);
+        $('#layer-ears')[0].src = 'images/pieces/ears-' + pad2(randomEars) + '.png';
         var randomBody = Math.floor((Math.random() * 10) + 1);
         $('#layer-body')[0].src = 'images/pieces/body-' + pad2(randomBody) + '.png';
         var randomMane = Math.floor((Math.random() * 9) + 1);
@@ -209,7 +218,7 @@ define(['jquery', 'slick'], function ($) {
         $('#progressBar').removeClass('pushLeftUndo').addClass('pushLeft');
         $('#title').addClass('pushUp').removeClass('pushUpUndo');
 
-        $('#previewPony').addClass('previewScaled100pc');
+        //$('#previewPony').addClass('previewScaled100pc');
         $('#cta').addClass('grow2');
     }
 
@@ -221,7 +230,7 @@ define(['jquery', 'slick'], function ($) {
         $('#progressBar').addClass('pushLeftUndo').removeClass('pushLeft');
         $('#title').addClass('pushUpUndo').removeClass('pushUp');
 
-        $('#previewPony').removeClass('previewScaled100pc');
+        //$('#previewPony').removeClass('previewScaled100pc');
         $('#cta').removeClass('grow2');
     }
 
