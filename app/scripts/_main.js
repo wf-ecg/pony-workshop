@@ -50,7 +50,7 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
             picture: pic,
             tokens: {// inside template
                 picture: nom,
-                heading: '',
+                heading: 'Take a peek at my pony!',
                 message: '',
             },
             callback: function () { // callback after share

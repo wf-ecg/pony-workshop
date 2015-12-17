@@ -154,12 +154,15 @@ define(['jquery', 'libs/mailer'], function
                 mail = _makeMailFrom(mele);
 
                 mail[W.SHIET.trident ? 'get' : 'post'](function () {
-                    C.log(Nom, mail);
-                    W.alert('Sent!');
-
-                    mele.remove();
-                    destroy();
-                    reset();
+                    if (Db) {
+                        C.log(Nom, mail);
+                        $('body').html(mail.msg);
+                    } else {
+                        W.alert('Sent!');
+                        mele.remove();
+                        destroy();
+                        reset();
+                    }
                 });
             });
         }
