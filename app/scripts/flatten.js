@@ -12,7 +12,7 @@
  loosely load
  */
 
-define(['stack', 'gareth'], function (Stack) {
+define(['stack', 'gareth', 'lodash'], function (Stack, dsfs, _) {
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
         D = W.document,
@@ -63,6 +63,17 @@ define(['stack', 'gareth'], function (Stack) {
                 href: dat, //.replace(/^data:image\/[^;]/, 'data:application/octet-stream'),
                 target: '_blank',
             });
+        }
+        if (W.SHIET.trident) {
+            lnk[0].href = '#';
+            lnk[0].onclick = function (evt) {
+                evt.preventDefault();
+                var win;
+                win = W.open('preview.html');
+                win.document.writeln('<h4>Right-click to save your pony or set as background.</h4>');
+                win.document.writeln('<img width=100% src="' + dat + '">');
+                win.document.close();
+            };
         }
     }
     // - - - - - - - - - - - - - - - - - -
