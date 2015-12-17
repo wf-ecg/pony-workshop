@@ -71,7 +71,7 @@ define(['stack', 'gareth'], function (Stack) {
         } else {
             lnk.attr('href', dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream'));
         }
-        $('.picture').val(_scaleIt(can).replace(/^data:image\/jpeg;base64\,/, ''));
+        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, '')); // _scaleIt(can)
     }
     // - - - - - - - - - - - - - - - - - -
     // DEPENZ
