@@ -31,9 +31,13 @@ define(['stack', 'gareth'], function (Stack) {
     // PRIVATE
 
     function _makeStream(can) {
-        var str = can.toDataURL('image/jpeg', 0.75);
+        return can.toDataURL('image/jpeg', 0.75);
+    }
+    function _scaleIt(can) {
+        var ctx = can.getContext('2d');
+        ctx.scale(0.1, 0.1);
 
-        return str;
+        return can.toDataURL('image/jpeg', 0.75);
     }
     function _forceParent(lnk, dat) {
         var div = lnk.parent();
@@ -55,7 +59,6 @@ define(['stack', 'gareth'], function (Stack) {
     function _linkDownloadName(lnk, can, nom) {
         var dat = _makeStream(can);
 
-        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, ''));
         lnk[0]['download'] = nom + '.jpg';
 
         if (!lnk.attr('download')) {
@@ -66,9 +69,9 @@ define(['stack', 'gareth'], function (Stack) {
                     .insertAfter(lnk);
             }
         } else {
-            dat = dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-            lnk.attr('href', dat);
+            lnk.attr('href', dat.replace(/^data:image\/[^;]/, 'data:application/octet-stream'));
         }
+        $('.picture').val(_scaleIt(can).replace(/^data:image\/jpeg;base64\,/, ''));
     }
     // - - - - - - - - - - - - - - - - - -
     // DEPENZ
@@ -100,7 +103,7 @@ define(['stack', 'gareth'], function (Stack) {
         $.reify(El);
 
         El.can.css({
-            opacity: 0.0001,
+            opacity: 0.0001 + (W.debug > 1 ? 1 : 0),
             position: 'absolute',
             zIndex: 0,
         });
