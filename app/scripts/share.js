@@ -158,7 +158,7 @@ define(['jquery', 'libs/mailer'], function
             mele.load(cf.template, function () {
                 mail = _makeMailFrom(mele);
 
-                mail[W.SHIET.trident ? 'get' : 'post'](function () {
+                mail['post'](function () {
                     if (db(2)) {
                         C.log(Nom, mail);
                         $('body').html(mail.msg);
