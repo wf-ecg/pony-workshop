@@ -1,5 +1,11 @@
 <?php
+#
 header('Access-Control-Allow-Origin: *');
+$OK = false;
+$SERV = $_SERVER;
+$dbg = 1;
+$dir = '../ponies/';
+#
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -8,11 +14,6 @@ header('Access-Control-Allow-Origin: *');
     <title>⌘</title>
   </head>
   <body><?php
-      header('Access-Control-Allow-Origin: *');
-      $SERV = $_SERVER;
-      $OK = false;
-      $dbg = 1;
-
       if ($dbg) {
           ini_set('display_errors', 1);
           echo '<pre>';
@@ -37,22 +38,31 @@ header('Access-Control-Allow-Origin: *');
           }
       }
 
-      function makeCid($pic) {
-          $sep = sha1(date('r', time()));
-          $dat = chunk_split($pic, 70);
+      function splitData($pic) {
+          $arr = preg_split('/::/', $pic);
+          return $arr;
+      }
 
-          $cid = array();
-          $cid[] = "--PHP-related-{$sep}";
-          $cid[] = "Content-Type: image/jpeg; name=pic.jpg";
-          $cid[] = "Content-Disposition: inline; filename=pic.jpg";
-          $cid[] = "Content-Transfer-Encoding: base64";
-          $cid[] = "Content-ID: <PHP-CID-{$sep}>";
-          $cid[] = "";
-          $cid[] = "{$dat}";
-          $cid[] = "";
-          $cid[] = "--PHP-related-{$sep}";
+      function ensureDir($dir) {
+          if (!is_dir($dir)) {
+              mkdir($dir, 0777);
+              chmod($dir, 0777);
+          }
+      }
 
-          return array($sep, implode("\r\n", $cid));
+      function picSaver($pic) {
+          global $dbg, $dir;
+
+          if (!empty($pic)) {
+              $pair = splitData($pic);
+          }
+          if (!empty($pair[1])) {
+              ensureDir($dir);
+              file_put_contents($dir . $pair[0] . '.jpg', base64_decode($pair[1]));
+          }
+          if ($dbg) {
+              print_r($pair);
+          }
       }
 
       function mailer($arr) {
@@ -98,22 +108,16 @@ header('Access-Control-Allow-Origin: *');
           $msg[] = "<!DOCTYPE HTML><html lang=en>";
           $msg[] = "<head><meta charset=\"utf-8\"></head>";
           $msg[] = "<body style=\"margin:0\">";
-
-          if (empty($pic)) {
-              $msg[] = "{$body}";
-              $msg[] = "</body></html>";
-          } else {
-              $cid = makeCid($pic); // array [separator, data]
-              $body = preg_replace('/PPPIIICCC/', "cid:PHP-CID-$cid[0]", $body);
-
-              $msg[] = "{$body}";
-              $msg[] = "</body></html>";
-              $msg[] = "";
-              $msg[] = "{$cid[1]}";
+          $msg[] = "{$body}";
+          $msg[] = "</body></html>";
+          if ($dbg) {
+              print_r(implode("\r\n", $msg));
           }
 
-          print_r(implode("\r\n", $msg));
-          //return mail($to, $sub, implode("\r\n", $msg), implode("\r\n", $head));
+          if (!empty($pic)) {
+              picSaver($pic);
+          }
+          return mail($to, $sub, implode("\r\n", $msg), implode("\r\n", $head));
       }
 
       if (sendable($_POST)) {
@@ -133,17 +137,17 @@ header('Access-Control-Allow-Origin: *');
           'refr' => "$SERV[HTTP_REFERER]"
       ));
       ?><script>
-        var W = window,
-            R = <?php echo $REZ; ?>,
-            S = (R.stat === 'fail') ? 3 : 1;
+          var W = window,
+              R = <?php echo $REZ; ?>,
+              S = (R.stat === 'fail') ? 3 : 1;
 
-        W.setTimeout(function () {
-            if (S > 1) {
-                W.history.go(-1);
-            } else {
-                W.location = R.refr + '#' + R.stat;
-            }
-        }, S * 1000);
+          W.setTimeout(function () {
+              if (S > 1) {
+                  W.history.go(-1);
+              } else {
+                  W.location = R.refr + '#' + R.stat;
+              }
+          }, S * 1000);
     </script>
   </body>
 </html>

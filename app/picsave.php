@@ -1,5 +1,9 @@
 <?php
+#
 header('Access-Control-Allow-Origin: *');
+$dbg = 1;
+$dir = '../ponies/';
+#
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -8,9 +12,6 @@ header('Access-Control-Allow-Origin: *');
     <title>⌘</title>
   </head>
   <body><?php
-      $dbg = 1;
-      $dir = '../ponies/';
-
       if ($dbg) {
           ini_set('display_errors', 1);
           echo '<pre>';
@@ -29,7 +30,7 @@ header('Access-Control-Allow-Origin: *');
           }
       }
 
-      function maker($arr) {
+      function picSaver($arr) {
           global $dbg, $dir;
 
           $pic = "$arr[pic]";
@@ -50,7 +51,7 @@ header('Access-Control-Allow-Origin: *');
           }
       }
 
-      maker($_POST);
+      picSaver($_POST);
       ?>
   </body>
 </html>
