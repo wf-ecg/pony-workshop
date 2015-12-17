@@ -36,25 +36,18 @@
             $sep = sha1(date('r', time()));
             $dat = chunk_split($pic, 70);
 
-            $str = "\r\n
---PHP-related-{$sep}\r\n
-Content-Type: image/jpeg\r\n
-Content-Transfer-Encoding: base64\r\n
-Content-ID: <PHP-CID-{$sep}>\r\n
-Content-Transfer-Encoding: base64\r\n\r\n
-$dat\r\n";
-            $rtn = array($sep, $str);
+            $cid = array();
+            $cid[] = "--PHP-related-{$sep}";
+            $cid[] = "Content-Type: image/jpeg; name=pic.jpg";
+            $cid[] = "Content-Disposition: inline; filename=pic.jpg";
+            $cid[] = "Content-Transfer-Encoding: base64";
+            $cid[] = "Content-ID: <PHP-CID-{$sep}>";
+            $cid[] = "";
+            $cid[] = "{$dat}";
+            $cid[] = "";
+            $cid[] = "--PHP-related-{$sep}";
 
-            return $rtn;
-        }
-
-        function mergePic($pic, $msg1) {
-                $pair = makeCid($pic);
-
-                $msg2 = preg_replace('/PPPIIICCC/', "cid:PHP-CID-$pair[0]", $msg1);
-                $msg3 .= "$msg2\r\n\r\n
-$pair[1]";
-                return $msg3;
+            return array($sep, implode("\r\n", $cid));
         }
 
         function mailer($arr) {
@@ -72,38 +65,50 @@ $pair[1]";
             } else {
                 $RLY = 'ECG';
             }
-            $from = "$arr[from]" ? "$arr[from]" : "$RLY-Mail-Relay";
+            $body = "$arr[msg]";
+            $pic = "$arr[pic]";
+            $to = $arr[to];
             $cc = $arr[cc];
+
+            $from = "$arr[from]" ? "$arr[from]" : "$RLY-Mail-Relay";
             $sub = "$arr[sub]" ? "$arr[sub]" : "Message from $WHO";
+
             $ref0 = preg_replace('/http.+?\b|\.\w+$/', '', "$SERV[HTTP_REFERER]");
             $ref = preg_replace('/\/|\./', ' ', "$ref0");
-            $pic = "$arr[pic]";
 
-            $headers = array();
-            $headers[] = "MIME-Version: 1.0";
-            $headers[] = "Content-type: text/html; charset=utf-8";
-            $headers[] = "From: <{$from}>";
+            $head = array();
+            $head[] = "MIME-Version: 1.0";
+            $head[] = "Content-type: text/html; charset=utf-8";
+            $head[] = "From: <{$from}>";
             if ($dbg) {
-                $headers[] = "Bcc: <david.turgeon@wellsfargo.com>";
+                $head[] = "Bcc: <david.turgeon@wellsfargo.com>";
             }
-            $headers[] = "Cc: <{$cc}>";
-            $headers[] = "Reply-To: <{$from}>";
-            $headers[] = "Subject: {$sub}";
-            $headers[] = "X-Mailer: PHP/" . phpversion();
+            $head[] = "Cc: <{$cc}>";
+            $head[] = "Reply-To: <{$from}>";
+            $head[] = "Subject: {$sub}";
+            $head[] = "X-Mailer: PHP/" . phpversion();
+            $head[] = "";
 
             $msg = array();
             $msg[] = "<!DOCTYPE HTML><html lang=en>";
             $msg[] = "<head><meta charset=\"utf-8\"></head>";
             $msg[] = "<body style=\"margin:0\">";
-            $msg[] = "{$arr[msg]}";
-            $msg[] = "</body></html>";
 
-            if (!empty($pic)) {
-                $msg = mergePic($pic, implode("\r\n", $msg));
+            if (empty($pic)) {
+                $msg[] = "{$body}";
+                $msg[] = "</body></html>";
+            } else {
+                $cid = makeCid($pic); // array [separator, data]
+                $body = preg_replace('/PPPIIICCC/', "cid:PHP-CID-$cid[0]", $body);
+
+                $msg[] = "{$body}";
+                $msg[] = "</body></html>";
+                $msg[] = "";
+                $msg[] = "{$cid[1]}";
             }
-            print_r($msg);
 
-            //return mail("$arr[to]", $sub, $msg, implode("\r\n", $headers));
+            //print_r($msg);
+            return mail($to, $sub, implode("\r\n", $msg), implode("\r\n", $head));
         }
 
         if (sendable($_POST)) {
