@@ -5,6 +5,7 @@
         <title>⌘</title>
     </head>
     <body><?php
+    	header('Access-Control-Allow-Origin: *');
         $SERV = $_SERVER;
         $OK = false;
         $dbg = 1;

@@ -154,10 +154,10 @@ define(['jquery', 'slick'], function ($) {
     }
 
     function randomPony() {
-        var randomEars = Math.floor((Math.random() * 10) + 1);
-        $('#layer-ears')[0].src = 'images/pieces/ears-' + pad2(randomEars) + '.png';
         var randomBody = Math.floor((Math.random() * 10) + 1);
         $('#layer-body')[0].src = 'images/pieces/body-' + pad2(randomBody) + '.png';
+        //var randomEars = Math.floor((Math.random() * 10) + 1);
+        $('#layer-ears')[0].src = 'images/pieces/ears-' + pad2(randomBody) + '.png'; //ears to match random body
         var randomMane = Math.floor((Math.random() * 9) + 1);
         $('#layer-mane')[0].src = 'images/pieces/mane-' + pad2(randomMane) + '.png';
         var randomNose = Math.floor((Math.random() * 8) + 1);
