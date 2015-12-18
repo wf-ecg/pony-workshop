@@ -5,6 +5,7 @@
 #sectionBuild {
     height: 100%;
     opacity: 0;
+    position: relative;
 
     .ctaButton {
         background-color: #dedabe;
@@ -97,7 +98,7 @@
         position: fixed;
         top: 85px;
         width: 170px;
-        z-index: 2;
+        z-index: 12;
         @media (max-width: 479px) {
             display: none;
         }

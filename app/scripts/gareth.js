@@ -13,110 +13,129 @@
  */
 
 define(['jquery', 'slick'], function ($) {
-    var W = window,
-        stepName = ['Intro', '1. Select Pony', '2. Choose Saddle', '3. Choose Back', '4. Choose Head', '5. Choose Mane', '6. Choose Nose', '7. Choose Feet', '8. Choose Socks', '9. Pick a Background', 'Download/Share'],
+    var W = (W && W.window || window),
+        C = (W.C || W.console || {}),
+        D = W.document,
+        Nom = 'Gar',
+        El = {
+            body: 'body',
+            buildSec: '#sectionBuild',
+            cta: '#cta',
+            fade: '#backgroundFaded',
+            footer: 'footer',
+            header: 'header',
+            introSec: '#sectionIntro',
+            nextA: '.next.step',
+            prevA: '.prev.step',
+            preview: '#previewPony',
+            progBar: '#progressBar',
+            progSteps: '#progressBar div',
+            selector: '#outerSelector',
+            sticker: '#layer-stkr',
+            title: '#title',
+        },
+        bkgrStep = 9, //  needed for actions that happen when user arrives at this step or leaves step
+        bkgrChoice = 'bgrd-01', // default image to use for background
+        bkgrColors = [
+            '#ffffff', '#84b3c5', '#95b73f',
+            '#e5b523', '#268855', '#654d7d',
+            '#267f9d', '#654d7d', '#fcce30',
+        ],
         currentStep = 0,
-        totalSteps = stepName.length,
-        backgroundStep = 9, //  needed for actions that happen when user arrives at this step or leaves step
-        bgChoice = 'bgrd-01'; // default image to use for background
-
-    W.push = push;
-
-    function gotoBuild() {
-        $('#sectionIntro').hide();
-        $('#sectionBuild').css('opacity', 1);
-    }
+        stepName = ['Intro',
+            '1. Select Pony',
+            '2. Choose Saddle',
+            '3. Choose Back',
+            '4. Choose Head',
+            '5. Choose Mane',
+            '6. Choose Nose',
+            '7. Choose Feet',
+            '8. Choose Socks',
+            '9. Pick a Background',
+            'Download/Share'],
+        stepTotal = stepName.length,
+        U;
+    // - - - - - - - - - - - - - - - - - -
+    // ETC
 
     function gotoPrevStep() {
-        //check if user is going back from background selection screen -- if so, resize pony to regular size and remove background image and sticker
+        // if user is going back from background selection screen
+        // resize pony to regular size and remove background image and sticker
         if (currentStep > 1) {
-            $('#nextArrow').css('opacity', 1);
-            if (currentStep === backgroundStep) {
-                // user is moving backwards from backgrounds selection
-                $('#previewPony').removeClass('previewScaled');
+            El.nextA.css('opacity', 1);
+
+            if (currentStep === bkgrStep) { // moving backwards from backgrounds selection
                 setBG('bgrd-clear');
-                $('#layer-stkr').hide();
-                document.body.style.backgroundImage = 'url(images/backgrounds/bgrd-body.jpg)';
-                $('#backgroundFaded').css('opacity', 0);
+                El.body.css('backgroundImage', 'url(images/backgrounds/bgrd-body.jpg)');
+                El.fade.css('opacity', 0);
+                El.preview.removeClass('previewScaled');
+                El.sticker.hide();
             }
             currentStep--;
-            if (currentStep > backgroundStep) {
-                //user has moved backwards from preview mode to sticker selection
+            if (currentStep > bkgrStep) { // user has moved backwards from preview mode
                 removePreview();
             }
-            $('#progressBar div').eq(currentStep + 1).removeClass('grow2');
-            $('#progressBar div').eq(currentStep).addClass('grow2');
+            El.progSteps.eq(currentStep + 1).removeClass('grow2');
+            El.progSteps.eq(currentStep).addClass('grow2');
 
             $('#step' + (currentStep + 1)).animate({
                 opacity: -1,
                 bottom: '-300px'
             }, 300);
-
             $('#step' + currentStep).animate({
                 opacity: 1,
                 bottom: '0px'
             }, 300);
         }
-        if (currentStep === 1) {
-            //reached the beginning
-            $('#previousArrow')[0].style.opacity = 0.3;
+        if (currentStep === 1) { //reached the beginning
+            El.prevA.css('opacity', 0.3);
         }
-
-        if (currentStep === (backgroundStep - 1)) {
-            //$('#previewPony')[0].classList.remove('previewScaled');
+        if (currentStep === (bkgrStep - 1)) {
+            //El.preview[0].classList.remove('previewScaled');
         }
     }
 
     function gotoNextStep() {
-        if (currentStep <= totalSteps) {
-            $('#previousArrow')[0].style.opacity = 0.3 + (0.7 * (currentStep > 0));
+        if (currentStep <= stepTotal) {
+            El.prevA.css('opacity', 0.3 + (0.7 * (currentStep > 0)));
             currentStep++;
-            if (currentStep === backgroundStep) {
-                //perform any actions on move to background step
-                $('#previewPony').addClass('previewScaled');
-                setBG(bgChoice);
-                $('#layer-stkr').show();
-                //$('#progressBar').classList.add('progressBackground');
-            }
 
-            if (currentStep === (backgroundStep + 1)) {
-                //perform any actions on move to sticker step
+            if (currentStep === bkgrStep) { // move to background step
+                setBG(bkgrChoice);
+                El.preview.addClass('previewScaled');
+                El.sticker.show();
             }
-
-            if (currentStep === (backgroundStep + 2)) {
-                //perform any actions on move to preview mode
+            if (currentStep === (bkgrStep + 2)) { // move to preview mode
                 renderPreview();
             }
 
-            //$('#stepName').innerHTML = stepName[currentStep];
-            $('#progressBar div').eq(currentStep - 1).removeClass('grow2');
-            $('#progressBar div').eq(currentStep).addClass('grow2');
+            El.progSteps.eq(currentStep - 1).removeClass('grow2');
+            El.progSteps.eq(currentStep).addClass('grow2');
 
             $('#step' + (currentStep - 1)).animate({
+                bottom: '300px',
                 opacity: -1,
-                bottom: '300px'
             }, 300);
 
             $('#step' + currentStep).animate({
+                bottom: '0px',
                 opacity: 1,
-                bottom: '0px'
             }, 300);
         }
-        if (currentStep === totalSteps) {
-            //reached the end
-            $('#nextArrow').css('opacity', 0.3);
-
+        if (currentStep === stepTotal) { //reached the end
+            El.nextA.css('opacity', 0.3);
         }
     }
 
     function push(id) {
         var imageURL = $('#' + id + ' img')[0].src;
-        var imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4)); //extract string following images/thumbs but without file type
-        var itemType = imageFile.substring(0, 4); //extract four-character item type from file name
+        //extract string following images/thumbs but without file type
+        var imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4));
+        var itemType = imageFile.substring(0, 4); //extract item type from file name
 
         if (itemType === 'bgrd') {
-            bgChoice = imageFile;
-            setBG(imageFile); //run setBG function
+            bkgrChoice = imageFile;
+            setBG(imageFile);
         } else if (itemType !== null) {
             $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
         }
@@ -125,131 +144,86 @@ define(['jquery', 'slick'], function ($) {
             imageFile = imageFile.replace('body', 'ears');
             $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
         }
+    }
 
-        if (itemType === 'stkr') {
-            //set custom positioning of sticker
-            var stickerNumber = Number(imageFile.substr(imageFile.length - 1));
-            var ele = $('#layer-stkr').hide();
+    function randoPad(limit) {
+        var num = (Math.random() * limit);
 
-            ele.removeClass('sticker1 sticker2 sticker3 sticker4');
-            switch (stickerNumber) {
-                case 1:
-                    ele.addClass('sticker1');
-                    break;
-                case 2:
-                    ele.addClass('sticker2');
-                    break;
-                case 3:
-                    ele.addClass('sticker3');
-                    break;
-                case 4:
-                    ele.addClass('sticker4');
-                    break;
-                default:
-                    ele.addClass('sticker0');
-            }
-            $('#layer-stkr').show();
-        }
+        num = Math.floor(num + 1);
+        num = (num < 10 ? '0' : '') + num;
 
+        return num;
     }
 
     function randomPony() {
-        var randomBody = Math.floor((Math.random() * 10) + 1);
-        $('#layer-body')[0].src = 'images/pieces/body-' + pad2(randomBody) + '.png';
-        //var randomEars = Math.floor((Math.random() * 10) + 1);
-        $('#layer-ears')[0].src = 'images/pieces/ears-' + pad2(randomBody) + '.png'; //ears to match random body
-        var randomMane = Math.floor((Math.random() * 9) + 1);
-        $('#layer-mane')[0].src = 'images/pieces/mane-' + pad2(randomMane) + '.png';
-        var randomNose = Math.floor((Math.random() * 8) + 1);
-        $('#layer-nose')[0].src = 'images/pieces/nose-' + pad2(randomNose) + '.png';
-        var randomSock = Math.floor((Math.random() * 4) + 1);
-        $('#layer-sock')[0].src = 'images/pieces/sock-' + pad2(randomSock) + '.png';
-        var randomFeet = Math.floor((Math.random() * 5) + 1);
-        $('#layer-foot')[0].src = 'images/pieces/foot-' + pad2(randomFeet) + '.png';
+        var randomBody = randoPad(10);
+        var randomMane = randoPad(9);
+        var randomNose = randoPad(8);
+        var randomSock = randoPad(4);
+        var randomFeet = randoPad(5);
+
+        $('#layer-body').attr('src', 'images/pieces/body-' + randomBody + '.png');
+        $('#layer-ears').attr('src', 'images/pieces/ears-' + randomBody + '.png'); // ears match body
+        $('#layer-mane').attr('src', 'images/pieces/mane-' + randomMane + '.png');
+        $('#layer-nose').attr('src', 'images/pieces/nose-' + randomNose + '.png');
+        $('#layer-sock').attr('src', 'images/pieces/sock-' + randomSock + '.png');
+        $('#layer-foot').attr('src', 'images/pieces/foot-' + randomFeet + '.png');
     }
 
-    function pad2(number) {
-        return (number < 10 ? '0' : '') + number;
-    }
+    function setBG(str) {
+        var num = Number(str.substr(str.length - 1));
 
-    function setBG(bgChoice) {
-        var imageNumber = Number(bgChoice.substr(bgChoice.length - 1));
-
-        bgChoice += (bgChoice === 'bgrd-clear') ? '.png' : '.jpg';
-        $('#previewPony').css('backgroundImage', 'url(images/backgrounds/' + bgChoice + ')');
-        $('#previewPony').css('backgroundSize', 'contain');
-        $('#backgroundFaded').css('opacity', 1);
-        switch (imageNumber) {
-            case 1:
-                $('#backgroundFaded').css('backgroundColor', '#84b3c5');
-                break;
-            case 2:
-                $('#backgroundFaded').css('backgroundColor', '#95b73f');
-                break;
-            case 3:
-                $('#backgroundFaded').css('backgroundColor', '#e5b523');
-                break;
-            case 4:
-                $('#backgroundFaded').css('backgroundColor', '#268855');
-                break;
-            case 5:
-                $('#backgroundFaded').css('backgroundColor', '#654d7d');
-                break;
-            case 6:
-                $('#backgroundFaded').css('backgroundColor', '#267f9d');
-                break;
-            case 7:
-                $('#backgroundFaded').css('backgroundColor', '#654d7d');
-                break;
-            case 8:
-                $('#backgroundFaded').css('backgroundColor', '#fcce30');
-                break;
-            default:
-                $('#backgroundFaded').css('backgroundColor', '#ffffff');
-        }
-
+        str += (str === 'bgrd-clear') ? '.png' : '.jpg';
+        El.preview.css({
+            backgroundSize: 'contain',
+            backgroundImage: 'url(images/backgrounds/' + str + ')',
+        });
+        El.fade.css({
+            backgroundColor: bkgrColors[num] || 'white',
+            opacity: 1,
+        });
     }
 
     function renderPreview() {
         //after sticker step, render preview and bring in download/email buttons
-        $('footer').addClass('pushDown').removeClass('pushDownUndo');
-        $('header').addClass('pushUp').removeClass('pushUpUndo');
-        $('#outerSelector').addClass('pushDown').removeClass('pushDownUndo');
-        $('#progressBar').removeClass('pushLeftUndo').addClass('pushLeft');
-        $('#title').addClass('pushUp').removeClass('pushUpUndo');
-
-        //$('#previewPony').addClass('previewScaled100pc');
-        $('#cta').addClass('grow2');
+        El.cta.addClass('grow2');
+        El.footer.addClass('pushDown').removeClass('pushDownUndo');
+        El.header.addClass('pushUp').removeClass('pushUpUndo');
+        El.progBar.removeClass('pushLeftUndo').addClass('pushLeft');
+        El.selector.addClass('pushDown').removeClass('pushDownUndo');
+        El.title.addClass('pushUp').removeClass('pushUpUndo');
+        //El.preview.addClass('previewScaled100pc');
     }
 
     function removePreview() {
         //leave preview mode, returning elements to normal positions
-        $('footer').addClass('pushDownUndo').removeClass('pushDown');
-        $('header').addClass('pushUpUndo').removeClass('pushUp');
-        $('#outerSelector').addClass('pushDownUndo').removeClass('pushDown');
-        $('#progressBar').addClass('pushLeftUndo').removeClass('pushLeft');
-        $('#title').addClass('pushUpUndo').removeClass('pushUp');
-
-        //$('#previewPony').removeClass('previewScaled100pc');
-        $('#cta').removeClass('grow2');
+        El.cta.removeClass('grow2');
+        El.footer.addClass('pushDownUndo').removeClass('pushDown');
+        El.header.addClass('pushUpUndo').removeClass('pushUp');
+        El.progBar.addClass('pushLeftUndo').removeClass('pushLeft');
+        El.selector.addClass('pushDownUndo').removeClass('pushDown');
+        El.title.addClass('pushUpUndo').removeClass('pushUp');
+        //El.preview.removeClass('previewScaled100pc');
     }
 
     function init() {
+        $.reify(El);
+
         randomPony();
         gotoNextStep();
 
-        $('#previousArrow').click(function () {
+        El.prevA.click(function () {
             gotoPrevStep();
         });
-        $('#previousArrowPreview').click(function () {
-            gotoPrevStep();
-        });
-
-        $('#nextArrow').click(function () {
+        El.nextA.click(function () {
             gotoNextStep();
         });
         $('#btnBuild').click(function () {
-            gotoBuild();
+            El.introSec.hide();
+            El.buildSec.css('opacity', 1);
+        });
+        $('div.step > div').click(function () {
+            push(this.id);
         });
 
         $('#step1, #step2, #step3, #step4, #step5, #step6, #step7, #step8, #step9, #step10').slick({
@@ -264,32 +238,24 @@ define(['jquery', 'slick'], function ($) {
                     settings: {
                         slidesToShow: 4,
                         slidesToScroll: 3,
-                        infinite: false,
-                        dots: false
                     }
                 }, {
                     breakpoint: 1010,
                     settings: {
                         slidesToShow: 4,
                         slidesToScroll: 3,
-                        infinite: false,
-                        dots: false
                     }
                 }, {
                     breakpoint: 769,
                     settings: {
                         slidesToShow: 3,
                         slidesToScroll: 2,
-                        infinite: false,
-                        dots: false
                     }
                 }, {
                     breakpoint: 479,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 1,
-                        infinite: false,
-                        dots: false
                     }
                 }
                 // You can unslick at a given breakpoint now by adding:
@@ -298,6 +264,12 @@ define(['jquery', 'slick'], function ($) {
             ]
         });
     }
+    // - - - - - - - - - - - - - - - - - -
+    // EXPOSE
+
+    W[Nom] = {
+        El: El,
+    };
 
     $(init);
 

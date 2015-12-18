@@ -39,29 +39,28 @@
 .grow2 {
     @include nosel;
 }
-#sectionBuild {
-    position: relative;
-}
-$Slick: 45px;
 
-.slick-prev {
-    left: 0 - $Slick;
-    &:before {
-        content: url(../images/_common/left-arrow-icon.png);
+.slick-slider {
+    $Slick: 45px;
+    .slick-prev {
+        left: 0 - $Slick;
+        &:before {
+            content: url(../images/_common/left-arrow-icon.png);
+        }
     }
-}
-.slick-next {
-    right: 0 - $Slick;
-    &:before {
-        content: url(../images/_common/right-arrow-icon.png);
+    .slick-next {
+        right: 0 - $Slick;
+        &:before {
+            content: url(../images/_common/right-arrow-icon.png);
+        }
     }
-}
-.slick-prev,
-.slick-next {
-    height: $Slick;
-    width: $Slick;
-    &:before {
-        font-size: $Slick;
+    .slick-prev,
+    .slick-next {
+        height: $Slick;
+        width: $Slick;
+        &:before {
+            font-size: $Slick;
+        }
     }
 }
 
