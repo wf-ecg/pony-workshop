@@ -25,8 +25,8 @@ define(['jquery', 'slick'], function ($) {
             footer: 'footer',
             header: 'header',
             introSec: '#sectionIntro',
-            nextA: '#nextArrow',
-            prevA: '#previousArrow',
+            nextA: '.next.step',
+            prevA: '.prev.step',
             preview: '#previewPony',
             progBar: '#progressBar',
             progSteps: '#progressBar div',
@@ -215,16 +215,15 @@ define(['jquery', 'slick'], function ($) {
         El.prevA.click(function () {
             gotoPrevStep();
         });
-        $('#previousArrowPreview').click(function () {
-            gotoPrevStep();
-        });
-
         El.nextA.click(function () {
             gotoNextStep();
         });
         $('#btnBuild').click(function () {
             El.introSec.hide();
             El.buildSec.css('opacity', 1);
+        });
+        $('div.step > div').click(function () {
+            push(this.id);
         });
 
         $('#step1, #step2, #step3, #step4, #step5, #step6, #step7, #step8, #step9, #step10').slick({
@@ -268,7 +267,6 @@ define(['jquery', 'slick'], function ($) {
     // - - - - - - - - - - - - - - - - - -
     // EXPOSE
 
-    W.push = push;
     W[Nom] = {
         El: El,
     };
