@@ -83,8 +83,13 @@ define(['stack', 'gareth', 'lodash'], function (Stack, dsfs, _) {
         var src = El.pre.css('background-image');
         var img = $('<img>').appendTo('body');
 
-        src = src.match(/(http:.+jpg)/g)[0];
-        img.attr('src', src);
+        src = src.match(/(http:.+jpg)/g);
+
+        if (src && src[0]) {
+            img.attr('src', src[0]);
+        } else {
+            return;
+        }
 
         img.on('load', function () {
             stak.insertLayer(img[0], 1, 0, 0);
