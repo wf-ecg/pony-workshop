@@ -15,7 +15,7 @@
  change 'index' data to 'eq'
  */
 
-define(['jquery', 'lodash', 'share', 'libs/utils'], function
+define(['jquery', 'lodash', 'share', 'jqxtn'], function
     ($, _, Share) {
     'use strict';
 
@@ -66,6 +66,7 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
     function bindings() {
         $.watchInputDevice();
         $.markAgent();
+        $.watchHash();
         $.reify(El);
 
         $('body').removeClass('loading');

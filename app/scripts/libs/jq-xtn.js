@@ -11,7 +11,7 @@ define(['jquery', 'lodash'], function ($, _) {
     // - - - - - - - - - - - - - - - - - -
     // AUTOMATE
     $.reify = function (obj) { // replace vals(selectors) with elements
-        $.each(obj, function (i, sel) {
+        return $.each(obj, function (i, sel) {
             obj[i] = $(sel);
         });
     };
