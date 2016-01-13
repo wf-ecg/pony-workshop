@@ -12,7 +12,7 @@
  loosely load
  */
 
-define(['jquery', 'libs/mailer'], function
+define(['jquery', 'mailer'], function
     KLASS($, Mail) {
     'use strict';
 
