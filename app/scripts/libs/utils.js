@@ -35,30 +35,6 @@ define(['jquery', 'lodash'], function ($, _) {
     };
 
     // - - - - - - - - - - - - - - - - - -
-    // FREEZE
-    $.fn.freeze = function () {
-        var poses = this.map(function () {
-            return $(this).position();
-        });
-        return this.each(function (i, e) {
-            $(e).css(poses[i]);
-        }).addClass('freeze');
-    };
-    $.fn.unfreeze = function () {
-        return this.css({top: '', left: ''}).removeClass('freeze');
-    };
-    $.fn.freezeKids = function () {
-        this.css({height: this.height(), width: this.width()});
-        this.children().freeze();
-        return this;
-    };
-    $.fn.unfreezeKids = function () {
-        this.css({height: '', width: ''});
-        this.children().unfreeze();
-        return this;
-    };
-
-    // - - - - - - - - - - - - - - - - - -
     // WATCHERS
     $.watchHash = function () {
         function trackHash() {
