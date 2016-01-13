@@ -9,10 +9,12 @@
  TODO
  document a bit
  */
-require(['../config'], function () {
-    require.config({baseUrl: '..'});
-
-    require(['tests/imgwrap'], function (Img) {
+require(['../../config'], function () {
+    require.config({
+        baseUrl: '../../scripts',
+        deps: ['../../config']
+    });
+    require(['test/imgwrap'], function (Img) {
         'use strict';
         var Nom = 'Main';
         var W = (W && W.window || window),
@@ -52,7 +54,7 @@ require(['../config'], function () {
             };
             C.debug(Nom, W.Main);
         };
-        imgE.src = '../images/backgrounds/background_spring.png';
+        imgE.src = '../../images/backgrounds/background_spring.png';
 
     });
 });

@@ -8,7 +8,7 @@
  TODO
 
  */
-define(['tests/pair', 'tests/box'], function (Pair, Box) {
+define(['pair', 'box'], function (Pair, Box) {
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
         D = W.document,

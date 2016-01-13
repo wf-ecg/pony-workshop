@@ -9,10 +9,12 @@
  TODO
  document a bit
  */
-require(['../config'], function () {
-    require.config({baseUrl: '..'});
-
-    require(['jquery', 'tests/gs', 'tests/user'], function ($, GS, User) {
+require(['../../config'], function () {
+    require.config({
+        baseUrl: '../../scripts',
+        deps: ['../../config']
+    });
+    require(['jquery', 'test/gs', 'test/user'], function ($, GS, User) {
         var W = (W && W.window || window),
             C = (W.C || W.console || {}),
             D = W.document,

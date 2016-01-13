@@ -8,7 +8,7 @@
  TODO
 
  */
-define(['jquery', 'tests/binder'], function
+define(['jquery', 'test/binder'], function
     ($, Binder) {
     'use strict';
     // - - - - - - - - - - - - - - - - - -

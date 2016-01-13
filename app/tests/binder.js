@@ -8,7 +8,7 @@
  TODO
 
  */
-define(['jquery', 'tests/box'], function ($) {
+define(['jquery', 'box'], function ($) {
     'use strict';
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE

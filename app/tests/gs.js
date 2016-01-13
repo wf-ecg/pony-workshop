@@ -8,7 +8,7 @@
  TODO
 
  */
-define(['tests/pair', 'tests/box'], function (Pair, Box) {
+define(['pair', 'box'], function (Pair, Box) {
     'use strict';
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE

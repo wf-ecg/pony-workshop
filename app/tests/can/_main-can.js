@@ -9,10 +9,13 @@
  TODO
  document a bit
  */
-require(['../config'], function () {
-    require.config({baseUrl: '..'});
+require(['../../config'], function () {
+    require.config({
+        baseUrl: '../../scripts',
+        deps: ['../../config']
+    });
 
-    require(['jquery', 'tests/box'], function ($, Box) {
+    require(['jquery', 'box'], function ($, Box) {
         function id(str) {
             return document.getElementById(str);
         }
