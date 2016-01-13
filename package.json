@@ -2,7 +2,7 @@
     "name": "pony-workshop",
     "repository": {
         "type": "git",
-        "url": "https://github.com/dvdrtrgn/pony-workshop.git"
+        "url": "https://github.com/wf-ecg/pony-workshop.git"
     },
     "version": "0.1.0",
     "devDependencies": {},
