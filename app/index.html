@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <title>Pony Workshop</title>
     <meta charset="utf-8">
@@ -30,16 +30,16 @@
           <i>Email addresses must be internal to Wells Fargo. <br>
             Separate multiple recipient addresses by a semicolon (;).</i>
         </p>
-        <p>Your email address:&nbsp; <input type="email" class="yours"></p>
-        <p>Recipient email address: <input type="email" class="theirs"></p>
-        <p>Message heading: <input class="heading" value="(optional)"></p>
+        <p>Your email address:&nbsp; <input type="email" class="js-yours"></p>
+        <p>Recipient email address: <input type="email" class="js-theirs"></p>
+        <p>Message heading: <input class="js-heading" value="(optional)"></p>
         <p>Message body:
-          <textarea class="message">(optional)</textarea>
+          <textarea class="js-message">(optional)</textarea>
         </p>
         <p>
-          <input class="picture" type="url" style="display: none;">
-          <button class="mailto">Send</button>
-          <button class="cancel">Cancel</button>
+          <input class="js-picture" type="url" style="display: none;">
+          <button class="js-mailto">Send</button>
+          <button class="js-cancel">Cancel</button>
         </p>
       </div>
 
@@ -62,7 +62,7 @@
         <h3>This holiday season, show a team member you’re thinking of them by sharing a custom pony of your design.
           Or keep it for yourself by creating a custom desktop&nbsp;wallpaper.</h3>
         <div class="ctaButtonContainer">
-          <div class="ctaButton" id="btnBuild"><a href="#">Build&nbsp;Your&nbsp;Pony</a></div>
+          <a class="ctaButton" id="btnBuild" href="#">Build&nbsp;Your&nbsp;Pony</a>
         </div>
 
       </div>
@@ -106,8 +106,8 @@
       </div>
 
       <div class="outerSelector" id="outerSelector">
-        <div class="center grow2"><img src="images/_common/up-arrow-icon.png" width="43" height="24"
-                                       alt="previous step" tabindex="0" class="prev step"></div>
+        <div class="center"><img src="images/_common/up-arrow-icon.png" width="43" height="24"
+                                       alt="previous step" tabindex="0" class="js-prev step"></div>
         <div class="selector">
           <div class="step" id="step0">
             INSTRUCTIONS...
@@ -227,21 +227,21 @@
 
           <!-- end selector -->
         </div>
-        <div class="center grow2"><img src="images/_common/down-arrow-icon.png" width="43" height="24"
-                                       alt="next step" tabindex="0" class="next step"></div>
+        <div class="center"><img src="images/_common/down-arrow-icon.png" width="43" height="24"
+                                       alt="next step" tabindex="0" class="js-next step"></div>
         <!-- end outerSelector -->
       </div>
 
       <div class="ctaContainerOuter" id="cta">
-        <div class="center grow2"><img src="images/_common/up-arrow-icon.png" width="43" height="24"
-                                       alt="previous step" class="prev step"></div>
+        <div class="center"><img src="images/_common/up-arrow-icon.png" width="43" height="24"
+                                       alt="previous step" class="js-prev step"></div>
         <div class="ctaContainerInner">
 
           <h4>YOU'RE ALL FINISHED!</h4>
           <p>Now share your masterpiece with team members and download for your desktop&nbsp;wallpaper.</p>
           <div class="ctaButtonContainer">
-            <a href="#" id="download"><div class="ctaButton">Download Wallpaper</div></a>
-            <a href="#" id="emailer"><div class="ctaButton">Email</div></a>
+            <a class="ctaButton" href="#" id="download">Download Wallpaper</a>
+            <a class="ctaButton" href="#" id="emailer">Email</a>
           </div>
         </div>
         <!-- end #cta -->

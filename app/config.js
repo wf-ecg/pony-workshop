@@ -21,6 +21,9 @@ require.config({
         console: 'libs/console',
         jqxtn: 'libs/jq-xtn',
         stats: 'libs/ecg-stats',
+        pair: 'libs/pair',
+        box: 'libs/box',
+        mailer: 'libs/mailer',
         //
     }
 });

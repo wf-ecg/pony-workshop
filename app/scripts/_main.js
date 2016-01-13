@@ -15,7 +15,7 @@
  change 'index' data to 'eq'
  */
 
-define(['jquery', 'lodash', 'share', 'libs/utils'], function
+define(['jquery', 'lodash', 'share', 'jqxtn'], function
     ($, _, Share) {
     'use strict';
 
@@ -41,7 +41,7 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
     }
 
     function _shareResult() {
-        var pic = $('.picture').val();
+        var pic = $('.js-picture').val();
         var nom = nameJpeg(pic.split('::')[0]);
 
         if (share) {
@@ -65,6 +65,8 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
 
     function bindings() {
         $.watchInputDevice();
+        $.markAgent();
+        $.watchHash();
         $.reify(El);
 
         $('body').removeClass('loading');

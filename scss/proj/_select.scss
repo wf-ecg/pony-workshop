@@ -1,0 +1,52 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* PROJ / Select */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+.outerSelector {
+    bottom: 20px;
+    height: auto;
+    left: 50%;
+    margin: 0 0 0 -50%;
+    overflow: hidden;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.selector {
+    height: 100px;
+    margin: 0 auto 10px;
+    padding: 0;
+    position: relative;
+    width: 550px;
+
+    .step {
+        bottom: -1000px;
+        display: inline-block;
+        height: 140px;
+        margin: 0 auto;
+        max-width: 800px;
+        opacity: 0;
+        overflow: visible;
+        padding: 20px 0;
+        position: absolute;
+        width: 100%;
+
+        img {
+            background: #ededed;
+            background: rgba(237, 237, 237, 0.3);
+            background-image: url(../images/_common/thumbBG_tile300bg.jpg);
+            cursor: pointer;
+            height: 100px;
+            margin: 0;
+            padding: 0;
+            width: 100px;
+        }
+    }
+    #step0, #step10 {
+        text-align: center;
+    }
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

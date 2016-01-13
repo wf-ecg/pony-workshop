@@ -12,6 +12,7 @@
 }
 
 .grow2 {
+    @include nosel;
     @include transition( all 0.2s ease-in-out );
     cursor: pointer;
     opacity: 1 !important;
