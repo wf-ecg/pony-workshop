@@ -41,7 +41,7 @@ define(['jquery', 'lodash', 'share', 'jqxtn'], function
     }
 
     function _shareResult() {
-        var pic = $('.picture').val();
+        var pic = $('.js-picture').val();
         var nom = nameJpeg(pic.split('::')[0]);
 
         if (share) {

@@ -49,7 +49,7 @@ define(['stack', 'gareth', 'lodash'], function (Stack, dsfs, _) {
         var gen = _makeName();
 
         // set POST data
-        $('.picture').val(dat.replace(/^data:image\/jpeg;base64\,/, gen));
+        $('.js-picture').val(dat.replace(/^data:image\/jpeg;base64\,/, gen));
 
         lnk[0]['download'] = nom + '.jpg'; // try for download awareness
 

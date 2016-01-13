@@ -21,6 +21,7 @@ define(['jquery', 'mailer'], function
     var Df = {
         callback: '',
         invalid: 'Please check addresses for validity',
+        picture: '',
         sel: '.sharing',
         subject: 'Subject',
         template: 'email.html .body',
@@ -82,13 +83,13 @@ define(['jquery', 'mailer'], function
         ele = $(sel).first();
         ele = {
             main: ele,
-            head: ele.find('.heading'),
-            mess: ele.find('.message'),
-            pict: ele.find('.picture'),
-            mail: ele.find('.mailto'),
-            stop: ele.find('.cancel'),
-            theirs: ele.find('.theirs, .to'),
-            yours: ele.find('.yours, .from'),
+            head: ele.find('.js-heading'),
+            mess: ele.find('.js-message'),
+            pict: ele.find('.js-picture'),
+            mail: ele.find('.js-mailto'),
+            stop: ele.find('.js-cancel'),
+            theirs: ele.find('.js-theirs, .js-to'),
+            yours: ele.find('.js-yours, .js-from'),
         };
         api = ele.main.data(Nom); // possibly restore data
 
