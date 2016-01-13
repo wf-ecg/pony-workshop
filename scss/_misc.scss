@@ -1,25 +1,83 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* MISC */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-.msie img {
-    max-width: inherit!important;
+.js, .no-js { /* js only classes */
+    .js-yours, .js-theirs,
+    .js-heading, .js-message,
+    .js-picture, .js-mailto, .js-cancel,
+    .js-prev, .js-next {
+        -webkit-user-select: none;
+    }
+}
+.sharing {
+    background-color: rgba(111, 111, 111, 0.9);
+    display: none;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+
+    .address {
+        @include middify;
+        background-color: #d1b472;
+        height: 25em;
+        min-width: 700px;
+        padding: 2em 3em;
+        width: 50%;
+        input, textarea {
+            font-family: monospace;
+            font-size: 0.85em;
+        }
+        input {
+            float: right;
+            width: 30em;
+        }
+        textarea {
+            height: 5em;
+            width: 100%;
+        }
+    }
+}
+.preview {
+    @include nosel;
+    @include transform( scale(1) );
+    @include transform-style( preserve-3d );
+}
+
+.slick-slider {
+    $Slick: 45px;
+    .slick-prev {
+        left: 0 - $Slick;
+        &:before {
+            content: url(../images/_common/left-arrow-icon.png);
+        }
+    }
+    .slick-next {
+        right: 0 - $Slick;
+        &:before {
+            content: url(../images/_common/right-arrow-icon.png);
+        }
+    }
+    .slick-prev,
+    .slick-next {
+        height: $Slick;
+        width: $Slick;
+        &:before {
+            font-size: $Slick;
+        }
+    }
 }
 
 .clearfix {
     @include clearfix;
 }
-
-.left { float: left; }
-.lite { font-weight: 200; }
-.right { float: right; }
-
 .debug *:hover {
     outline-color: transparentize( orange, 0.7 );
     outline-offset: 0.5px;
     outline-style: solid;
     outline-width: 1px;
 }
-
 @media print {
     body {
         background: none;
@@ -27,10 +85,5 @@
     .noprint {
         display: none;
     }
-    #Popup {
-        display: block;
-    }
-    #Wrap {
-        display: none;
-    }
 }
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

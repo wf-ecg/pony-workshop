@@ -1,0 +1,73 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* PROJ / Build */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+#sectionBuild {
+    height: 100%;
+    opacity: 0;
+    position: relative;
+
+    .ctaButton {
+        background-color: #dedabe;
+        color: #000;
+        float: left;
+        font-family: "myriad-pro",sans-serif;
+        font-size: 0.7em;
+        font-weight: 400;
+        margin: 0.5em;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        width: auto;
+    }
+    .ctaButton a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .progress {
+        background: none;
+        color: #fff;
+        font-family: Verdana,Arial,sans-serif;
+        font-size: 1em;
+        height: auto;
+        left: 10px;
+        overflow: hidden;
+        padding: 5px 10px 10px;
+        position: fixed;
+        top: 85px;
+        width: 170px;
+        z-index: 12;
+        @media (max-width: 479px) {
+            display: none;
+        }
+        @media (max-width: 989px) {
+            font-size: 0.6em;
+            left: 5px;
+            width: 120px;
+        }
+    }
+    .progressItem {
+        background-image: url(../images/_common/check-white.png);
+        background-position: 8px center;
+        background-repeat: no-repeat;
+        background-size: 1em 1em;
+        display: inline-block;
+        height: 18px;
+        @media (max-width: 989px) { height: 10px; }
+        margin: 0.5em;
+        opacity: 0.4;
+        overflow: visible; /* (to address some menu item text being cut off, notably the word ‘background’ - the bottom of the ‘g’) */
+        padding-left: 2em;
+        position: relative;
+        width: 100%;
+    }
+
+    #stickerDiv {
+        height: 100%;
+        margin: 0;
+        overflow: visible;
+        width: 100%;
+    }
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
