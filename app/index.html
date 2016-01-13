@@ -1,402 +1,307 @@
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
   <head>
-  <title>Pony Workshop</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-  <link rel="stylesheet" type="text/css" href="lib/slick-1.5.7/slick/slick.css">
-  <link rel="stylesheet" type="text/css" href="lib/slick-1.5.7/slick/slick-theme.css">
-<link rel="stylesheet" type="text/css" href="styles/main.css"> 
+    <title>Pony Workshop</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--  -->
+    <meta content="Originally built by WF-ECG INTERACTIVE (Wells Fargo Enterprise Creative Group).
+          We design and develop with a focus on web standards and best practices." name="description">
+    <script>(function(l,i,s,t){s=l.pathname;t=s.toLowerCase().replace(/index/,i||'index');t=t.match
+        (/\w+\.\w+$/)?t:t.replace(/\/*$/,'/index.html');if(t!==s)l.pathname=t;}(location));</script>
+    <!--  -->
+    <link rel="stylesheet" type="text/css" href="/mfal/lib/slick/1.5.7/slick.css">
+    <link rel="stylesheet" type="text/css" href="/mfal/lib/slick/1.5.7/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="build/screen.css">
+    <!--  -->
+    <script src="/mfal/lib/requirejs/2.1.17/require.js"
+            data-main="./config"
+    ></script>
   </head>
   <body>
-  <div class="header">
-    <img src="images/_common/wf-logo-bar-300.png" width="300" height="40" alt="Wells Fargo" />
-  </div>
-  <h1 id="title">Pony Workshop</h1>
-  <div class = "alertHeight"><p>Please increase your browser's size to enjoy this experience.</p></div>
-  <div class="progress" id="progressBar">
-    <div style="display:none;"></div> <!--hidden intro div -->
-    <div class="progressItem">Body</div>
-    <div class="progressItem">Mane & tail</div>
-    <div class="progressItem">Eyes</div>
-    <div class="progressItem">Muzzle</div>
-    <div class="progressItem">Socks</div>
-    <div class="progressItem">Hooves</div>
-    <div class="progressItem">Head-wear</div>
-    <div class="progressItem">Fashion</div>
-    <div class="progressItem">Background</div>
-    <div class="progressItem">Sticker</div>
-    <div style="display:none;"></div> <!--hidden preview div -->
-  </div><!-- end progress -->
-  <div class="preview" id="previewPony">
-    <div style="z-index:11"><img src="images/_common/clear.png"  id="layer-mane"></div>
-    <div style="z-index:12"><img src="images/_common/clear.png"  id="layer-body"></div>
-    <div style="z-index:13"><img src="images/_common/clear.png"  id="layer-back"></div>
-    <div style="z-index:14"><img src="images/_common/clear.png"  id="layer-nose"></div>
-    <div style="z-index:15"><img src="images/_common/clear.png"  id="layer-fash"></div>
-    <div style="z-index:16"><img src="images/_common/clear.png"  id="layer-head"></div>
-    <div style="z-index:17"><img src="images/_common/clear.png"  id="layer-foot"></div>
-    <div style="z-index:18"><img src="images/_common/clear.png"  id="layer-sock"></div>
-    <div style="z-index:19"><img src="images/pieces/eyes-01.png"  id="layer-eyes"></div>
-    <div style="z-index:20" id="stickerDiv"><img src="images/_common/clear.png" id="layer-stkr"></div>
-  </div><!--close preview div -->
-  
-  <div class="outerSelector" id="outerSelector">
-  <div class="center grow"><img src="images/_common/up-arrow-icon.png" width="43" height="24" alt="previous step" id="previousArrow"></div>
-  <div class="selector">
-    <div class="step" id="step0">
-    INSTRUCTIONS...
+    <canvas id="can" width="1920" height="1280"></canvas>
+
+    <div class="sharing clearfix">
+      <div class="preview clearfix"><p></p></div>
+
+      <div class="address clearfix">
+        <p>Share your pony via email.
+          <i>Email addresses must be internal to Wells Fargo. <br>
+            Separate multiple recipient addresses by a semicolon (;).</i>
+        </p>
+        <p>Your email address:&nbsp; <input type="email" class="js-yours"></p>
+        <p>Recipient email address: <input type="email" class="js-theirs"></p>
+        <p>Message heading: <input class="js-heading" value="(optional)"></p>
+        <p>Message body:
+          <textarea class="js-message">(optional)</textarea>
+        </p>
+        <p>
+          <input class="js-picture" type="url" style="display: none;">
+          <button class="js-mailto">Send</button>
+          <button class="js-cancel">Cancel</button>
+        </p>
+      </div>
+
+      <!-- end sharing -->
     </div>
-    
-    <div class="step" id="step1"> <!--body -->
-          <div class="grow" onClick='push(this.id);' id="a1"><img src="images/thumbs/body-01.png" alt="pony1" /></div>
-          <div class="grow" onClick='push(this.id);' id="a2"><img src="images/thumbs/body-02.png" alt="pony2" /></div>
-          <div class="grow" onClick='push(this.id);' id="a3"><img src="images/thumbs/body-03.png" alt="pony3" /></div>
-          <div class="grow" onClick='push(this.id);' id="a4"><img src="images/thumbs/body-04.png" alt="pony4" /></div>
-          <div class="grow" onClick='push(this.id);' id="a5"><img src="images/thumbs/body-05.png" alt="pony5" /></div>
-          <div class="grow" onClick='push(this.id);' id="a6"><img src="images/thumbs/body-06.png" alt="pony5" /></div>
-          <div class="grow" onClick='push(this.id);' id="a7"><img src="images/thumbs/body-07.png" alt="pony7" /></div>
-          <div class="grow" onClick='push(this.id);' id="a8"><img src="images/thumbs/body-08.png" alt="pony8" /></div>
-          <div class="grow" onClick='push(this.id);' id="a9"><img src="images/thumbs/body-09.png" alt="pony9" /></div>
-          <div class="grow" onClick='push(this.id);' id="a10"><img src="images/thumbs/body-10.png" alt="pony10" /></div>
-    </div><!-- END step1 -->
-    
-    <div class="step" id="step2"> <!--mane and tail-->
-          <div class="grow" onClick='push(this.id);' id="b1"><img src="images/thumbs/mane-01.png" alt="mane1" /></div>
-          <div class="grow" onClick='push(this.id);' id="b2"><img src="images/thumbs/mane-02.png" alt="mane2" /></div>
-          <div class="grow" onClick='push(this.id);' id="b3"><img src="images/thumbs/mane-03.png" alt="mane3" /></div>
-          <div class="grow" onClick='push(this.id);' id="b4"><img src="images/thumbs/mane-04.png" alt="mane4" /></div>
-          <div class="grow" onClick='push(this.id);' id="b5"><img src="images/thumbs/mane-05.png" alt="mane5" /></div>
-          <div class="grow" onClick='push(this.id);' id="b6"><img src="images/thumbs/mane-06.png" alt="mane6" /></div>
-          <div class="grow" onClick='push(this.id);' id="b7"><img src="images/thumbs/mane-07.png" alt="mane7" /></div>
-          <div class="grow" onClick='push(this.id);' id="b8"><img src="images/thumbs/mane-08.png" alt="mane8" /></div>
-          <div class="grow" onClick='push(this.id);' id="b9"><img src="images/thumbs/mane-09.png" alt="mane9" /></div>
-    </div><!-- END step2 -->
-    
-     <div class="step" id="step3"> <!--eyes-->
-          <div class="grow" onClick='push(this.id);' id="c1"><img src="images/thumbs/eyes-01.png" alt="eyes1" /></div>
-          <div class="grow" onClick='push(this.id);' id="c2"><img src="images/thumbs/eyes-02.png" alt="eyes2" /></div>
-          <div class="grow" onClick='push(this.id);' id="c3"><img src="images/thumbs/eyes-03.png" alt="eyes3" /></div>
-          <div class="grow" onClick='push(this.id);' id="c4"><img src="images/thumbs/eyes-04.png" alt="eyes4" /></div>
-          <div class="grow" onClick='push(this.id);' id="c5"><img src="images/thumbs/eyes-05.png" alt="eyes5" /></div>            
-    </div><!-- END step3 -->
-  
-  
-     <div class="step" id="step4"> <!--nose-->
-          <div class="grow" onClick='push(this.id);' id="d1"><img src="images/thumbs/nose-01.png" alt="nose1" /></div>
-          <div class="grow" onClick='push(this.id);' id="d2"><img src="images/thumbs/nose-02.png" alt="nose2" /></div>
-          <div class="grow" onClick='push(this.id);' id="d3"><img src="images/thumbs/nose-03.png" alt="nose3" /></div>
-          <div class="grow" onClick='push(this.id);' id="d4"><img src="images/thumbs/nose-04.png" alt="nose4" /></div>
-          <div class="grow" onClick='push(this.id);' id="d5"><img src="images/thumbs/nose-05.png" alt="nose5" /></div>
-          <div class="grow" onClick='push(this.id);' id="d6"><img src="images/thumbs/nose-06.png" alt="nose6" /></div>
-          <div class="grow" onClick='push(this.id);' id="d7"><img src="images/thumbs/nose-07.png" alt="nose7" /></div>
-          <div class="grow" onClick='push(this.id);' id="d8"><img src="images/thumbs/nose-08.png" alt="nose8" /></div>
-    </div><!-- END step4 -->
-    
-    <div class="step" id="step5"> <!--socks-->
-          <div class="grow" onClick='push(this.id);' id="e1"><img src="images/thumbs/sock-01.png" alt="sock1" /></div>
-          <div class="grow" onClick='push(this.id);' id="e2"><img src="images/thumbs/sock-02.png" alt="sock2" /></div>
-          <div class="grow" onClick='push(this.id);' id="e3"><img src="images/thumbs/sock-03.png" alt="sock3" /></div>
-          <div class="grow" onClick='push(this.id);' id="e4"><img src="images/thumbs/sock-04.png" alt="sock4" /></div>
-          <div class="grow" onClick='push(this.id);' id="e5"><img src="images/thumbs/sock-05.png" alt="sock5" /></div>
-          <div class="grow" onClick='push(this.id);' id="e6"><img src="images/thumbs/sock-06.png" alt="sock6" /></div>
-    </div><!-- END step5 -->
-    
-   <div class="step" id="step6"> <!--hooves-->
-          <div class="grow" onClick='push(this.id);' id="f1"><img src="images/thumbs/foot-01.png" alt="foot1" /></div>
-          <div class="grow" onClick='push(this.id);' id="f2"><img src="images/thumbs/foot-02.png" alt="foot2" /></div>
-          <div class="grow" onClick='push(this.id);' id="f3"><img src="images/thumbs/foot-03.png" alt="foot3" /></div>
-          <div class="grow" onClick='push(this.id);' id="f4"><img src="images/thumbs/foot-04.png" alt="foot4" /></div>
-          <div class="grow" onClick='push(this.id);' id="f5"><img src="images/thumbs/foot-05.png" alt="foot5" /></div>
-          <div class="grow" onClick='push(this.id);' id="f6"><img src="images/thumbs/foot-06.png" alt="foot6" /></div>
-    </div><!-- END step6 -->
-    
-    
-     <div class="step" id="step7"> <!--head-wear-->
-          <div class="grow" onClick='push(this.id);' id="g0"><img src="images/thumbs/head-00.png" alt="default" /></div>
-          <div class="grow" onClick='push(this.id);' id="g1"><img src="images/thumbs/head-01.png" alt="head1" /></div>
-          <div class="grow" onClick='push(this.id);' id="g2"><img src="images/thumbs/head-02.png" alt="head2" /></div>
-          <div class="grow" onClick='push(this.id);' id="g3"><img src="images/thumbs/head-03.png" alt="head3" /></div>
-          <div class="grow" onClick='push(this.id);' id="g4"><img src="images/thumbs/head-04.png" alt="head4" /></div>
-          <div class="grow" onClick='push(this.id);' id="g5"><img src="images/thumbs/head-05.png" alt="head5" /></div>
-          <div class="grow" onClick='push(this.id);' id="g6"><img src="images/thumbs/head-06.png" alt="head6" /></div>
-          <div class="grow" onClick='push(this.id);' id="g7"><img src="images/thumbs/head-07.png" alt="head7" /></div>
-          <div class="grow" onClick='push(this.id);' id="g8"><img src="images/thumbs/head-08.png" alt="head8" /></div>
-          <div class="grow" onClick='push(this.id);' id="g9"><img src="images/thumbs/head-09.png" alt="head9" /></div>
-    </div><!-- END step7 -->
-    
-    
-    <div class="step" id="step8"> <!--fashion - saddles, blankets, neckwear -->
-          <div class="grow" onClick='push(this.id);' id="h0"><img src="images/thumbs/fash-00.png" alt="default" /></div>
-          <div class="grow" onClick='push(this.id);' id="h1"><img src="images/thumbs/fash-01.png" alt="saddle1" /></div>
-          <div class="grow" onClick='push(this.id);' id="h2"><img src="images/thumbs/fash-02.png" alt="saddle2" /></div>
-          <div class="grow" onClick='push(this.id);' id="h3"><img src="images/thumbs/fash-03.png" alt="saddle3" /></div>
-          <div class="grow" onClick='push(this.id);' id="h4"><img src="images/thumbs/fash-04.png" alt="saddle4" /></div>
-          <div class="grow" onClick='push(this.id);' id="h5"><img src="images/thumbs/fash-05.png" alt="back1" /></div>
-          <div class="grow" onClick='push(this.id);' id="h6"><img src="images/thumbs/fash-06.png" alt="back2" /></div>
-          <div class="grow" onClick='push(this.id);' id="h7"><img src="images/thumbs/fash-07.png" alt="back3" /></div>
-          <div class="grow" onClick='push(this.id);' id="h8"><img src="images/thumbs/fash-08.png" alt="neck1" /></div>
-          <div class="grow" onClick='push(this.id);' id="h9"><img src="images/thumbs/fash-09.png" alt="neck2" /></div>
-    </div><!-- END step8 -->
-    
-    
-    <div class="step" id="step9"><!--backgrounds-->
-          <!-- <div class="grow" onClick='push(this.id);' id="i0"><img src="images/thumbs/bgrd-00.png" alt="bgrd0" /></div> -->
-          <div class="grow" onClick='push(this.id);' id="i1"><img src="images/thumbs/bgrd-01.png" alt="bgrd1" /></div>
-          <div class="grow" onClick='push(this.id);' id="i2"><img src="images/thumbs/bgrd-02.png" alt="bgrd2" /></div>
-          <div class="grow" onClick='push(this.id);' id="i3"><img src="images/thumbs/bgrd-03.png" alt="bgrd3" /></div>
-          <div class="grow" onClick='push(this.id);' id="i4"><img src="images/thumbs/bgrd-04.png" alt="bgrd4" /></div>
-          <div class="grow" onClick='push(this.id);' id="i5"><img src="images/thumbs/bgrd-05.png" alt="bgrd5" /></div>
-          <div class="grow" onClick='push(this.id);' id="i6"><img src="images/thumbs/bgrd-06.png" alt="bgrd6" /></div>
-          <div class="grow" onClick='push(this.id);' id="i7"><img src="images/thumbs/bgrd-07.png" alt="bgrd7" /></div>
-          <div class="grow" onClick='push(this.id);' id="i8"><img src="images/thumbs/bgrd-08.png" alt="bgrd8" /></div>
-    </div><!-- END step9 -->
-    
-     <div class="step" id="step10"><!--stickers-->
-          <div class="grow" onClick='push(this.id);' id="j0"><img src="images/thumbs/stkr-00.png" alt="stkr0" /></div>
-          <div class="grow" onClick='push(this.id);' id="j1"><img src="images/thumbs/stkr-01.png" alt="stkr1" /></div>
-          <div class="grow" onClick='push(this.id);' id="j2"><img src="images/thumbs/stkr-02.png" alt="stkr2" /></div>
-          <div class="grow" onClick='push(this.id);' id="j3"><img src="images/thumbs/stkr-03.png" alt="stkr3" /></div>
-          <div class="grow" onClick='push(this.id);' id="j4"><img src="images/thumbs/stkr-04.png" alt="stkr4" /></div>
-    </div><!-- END step10 -->
-    
-    <!--
-    <div class="step" id="step10">
-    SHARE BY EMAIL/DOWNLOAD...<br>
-    SHARE BY EMAIL/DOWNLOAD...<br>
-    SHARE BY EMAIL/DOWNLOAD...<br>
-    SHARE BY EMAIL/DOWNLOAD...<br>
-    SHARE BY EMAIL/DOWNLOAD...<br>
-    SHARE BY EMAIL/DOWNLOAD...<br>
+
+    <header>
+      <img src="images/_common/wf-logo-bar-300.png" width="300" height="40" alt="Wells Fargo" />
+    </header>
+
+    <div class="alertHeight"><p>Please increase your browser’s size to enjoy this experience.</p></div>
+
+    <div id="sectionIntro">
+      <div>
+
+        <h1>Pony Workshop</h1>
+        <h2>Design and style your own Wells&nbsp;Fargo Pony!</h2>
+        <div class="introPonyPic"><img src="images/intro/introPony.png" alt=""></div>
+
+        <h3>This holiday season, show a team member you’re thinking of them by sharing a custom pony of your design.
+          Or keep it for yourself by creating a custom desktop&nbsp;wallpaper.</h3>
+        <div class="ctaButtonContainer">
+          <a class="ctaButton" id="btnBuild" href="#">Build&nbsp;Your&nbsp;Pony</a>
+        </div>
+
+      </div>
+      <!--close sectionIntro-->
     </div>
-    -->
-    
-  
-  </div><!-- end selector -->
-  <div class="center grow"><img src="images/_common/down-arrow-icon.png" width="43" height="24" alt="next step" id="nextArrow"></div>
-  </div><!-- end outerSelector -->
-  
-  <div class="footer" id="footer">&copy; 2015 Wells Fargo Bank, N.A. All rights reserved. For internal use only.</div>
-  <div class="backgroundFaded" id="backgroundFaded"></div>
 
-  <script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="lib/slick-1.5.7/slick/slick.js"></script>
+    <div id = "sectionBuild">
+      <h1 id="title">Pony Workshop</h1>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-        //document.getElementById("previewPony").classList.add('previewScaled');
-        stepName = ["Intro", "1. Select Pony", "2. Choose Saddle", "3. Choose Back", "4. Choose Head", "5. Choose Mane", "6. Choose Nose", "7. Choose Feet", "8. Choose Socks", "9. Pick a Background", "Download/Share"];
-        currentStep = 0;
-        totalSteps = stepName.length;
-        backgroundStep = 9; //needed for actions taht happen when user arrives at this step or leaves step
-        randomPony();
-        gotoNextStep();
-        
-        
-    $('#step1, #step2, #step3, #step4, #step5, #step6, #step7, #step8, #step9, #step10').slick({
-        dots: false,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 3,
-        responsive: [
-        {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 3,
-            infinite: false,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 1010,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 3,
-            infinite: false,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 769,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 2,
-            infinite: false,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 479,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: false,
-            dots: false
-          }
-        }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
-        ]
-        });
+      <div class="progress" id="progressBar">
+        <div style="display:none;"><!--hidden intro div --></div>
+        <div class="progressItem">Body</div>
+        <div class="progressItem">Mane & tail</div>
+        <div class="progressItem">Eyes</div>
+        <div class="progressItem">Muzzle</div>
+        <div class="progressItem">Socks</div>
+        <div class="progressItem">Hooves</div>
+        <div class="progressItem">Head-wear</div>
+        <div class="progressItem">Fashion</div>
+        <div class="progressItem">Background</div>
+        <div class="progressItem">Sticker</div>
+        <div style="display:none;"><!--hidden preview div --></div>
+        <!-- end progress -->
+      </div>
 
-});
-    
-    
-function gotoPrevStep() {
-    //check if user is going back from background selection screen -- if so, resize pony to regular size
-    if (currentStep > 1) {
-        document.getElementById("nextArrow").style.opacity = 1;
-        if (currentStep == backgroundStep) {
-        // user is moving backwards from backgrounds selection
-        document.getElementById("previewPony").classList.remove('previewScaled');
-        setBG('bgrd-clear');    
-        document.body.style.backgroundImage = 'url(images/backgrounds/bgrd-body.jpg)';
-        document.getElementById("progressBar").classList.remove('progressBackground');
-        }
-        currentStep--;
-        if (currentStep > backgroundStep) {
-            //user has moved backwards from preview mode to sticker selection
-            removePreview();
-        }
-        //document.getElementById("stepName").innerHTML = stepName[currentStep-1];
-        document.getElementById("progressBar").getElementsByTagName('div')[currentStep+1].classList.remove('grow2');
-        document.getElementById("progressBar").getElementsByTagName('div')[currentStep].classList.add('grow2');
-        
-        $('#step' + (currentStep+1)).animate({
-            opacity: -1,
-            bottom: '-300px'
-          }, 300 );
-          
-          $('#step' + currentStep).animate({
-            opacity: 1,
-            bottom: '0px'
-          }, 300 );
-    }
-    if (currentStep ==1) {
-        //reached the beginning
-        document.getElementById("previousArrow").style.opacity = 0.3;
-    }
-    
-    if (currentStep == (backgroundStep-1)) {
-        //document.getElementById("previewPony").classList.remove('previewScaled');
-    }
-}
+      <div class="preview" id="previewPony">
+        <div style="z-index:9"><img src="images/pieces/ponyshadow.png"  id="layer-shad"></div>
+        <div style="z-index:10"><img src="images/_common/clear.png"     id="layer-ears"></div>
+        <div style="z-index:11"><img src="images/_common/clear.png"     id="layer-mane"></div>
+        <div style="z-index:12"><img src="images/_common/clear.png"     id="layer-body"></div>
+        <div style="z-index:13"><img src="images/_common/clear.png"     id="layer-back"></div>
+        <div style="z-index:14"><img src="images/_common/clear.png"     id="layer-nose"></div>
+        <div style="z-index:15"><img src="images/_common/clear.png"     id="layer-fash"></div>
+        <div style="z-index:16"><img src="images/_common/clear.png"     id="layer-head"></div>
+        <div style="z-index:17"><img src="images/_common/clear.png"     id="layer-foot"></div>
+        <div style="z-index:18"><img src="images/_common/clear.png"     id="layer-sock"></div>
+        <div style="z-index:19"><img src="images/pieces/eyes-01.png"    id="layer-eyes"></div>
+        <div style="z-index:20" id="stickerDiv"><img src="images/_common/clear.png" id="layer-stkr"></div>
 
-function gotoNextStep() {
-    if (currentStep <= totalSteps) {
-        document.getElementById("previousArrow").style.opacity = .3 + (.7 * (currentStep >0));
-        currentStep++;
-        if (currentStep==backgroundStep) {
-        //perform any actions on move to background step
-        document.getElementById("previewPony").classList.add('previewScaled');
-        setBG('bgrd-01');
-        document.getElementById("progressBar").classList.add('progressBackground');     
-        }
-        
-        if (currentStep == (backgroundStep+1)) {
-        //perform any actions on move to sticker step
-        //
-        }
-        
-        if (currentStep == (backgroundStep+2)) {
-        //perform any actions on move to preview mode
-        renderPreview();
-        }
-        
-        //document.getElementById("stepName").innerHTML = stepName[currentStep];
-        document.getElementById("progressBar").getElementsByTagName('div')[currentStep-1].classList.remove('grow2');
-        document.getElementById("progressBar").getElementsByTagName('div')[currentStep].classList.add('grow2');
-        
-        $('#step' + (currentStep-1)).animate({
-            opacity: -1,
-            bottom: '300px'
-          }, 300 );
-          
-          $('#step' + currentStep).animate({
-            opacity: 1,
-            bottom: '0px'
-          }, 300 );
-    }
-    if (currentStep == totalSteps) {
-        //reached the end
-        document.getElementById("nextArrow").style.opacity = 0.3;
-        
-    }
-}
-    
-    $( "#previousArrow" ).click(function() {
-          gotoPrevStep();
-        });
-    
-    $( "#nextArrow" ).click(function() {
-          gotoNextStep();
-        });
-    
-    function push(id) {
-        var imageURL = document.getElementById(id).getElementsByTagName('img')[0].src;
-        var imageFile = (imageURL.substring(imageURL.length-11, imageURL.length-4)); //extract string following images/thumbs but without file type
-        var itemType = imageFile.substring(0, 4); //extract four-character item type from file name
-        if (itemType == "bgrd") {
-            setBG(imageFile); //run setBG function
-        } 
-        else if (itemType !=null) {
-            document.getElementById("layer-"+itemType).src="images/pieces/" + imageFile + ".png";
-        }
-        
-    }
-    
-    function randomPony() {
-        var randomBody = Math.floor((Math.random() * 10) + 1); document.getElementById("layer-body").src="images/pieces/body-" + pad2(randomBody) + ".png";
-        var randomMane = Math.floor((Math.random() * 9) + 1); document.getElementById("layer-mane").src="images/pieces/mane-" + pad2(randomMane) + ".png";
-        var randomNose = Math.floor((Math.random() * 8) + 1); document.getElementById("layer-nose").src="images/pieces/nose-" + pad2(randomNose) + ".png";
-        var randomSock = Math.floor((Math.random() * 6) + 1); document.getElementById("layer-sock").src="images/pieces/sock-" + pad2(randomSock) + ".png";
-        var randomFeet = Math.floor((Math.random() * 6) + 1); document.getElementById("layer-foot").src="images/pieces/foot-" + pad2(randomFeet) + ".png";
-    }
-    
-    function pad2(number) {
-        return (number < 10 ? '0' : '') + number
-    }
-    
-    function setBG(imageFile) {
-        
-        document.getElementById("previewPony").style.backgroundImage = 'url(images/backgrounds/' + imageFile + '.jpg)';
-        document.getElementById("previewPony").style.backgroundSize = "contain";
-        document.getElementById("backgroundFaded").style.backgroundImage = 'url(images/backgrounds/' + imageFile + '.jpg)';
-        document.getElementById("backgroundFaded").style.backgroundSize = "cover";
-        document.body.style.backgroundImage = 'url(images/backgrounds/bgrd-clear.jpg)';
-        
-    }
-    
-    function renderPreview() {
-        //after sticker step, render preview and bring in download/email buttons
-        document.getElementById("outerSelector").classList.add('pushDown');
-        document.getElementById("footer").classList.add('pushDown');
-        document.getElementById("progressBar").classList.add('pushLeft');
-        document.getElementById("title").classList.add('pushUp');
-        document.getElementById("outerSelector").classList.remove('pushDownUndo');
-        document.getElementById("footer").classList.remove('pushDownUndo');
-        document.getElementById("progressBar").classList.remove('pushLeftUndo');
-        document.getElementById("title").classList.remove('pushUpUndo');
-        
-    }
-    
-    function removePreview() {
-        //leave preview mode, returning elements to normal positions
-        document.getElementById("outerSelector").classList.add('pushDownUndo');
-        document.getElementById("footer").classList.add('pushDownUndo');
-        document.getElementById("progressBar").classList.add('pushLeftUndo');
-        document.getElementById("title").classList.add('pushUpUndo');
-        document.getElementById("outerSelector").classList.remove('pushDown');
-        document.getElementById("footer").classList.remove('pushDown');
-        document.getElementById("progressBar").classList.remove('pushLeft');
-        document.getElementById("title").classList.remove('pushUp');
-    }
-    
-    
-  </script>
+        <!--close preview div -->
+      </div>
+
+      <div class="outerSelector" id="outerSelector">
+        <div class="center"><img src="images/_common/up-arrow-icon.png" width="43" height="24"
+                                       alt="previous step" tabindex="0" class="js-prev step"></div>
+        <div class="selector">
+          <div class="step" id="step0">
+            INSTRUCTIONS...
+          </div>
+
+          <div class="step" id="step1"> <!--body -->
+            <div class="grow" id="a1"><img alt="" src="images/thumbs/body-01.jpg"></div>
+            <div class="grow" id="a2"><img alt="" src="images/thumbs/body-02.jpg"></div>
+            <div class="grow" id="a3"><img alt="" src="images/thumbs/body-03.jpg"></div>
+            <div class="grow" id="a4"><img alt="" src="images/thumbs/body-04.jpg"></div>
+            <div class="grow" id="a5"><img alt="" src="images/thumbs/body-05.jpg"></div>
+            <div class="grow" id="a6"><img alt="" src="images/thumbs/body-06.jpg"></div>
+            <div class="grow" id="a7"><img alt="" src="images/thumbs/body-07.jpg"></div>
+            <div class="grow" id="a8"><img alt="" src="images/thumbs/body-08.jpg"></div>
+            <div class="grow" id="a9"><img alt="" src="images/thumbs/body-09.jpg"></div>
+            <div class="grow" id="a10"><img alt="" src="images/thumbs/body-10.jpg"></div>
+          </div><!-- END step1 -->
+
+          <div class="step" id="step2"> <!--mane and tail-->
+            <div class="grow" id="b1"><img alt="" src="images/thumbs/mane-01.jpg"></div>
+            <div class="grow" id="b2"><img alt="" src="images/thumbs/mane-02.jpg"></div>
+            <div class="grow" id="b3"><img alt="" src="images/thumbs/mane-03.jpg"></div>
+            <div class="grow" id="b4"><img alt="" src="images/thumbs/mane-04.jpg"></div>
+            <div class="grow" id="b5"><img alt="" src="images/thumbs/mane-05.jpg"></div>
+            <div class="grow" id="b6"><img alt="" src="images/thumbs/mane-06.jpg"></div>
+            <div class="grow" id="b7"><img alt="" src="images/thumbs/mane-07.jpg"></div>
+            <div class="grow" id="b8"><img alt="" src="images/thumbs/mane-08.jpg"></div>
+            <div class="grow" id="b9"><img alt="" src="images/thumbs/mane-09.jpg"></div>
+          </div><!-- END step2 -->
+
+          <div class="step" id="step3"> <!--eyes-->
+            <div class="grow" id="c1"><img alt="" src="images/thumbs/eyes-01.jpg"></div>
+            <div class="grow" id="c2"><img alt="" src="images/thumbs/eyes-02.jpg"></div>
+            <div class="grow" id="c3"><img alt="" src="images/thumbs/eyes-03.jpg"></div>
+            <div class="grow" id="c4"><img alt="" src="images/thumbs/eyes-04.jpg"></div>
+            <div class="grow" id="c5"><img alt="" src="images/thumbs/eyes-05.jpg"></div>
+            <div class="grow" id="c6"><img alt="" src="images/thumbs/eyes-06.jpg"></div>
+            <div class="grow" id="c7"><img alt="" src="images/thumbs/eyes-07.jpg"></div>
+            <div class="grow" id="c8"><img alt="" src="images/thumbs/eyes-08.jpg"></div>
+            <div class="grow" id="c9"><img alt="" src="images/thumbs/eyes-09.jpg"></div>
+            <div class="grow" id="c10"><img alt="" src="images/thumbs/eyes-10.jpg"></div>
+            <div class="grow" id="c11"><img alt="" src="images/thumbs/eyes-11.jpg"></div>
+          </div><!-- END step3 -->
+
+          <div class="step" id="step4"> <!--nose-->
+            <div class="grow" id="d0"><img alt="" src="images/thumbs/nose-00.jpg"></div>
+            <div class="grow" id="d1"><img alt="" src="images/thumbs/nose-01.jpg"></div>
+            <div class="grow" id="d2"><img alt="" src="images/thumbs/nose-02.jpg"></div>
+            <div class="grow" id="d3"><img alt="" src="images/thumbs/nose-03.jpg"></div>
+            <div class="grow" id="d4"><img alt="" src="images/thumbs/nose-04.jpg"></div>
+            <div class="grow" id="d5"><img alt="" src="images/thumbs/nose-05.jpg"></div>
+            <div class="grow" id="d6"><img alt="" src="images/thumbs/nose-06.jpg"></div>
+            <div class="grow" id="d7"><img alt="" src="images/thumbs/nose-07.jpg"></div>
+            <div class="grow" id="d8"><img alt="" src="images/thumbs/nose-08.jpg"></div>
+          </div><!-- END step4 -->
+
+          <div class="step" id="step5"> <!--socks-->
+            <div class="grow" id="e0"><img alt="" src="images/thumbs/sock-00.jpg"></div>
+            <div class="grow" id="e1"><img alt="" src="images/thumbs/sock-01.jpg"></div>
+            <div class="grow" id="e2"><img alt="" src="images/thumbs/sock-02.jpg"></div>
+            <div class="grow" id="e3"><img alt="" src="images/thumbs/sock-03.jpg"></div>
+            <div class="grow" id="e4"><img alt="" src="images/thumbs/sock-04.jpg"></div>
+          </div><!-- END step5 -->
+
+          <div class="step" id="step6"> <!--hooves-->
+            <div class="grow" id="f1"><img alt="" src="images/thumbs/foot-01.jpg"></div>
+            <div class="grow" id="f2"><img alt="" src="images/thumbs/foot-02.jpg"></div>
+            <div class="grow" id="f3"><img alt="" src="images/thumbs/foot-03.jpg"></div>
+            <div class="grow" id="f4"><img alt="" src="images/thumbs/foot-04.jpg"></div>
+            <div class="grow" id="f5"><img alt="" src="images/thumbs/foot-05.jpg"></div>
+          </div><!-- END step6 -->
+
+          <div class="step" id="step7"> <!--head-wear-->
+            <div class="grow" id="g0"><img alt="" src="images/thumbs/head-00.jpg"></div>
+            <div class="grow" id="g1"><img alt="" src="images/thumbs/head-01.jpg"></div>
+            <div class="grow" id="g2"><img alt="" src="images/thumbs/head-02.jpg"></div>
+            <div class="grow" id="g3"><img alt="" src="images/thumbs/head-03.jpg"></div>
+            <div class="grow" id="g4"><img alt="" src="images/thumbs/head-04.jpg"></div>
+            <div class="grow" id="g5"><img alt="" src="images/thumbs/head-05.jpg"></div>
+            <div class="grow" id="g6"><img alt="" src="images/thumbs/head-06.jpg"></div>
+            <div class="grow" id="g7"><img alt="" src="images/thumbs/head-07.jpg"></div>
+            <div class="grow" id="g8"><img alt="" src="images/thumbs/head-08.jpg"></div>
+            <div class="grow" id="g9"><img alt="" src="images/thumbs/head-09.jpg"></div>
+          </div><!-- END step7 -->
+
+          <div class="step" id="step8"> <!--fashion - saddles, blankets, neckwear -->
+            <div class="grow" id="h0"><img alt="" src="images/thumbs/fash-00.jpg"></div>
+            <div class="grow" id="h1"><img alt="" src="images/thumbs/fash-01.jpg"></div>
+            <div class="grow" id="h2"><img alt="" src="images/thumbs/fash-02.jpg"></div>
+            <div class="grow" id="h3"><img alt="" src="images/thumbs/fash-03.jpg"></div>
+            <div class="grow" id="h4"><img alt="" src="images/thumbs/fash-04.jpg"></div>
+            <div class="grow" id="h5"><img alt="" src="images/thumbs/fash-05.jpg"></div>
+            <div class="grow" id="h6"><img alt="" src="images/thumbs/fash-06.jpg"></div>
+            <div class="grow" id="h7"><img alt="" src="images/thumbs/fash-07.jpg"></div>
+            <div class="grow" id="h8"><img alt="" src="images/thumbs/fash-08.jpg"></div>
+            <div class="grow" id="h9"><img alt="" src="images/thumbs/fash-09.jpg"></div>
+          </div><!-- END step8 -->
+
+          <div class="step" id="step9"><!--backgrounds-->
+            <div class="grow" id="i1"><img alt="" src="images/thumbs/bgrd-01.jpg"></div>
+            <div class="grow" id="i2"><img alt="" src="images/thumbs/bgrd-02.jpg"></div>
+            <div class="grow" id="i3"><img alt="" src="images/thumbs/bgrd-03.jpg"></div>
+            <div class="grow" id="i4"><img alt="" src="images/thumbs/bgrd-04.jpg"></div>
+            <div class="grow" id="i5"><img alt="" src="images/thumbs/bgrd-05.jpg"></div>
+            <div class="grow" id="i6"><img alt="" src="images/thumbs/bgrd-06.jpg"></div>
+            <div class="grow" id="i7"><img alt="" src="images/thumbs/bgrd-07.jpg"></div>
+            <div class="grow" id="i8"><img alt="" src="images/thumbs/bgrd-08.jpg"></div>
+          </div><!-- END step9 -->
+
+          <div class="step" id="step10"><!--stickers-->
+            <div class="grow" id="j0"><img alt="" src="images/thumbs/stkr-00.jpg"></div>
+            <div class="grow" id="j1"><img alt="" src="images/thumbs/stkr-01.jpg"></div>
+            <div class="grow" id="j2"><img alt="" src="images/thumbs/stkr-02.jpg"></div>
+            <div class="grow" id="j3"><img alt="" src="images/thumbs/stkr-03.jpg"></div>
+            <!--<div class="grow" id="j4"><img alt="" src="images/thumbs/stkr-04.jpg"></div>-->
+          </div><!-- END step10 -->
+
+          <!-- end selector -->
+        </div>
+        <div class="center"><img src="images/_common/down-arrow-icon.png" width="43" height="24"
+                                       alt="next step" tabindex="0" class="js-next step"></div>
+        <!-- end outerSelector -->
+      </div>
+
+      <div class="ctaContainerOuter" id="cta">
+        <div class="center"><img src="images/_common/up-arrow-icon.png" width="43" height="24"
+                                       alt="previous step" class="js-prev step"></div>
+        <div class="ctaContainerInner">
+
+          <h4>YOU'RE ALL FINISHED!</h4>
+          <p>Now share your masterpiece with team members and download for your desktop&nbsp;wallpaper.</p>
+          <div class="ctaButtonContainer">
+            <a class="ctaButton" href="#" id="download">Download Wallpaper</a>
+            <a class="ctaButton" href="#" id="emailer">Email</a>
+          </div>
+        </div>
+        <!-- end #cta -->
+      </div>
+
+      <footer>&copy; 2015 Wells&nbsp;Fargo Bank, N.A. All rights reserved. For internal use only.</footer>
+
+      <!-- end sectionBuild -->
+    </div>
+
+    <div class="backgroundFaded" id="backgroundFaded"></div>
+
+    <div class="preload">
+      <img src="images/pieces/body-01.png">
+      <img src="images/pieces/body-02.png">
+      <img src="images/pieces/body-03.png">
+      <img src="images/pieces/body-04.png">
+      <img src="images/pieces/body-05.png">
+      <img src="images/pieces/body-06.png">
+      <img src="images/pieces/body-07.png">
+      <img src="images/pieces/body-08.png">
+      <img src="images/pieces/body-09.png">
+      <img src="images/pieces/body-10.png">
+      <img src="images/pieces/mane-01.png">
+      <img src="images/pieces/mane-02.png">
+      <img src="images/pieces/mane-03.png">
+      <img src="images/pieces/mane-04.png">
+      <img src="images/pieces/mane-05.png">
+      <img src="images/pieces/mane-06.png">
+      <img src="images/pieces/mane-07.png">
+      <img src="images/pieces/mane-08.png">
+      <img src="images/pieces/mane-09.png">
+      <img src="images/pieces/ears-01.png">
+      <img src="images/pieces/ears-02.png">
+      <img src="images/pieces/ears-03.png">
+      <img src="images/pieces/ears-04.png">
+      <img src="images/pieces/ears-05.png">
+      <img src="images/pieces/ears-06.png">
+      <img src="images/pieces/ears-07.png">
+      <img src="images/pieces/ears-08.png">
+      <img src="images/pieces/ears-09.png">
+      <img src="images/pieces/head-01.png">
+      <img src="images/pieces/head-02.png">
+      <img src="images/pieces/head-03.png">
+      <img src="images/pieces/head-04.png">
+      <img src="images/pieces/head-05.png">
+      <img src="images/pieces/head-06.png">
+      <img src="images/pieces/head-07.png">
+      <img src="images/pieces/head-08.png">
+      <img src="images/pieces/head-09.png">
+      <img src="images/pieces/bgrd-01.jpg">
+      <img src="images/pieces/bgrd-02.jpg">
+      <img src="images/pieces/bgrd-03.jpg">
+      <img src="images/pieces/bgrd-04.jpg">
+      <img src="images/pieces/bgrd-05.jpg">
+      <img src="images/pieces/bgrd-06.jpg">
+      <img src="images/pieces/bgrd-07.jpg">
+      <img src="images/pieces/bgrd-08.jpg">
+      <!-- close preload -->
+    </div>
 
   </body>
 </html>

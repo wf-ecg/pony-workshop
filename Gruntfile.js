@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                 '-W002': true, // allow err as var
                 //'-W033': true, // ???
                 //'-W061': true, // ???
+                '-W069': true, // surpress dot notation is better error
             }
             // https://github.com/gruntjs/grunt-contrib-jshint
         },
@@ -61,7 +62,7 @@ module.exports = function (grunt) {
                 verbose: true,
                 compareUsing: 'md5', // 'mtime'
             },
-            fast: {
+            update: {
                 files: [{
                         cwd: 'app',
                         src: ['**/*'],
@@ -73,12 +74,17 @@ module.exports = function (grunt) {
         },
         connect: {
             options: {
-                base: '<%= pkg.bases %>',
                 port: '<%= pkg.port1 %>',
-                open: false,
+            },
+            base: {
+                options: {
+                    base: '<%= pkg.bases %>',
+                    open: false,
+                },
             },
             full: {
                 options: {
+                    base: '<%= pkg.bases %>',
                     //hostname: 'localhost', // Change this to '0.0.0.0' to access the server from outside
                     open: 'http://localhost:<%= pkg.port1 %>', // target url to open
                 },
@@ -91,14 +97,14 @@ module.exports = function (grunt) {
             },
             css: {
                 files: ['scss/**/*.scss'],
-                tasks: ['sass'],
+                tasks: ['sass:full'],
             },
             reloads: {
                 options: {
                     livereload: '<%= pkg.port0 %>',
                 },
                 files: ['app/**/*', '!app/**/*.map'], // '<%= jshint.files %>',
-                tasks: ['jshint', 'sync:fast'], // 'qunit'
+                tasks: ['jshint', 'sync:update'], // 'qunit'
             },
             wait: {
                 options: {
@@ -150,8 +156,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['jshint', 'qunit']);
 
-    grunt.registerTask('default', ['jshint', 'sass', 'sync:fast', 'connect', 'watch']);
-    grunt.registerTask('package', ['sass', 'requirejs', 'sync:clean']);
+    grunt.registerTask('default', ['jshint', 'sass:full', 'sync:clean', 'connect:full', 'watch']);
+    grunt.registerTask('package', ['jshint', 'sass:full', 'requirejs', 'sync:clean']);
 };
 
 //        qunit: {

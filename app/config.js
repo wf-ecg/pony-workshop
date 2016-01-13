@@ -8,23 +8,27 @@ W.SHIET = {};
 W.debug = Number(new Date('2016/01/01') > new Date());
 
 require.config({
-    baseUrl: '.',
+    baseUrl: 'scripts',
     paths: {
         lr: 'http://localhost:7002/livereload.js?snipver=1',
-        jquery: '/mfal/lib/jquery/1.8.2/jquery',
+        jquery: '/mfal/lib/jquery/1.11.3/jquery.min',
         jqmobi: '/mfal/lib/jquery/mobile/custom/jquery.mobile',
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
         modern: '/mfal/lib/modernizr/2.6.2/modernizr.min',
+        slick: '/mfal/lib/slick/1.5.7/slick.min',
         //
-        beacon: 'scripts/libs/ecg-beacon',
-        console: 'scripts/libs/console',
-        jqxtn: 'scripts/libs/jq-xtn',
-        stats: 'scripts/libs/ecg-stats',
+        beacon: 'libs/ecg-beacon',
+        console: 'libs/console',
+        jqxtn: 'libs/jq-xtn',
+        stats: 'libs/ecg-stats',
+        pair: 'libs/pair',
+        box: 'libs/box',
+        mailer: 'libs/mailer',
         //
     }
 });
 
-require(['modern', 'console', 'lodash'], function () {
+require(['console', 'lodash'], function () {
     var statToken;
 
     try {
@@ -42,7 +46,7 @@ require(['modern', 'console', 'lodash'], function () {
         C.error('config', err);
     }
     _.delay(function () {
-        if (W.debug < 2) {
+        if (W.debug < 0) {
             require(['stats'], function (stats) {
                 stats.init(statToken);
             });
@@ -59,6 +63,6 @@ require(['modern', 'console', 'lodash'], function () {
     /// CUSTOM
 
     statToken = statToken || 'PONY-Work';
-    //require(['_main']);
+    require(['_main']);
 });
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
