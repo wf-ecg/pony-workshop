@@ -77,7 +77,7 @@ define(['jquery', 'lodash'], function ($, _) {
         $('body').on('keydown', function () {
             $(this).removeClass('mouse');
             $(this).addClass('keyboard');
-        }).on('mousemove', function () {
+        }).on('mouseover', function () { // `mousemove` has side effects on windows browsers
             $(this).removeClass('keyboard');
             $(this).addClass('mouse');
         });

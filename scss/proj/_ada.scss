@@ -2,24 +2,31 @@
 /* PROJ/_ada.scss */
 
 .ada {
-    display: initial!important;
+    display: initial !important;
     height: 1px;
     left: -5000px;
     overflow: hidden;
     position: absolute;
     top: 0;
-    visibility: visible!important;
+    visibility: visible !important;
     width: 1px;
+}
+:focus, .focus {
+    &::after {
+        @extend .ada;
+        content: ' selected';
+    }
+    .keyboard & {
+        outline-color: yellow;
+        .msie &, .safari & { outline: 3px solid yellow; }
+    }
+    .mouse & {
+        outline: none;
+    }
 }
 ::selection, .selection {
     background-color: yellow;
     @include text-shadow(1px 2px 3px gray);
-}
-.keyboard {
-    :focus, .focus { outline-color: yellow; }
-}
-.mouse {
-    :focus, .focus { outline: none; }
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

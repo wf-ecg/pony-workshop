@@ -65,6 +65,7 @@ define(['jquery', 'lodash', 'share', 'libs/utils'], function
 
     function bindings() {
         $.watchInputDevice();
+        $.markAgent();
         $.reify(El);
 
         $('body').removeClass('loading');
