@@ -21,9 +21,9 @@
         "load-grunt-tasks": "~0.2.0"
     },
     "bases": [
-        "../../lib/..",
-        "./scss/..",
-        "app"
+        "app",
+        ".",
+        "../.."
     ],
     "group": "docs/wf-ecg/pony-workshop/0",
     "port0": 7002,
