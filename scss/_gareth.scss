@@ -49,14 +49,13 @@ body {
     z-index: 999;
     @media (max-height: 479px), (max-width: 659px) { display: block; }
     @media (min-height: 480px), (min-width: 660px) { display: none; }
-}
-
-.alertHeight p {
-    background-color: #bb0826;
-    color: #fff;
-    margin: 10em auto;
-    padding: 10px 5px;
-    width: 50%;
+    p {
+        background-color: #bb0826;
+        color: #fff;
+        margin: 10em auto;
+        padding: 10px 5px;
+        width: 50%;
+    }
 }
 
 .backgroundFaded {
@@ -110,43 +109,6 @@ body {
     text-align: center;
 }
 
-footer {
-    background-color: #44464a;
-    bottom: 0;
-    color: #fff;
-    display: block;
-    font-family: $sans;
-    font-size: 11px;
-    height: auto;
-    left: 0;
-    padding: 10px 20px;
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    z-index: 1000;
-}
-
-header {
-    background-color: #bb0826;
-    background-image: url(../images/_common/wf-logo-bg.png);
-    background-repeat: repeat-x;
-    height: 40px;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    text-align: center;
-    top: 0;
-    width: 100%;
-    z-index: 998;
-
-    img {
-        height: 40px;
-        margin: 0 auto;
-        width: 300px;
-    }
-}
-
-
 .hide-bg {
     background-image: none;
 }
@@ -155,56 +117,8 @@ header {
     bottom: -9999px;
     left: -9999px;
     position: absolute;
-}
-
-.preload img {
-    height: 1px;
-    width: 1px;
-}
-
-.outerSelector {
-    bottom: 20px;
-    height: auto;
-    left: 50%;
-    margin: 0 0 0 -50%;
-    overflow: hidden;
-    padding: 20px 0;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-}
-
-.selector {
-    height: 100px;
-    margin: 0 auto 10px;
-    padding: 0;
-    position: relative;
-    width: 550px;
-
-    .step {
-        bottom: -1000px;
-        display: inline-block;
-        height: 140px;
-        margin: 0 auto;
-        max-width: 800px;
-        opacity: 0;
-        overflow: visible;
-        padding: 20px 0;
-        position: absolute;
-        width: 100%;
-
-        img {
-            background: #ededed;
-            background: rgba(237, 237, 237, 0.3);
-            background-image: url(../images/_common/thumbBG_tile300bg.jpg);
-            cursor: pointer;
-            height: 100px;
-            margin: 0;
-            padding: 0;
-            width: 100px;
-        }
-    }
-    #step0, #step10 {
-        text-align: center;
+    img {
+        height: 1px;
+        width: 1px;
     }
 }

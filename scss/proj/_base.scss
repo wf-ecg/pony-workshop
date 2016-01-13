@@ -11,4 +11,40 @@ html, body {
     height: 100%;
 }
 
+footer {
+    background-color: #44464a;
+    bottom: 0;
+    color: #fff;
+    display: block;
+    font-family: $sans;
+    font-size: 11px;
+    height: auto;
+    left: 0;
+    padding: 10px 20px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 1000;
+}
+
+header {
+    background-color: #bb0826;
+    background-image: url(../images/_common/wf-logo-bg.png);
+    background-repeat: repeat-x;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 998;
+
+    img {
+        height: 40px;
+        margin: 0 auto;
+        width: 300px;
+    }
+}
+
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
