@@ -69,6 +69,13 @@
     }
 }
 
+.centered {
+    margin: 0 auto;
+    overflow: visible;
+    position: relative;
+    text-align: center;
+    z-index: 998;
+}
 .clearfix {
     @include clearfix;
 }

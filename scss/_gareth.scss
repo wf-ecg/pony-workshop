@@ -2,19 +2,6 @@
 /* GARETH */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-body {
-    background-image: url(../images/backgrounds/bgrd-body.jpg);
-    background-position: center center;
-    @include background-size( cover );
-    font-size: 100%;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    @media (max-height: 500px) { font-size: 70%; }
-    @media (max-height: 560px) { font-size: 80%; }
-    @media (max-height: 729px) { font-size: 90%; }
-}
-
 #title {
     background-color: #fff;
     color: #44464a;
@@ -68,18 +55,6 @@ body {
     top: 0;
     width: 100%;
     z-index: -1;
-}
-
-.center {
-    margin: 0 auto;
-    overflow: visible;
-    position: relative;
-    text-align: center;
-    z-index: 998;
-}
-
-.hide-bg {
-    background-image: none;
 }
 
 .preload {
