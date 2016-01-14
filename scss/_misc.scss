@@ -6,7 +6,7 @@
     .js-heading, .js-message,
     .js-picture, .js-mailto, .js-cancel,
     .js-prev, .js-next {
-        -webkit-user-select: none;
+        -webkit-user-select: inherit;
     }
 }
 .sharing {
@@ -38,11 +38,6 @@
             width: 100%;
         }
     }
-}
-.preview {
-    @include nosel;
-    @include transform( scale(1) );
-    @include transform-style( preserve-3d );
 }
 
 .slick-slider {
