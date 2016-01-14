@@ -14,8 +14,8 @@
  loosely load
  change 'index' data to 'eq'
  */
-
-define(['jquery', 'lodash', 'share', 'jqxtn'], function
+require(['../config'], function () {
+require(['jquery', 'lodash', 'share', 'jqxtn'], function
     ($, _, Share) {
     'use strict';
 
@@ -25,8 +25,8 @@ define(['jquery', 'lodash', 'share', 'jqxtn'], function
         El, self = {}, share;
 
     El = {
-        email: '#emailer',
-        share: '.share-btn',
+        email: '.js-email',
+        share: '.share-btn', // TODO remove
         sharing: '.sharing',
     };
     // - - - - - - - - - - - - - - - - - -
@@ -90,6 +90,7 @@ define(['jquery', 'lodash', 'share', 'jqxtn'], function
 
     $(init);
     require(['flatten']);
+});
 });
 /*
 
