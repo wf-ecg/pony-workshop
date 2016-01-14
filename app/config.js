@@ -25,6 +25,7 @@ require.config({
         box: 'libs/box',
         mailer: 'libs/mailer',
         //
+        test: '../tests',
     }
 });
 
@@ -63,6 +64,6 @@ require(['console', 'lodash'], function () {
     /// CUSTOM
 
     statToken = statToken || 'PONY-Work';
-    require(['_main']);
+    //require(['_main']);
 });
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
