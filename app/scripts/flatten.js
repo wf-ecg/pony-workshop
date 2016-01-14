@@ -23,8 +23,8 @@ define(['stack', 'gareth', 'lodash'], function (Stack, dsfs, _) {
         can: '#can',
         cta: '#cta .ctaContainerInner',
         lnk: '#download',
-        pre: '#previewPony',
-        stk: '#stickerDiv img',
+        pre: '#PreviewPony',
+        stk: '#Sticker img',
     };
     stak = new Stack();
     // - - - - - - - - - - - - - - - - - -

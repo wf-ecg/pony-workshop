@@ -19,20 +19,20 @@ define(['jquery', 'slick'], function ($) {
         Nom = 'Gar',
         El = {
             body: 'body',
-            buildSec: '#sectionBuild',
+            buildSec: '#Build',
             cta: '#cta',
-            fade: '#backgroundFaded',
+            fade: '#BackgroundFaded',
             footer: 'footer',
             header: 'header',
-            introSec: '#sectionIntro',
+            introSec: '#Intro',
             nextA: '.js-next.step',
             prevA: '.js-prev.step',
-            preview: '#previewPony',
-            progBar: '#progressBar',
-            progSteps: '#progressBar div',
+            preview: '#PreviewPony',
+            progBar: '#ProgressBar',
+            progSteps: '#ProgressBar div',
             selector: '#outerSelector',
             sticker: '#layer-stkr',
-            title: '#title',
+            title: '#Title',
         },
         bkgrStep = 9, //  needed for actions that happen when user arrives at this step or leaves step
         bkgrChoice = 'bgrd-01', // default image to use for background
@@ -78,11 +78,11 @@ define(['jquery', 'slick'], function ($) {
             El.progSteps.eq(currentStep + 1).removeClass('grow2');
             El.progSteps.eq(currentStep).addClass('grow2');
 
-            $('#step' + (currentStep + 1)).animate({
+            $('#Step' + (currentStep + 1)).animate({
                 opacity: -1,
                 bottom: '-300px'
             }, 300);
-            $('#step' + currentStep).animate({
+            $('#Step' + currentStep).animate({
                 opacity: 1,
                 bottom: '0px'
             }, 300);
@@ -112,12 +112,12 @@ define(['jquery', 'slick'], function ($) {
             El.progSteps.eq(currentStep - 1).removeClass('grow2');
             El.progSteps.eq(currentStep).addClass('grow2');
 
-            $('#step' + (currentStep - 1)).animate({
+            $('#Step' + (currentStep - 1)).animate({
                 bottom: '300px',
                 opacity: -1,
             }, 300);
 
-            $('#step' + currentStep).animate({
+            $('#Step' + currentStep).animate({
                 bottom: '0px',
                 opacity: 1,
             }, 300);
@@ -226,7 +226,7 @@ define(['jquery', 'slick'], function ($) {
             push(this.id);
         });
 
-        $('#step1, #step2, #step3, #step4, #step5, #step6, #step7, #step8, #step9, #step10').slick({
+        $('#Step1, #Step2, #Step3, #Step4, #Step5, #Step6, #Step7, #Step8, #Step9, #Step10').slick({
             dots: false,
             infinite: false,
             speed: 300,
