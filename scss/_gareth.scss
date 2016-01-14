@@ -78,37 +78,6 @@ body {
     z-index: 998;
 }
 
-.ctaButtonContainer {
-    display: inline-block;
-    margin: auto;
-    overflow: auto;
-    position: relative;
-    text-align: center;
-}
-
-.ctaContainerOuter {
-    bottom: 7px;
-    display: inline-block;
-    left: 50%;
-    margin: 0 auto;
-    opacity: 0;
-    position: absolute;
-    text-align: center;
-    @include transform( translate(-50%, 0) );
-}
-
-.ctaContainerInner {
-    background-color: #d1b472;
-    color: #fff;
-    display: inline-block;
-    font-family: $sans;
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 7px auto 0;
-    padding: 0.5em 1em 1em;
-    text-align: center;
-}
-
 .hide-bg {
     background-image: none;
 }
