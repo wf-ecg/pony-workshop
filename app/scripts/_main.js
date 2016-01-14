@@ -25,8 +25,8 @@ require(['jquery', 'lodash', 'share', 'jqxtn'], function
         El, self = {}, share;
 
     El = {
-        email: '#emailer',
-        share: '.share-btn',
+        email: '.js-email',
+        share: '.share-btn', // TODO remove
         sharing: '.sharing',
     };
     // - - - - - - - - - - - - - - - - - -

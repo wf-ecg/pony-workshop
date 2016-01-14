@@ -20,7 +20,7 @@ define(['jquery', 'slick'], function ($) {
         El = {
             body: 'body',
             buildSec: '#Build',
-            cta: '#cta',
+            cta: '.ctaContainerOuter',
             fade: '#BackgroundFaded',
             footer: 'footer',
             header: 'header',
@@ -30,8 +30,8 @@ define(['jquery', 'slick'], function ($) {
             preview: '#PreviewPony',
             progBar: '#ProgressBar',
             progSteps: '#ProgressBar div',
-            selector: '#outerSelector',
-            sticker: '#layer-stkr',
+            selector: '.outerSelector:first',
+            sticker: '#Sticker img',
             title: '#Title',
         },
         bkgrStep = 9, //  needed for actions that happen when user arrives at this step or leaves step
@@ -218,7 +218,7 @@ define(['jquery', 'slick'], function ($) {
         El.nextA.click(function () {
             gotoNextStep();
         });
-        $('#btnBuild').click(function () {
+        $('.js-build').click(function () {
             El.introSec.hide();
             El.buildSec.css('opacity', 1);
         });
