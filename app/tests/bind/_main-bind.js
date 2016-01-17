@@ -14,7 +14,7 @@ require(['../../config'], function () {
         baseUrl: '../../scripts',
         deps: ['../../config']
     });
-    require(['jquery', 'test/gs', 'test/user'], function ($, GS, User) {
+    require(['jquery', 'test/bind/gs', 'test/bind/user'], function ($, GS, User) {
         var W = (W && W.window || window),
             C = (W.C || W.console || {}),
             D = W.document,

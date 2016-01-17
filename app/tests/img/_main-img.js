@@ -14,7 +14,7 @@ require(['../../config'], function () {
         baseUrl: '../../scripts',
         deps: ['../../config']
     });
-    require(['test/imgwrap'], function (Img) {
+    require(['test/img/imgwrap'], function (Img) {
         'use strict';
         var Nom = 'Main';
         var W = (W && W.window || window),
@@ -54,7 +54,7 @@ require(['../../config'], function () {
             };
             C.debug(Nom, W.Main);
         };
-        imgE.src = '../../images/backgrounds/background_spring.png';
+        imgE.src = '../images/background_spring.png';
 
     });
 });
