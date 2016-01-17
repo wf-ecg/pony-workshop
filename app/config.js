@@ -17,15 +17,13 @@ require.config({
         modern: '/mfal/lib/modernizr/2.6.2/modernizr.min',
         slick: '/mfal/lib/slick/1.5.7/slick.min',
         //
+        box: 'libs/box',
         beacon: 'libs/ecg-beacon',
         console: 'libs/console',
         jqxtn: 'libs/jq-xtn',
-        stats: 'libs/ecg-stats',
-        pair: 'libs/pair',
-        box: 'libs/box',
         mailer: 'libs/mailer',
-        //
-        test: '../tests',
+        pair: 'libs/pair',
+        stats: 'libs/ecg-stats',
     }
 });
 
