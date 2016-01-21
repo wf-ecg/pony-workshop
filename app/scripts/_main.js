@@ -75,6 +75,13 @@ require(['jquery', 'lodash', 'share', 'jqxtn'], function
             _shareResult();
         });
 
+        $('#ProgressBar .item').each(function (i, e) {
+            var me = $(e);
+
+            me.data('Step', i + 1).on('click', function () {
+                C.log('pickStep', me.data('Step'));
+            });
+        });
     }
 
     function init() {
