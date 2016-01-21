@@ -79,7 +79,7 @@ require(['../config'], function () {
                 var me = $(e);
 
                 me.data('Step', i + 1).on('click', function () {
-                    C.log('pickStep', me.data('Step'));
+                    Gar.roll(me.data('Step'));
                 });
             });
         }

@@ -31,10 +31,12 @@
         width: 120px;
     }
     .item {
+        @include nosel;
         background-image: url(../images/_common/check-white.png);
         background-position: 8px center;
         background-repeat: no-repeat;
         background-size: 1em 1em;
+        cursor: pointer;
         display: inline-block;
         height: 18px;
         @media (max-width: 989px) { height: 10px; }
@@ -44,6 +46,9 @@
         padding-left: 2em;
         position: relative;
         width: 100%;
+        &:hover:not(.activate) {
+            text-decoration: underline;
+        }
     }
 }
 

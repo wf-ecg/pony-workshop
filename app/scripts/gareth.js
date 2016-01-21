@@ -58,8 +58,8 @@ define(['jquery', 'slick'], function ($) {
     // ETC
 
     function setStep(num) {
+        //C.log('setStep', num);
         num = num || 1;
-        C.log('setStep', num);
 
         El.progSteps.removeClass('activate') //
             .eq(num).addClass('activate');
@@ -120,6 +120,17 @@ define(['jquery', 'slick'], function ($) {
         } else { // reached the end
             El.nextA.css('opacity', 0.3);
         }
+    }
+
+    function rollTo(num) {
+        if (num < 1)
+            num = 1;
+        if (num > stepTotal)
+            num = stepTotal;
+        while (num > currentStep)
+            gotoNextStep();
+        while (num < currentStep)
+            gotoPrevStep();
     }
 
     function push(id) {
@@ -259,10 +270,14 @@ define(['jquery', 'slick'], function ($) {
     // - - - - - - - - - - - - - - - - - -
     // EXPOSE
 
-    W[Nom] = {
-        El: El,
-    };
-
     $(init);
+
+    return (W[Nom] = {
+        El: El,
+        set: setStep,
+        next: gotoNextStep,
+        prev: gotoPrevStep,
+        roll: rollTo,
+    });
 
 });
