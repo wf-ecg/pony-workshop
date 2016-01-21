@@ -6,7 +6,7 @@
     .js-heading, .js-message,
     .js-picture, .js-mailto, .js-cancel,
     .js-prev, .js-next {
-        -webkit-user-select: none;
+        -webkit-user-select: inherit;
     }
 }
 .sharing {
@@ -39,11 +39,6 @@
         }
     }
 }
-.preview {
-    @include nosel;
-    @include transform( scale(1) );
-    @include transform-style( preserve-3d );
-}
 
 .slick-slider {
     $Slick: 45px;
@@ -69,8 +64,18 @@
     }
 }
 
+.centered {
+    margin: 0 auto;
+    overflow: visible;
+    position: relative;
+    text-align: center;
+    z-index: 998;
+}
 .clearfix {
     @include clearfix;
+}
+.hide {
+    display: none;
 }
 .debug *:hover {
     outline-color: transparentize( orange, 0.7 );

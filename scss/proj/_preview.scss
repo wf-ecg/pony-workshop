@@ -2,7 +2,10 @@
 /* PROJ / Preview */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-.preview {
+#PreviewPony {
+    @include nosel;
+    @include transform( scale(1) );
+    @include transform-style( preserve-3d );
     height: calc(100% - 280px);
     margin: 0 auto;
     overflow: hidden;
@@ -27,41 +30,42 @@
         position: relative;
         width: auto;
     }
-}
-.previewScaled {
-    @include transition( all 0.5s ease-in-out );
-    box-shadow: 0px 0px 0px 2px #ffffff inset; /* (chnaged border solution -- created a 2px inset border rather than outside border – to address the sometimes visible space between bottom of image and bottom border) */
-    height: 0;
-    opacity: 1;
-    padding-bottom: 40%;
-    top: 5px; /* to give separation between title bar and preview */
-    width: 60%;
 
-    @media (max-height: 560px) {
-        padding-bottom: 28%;
-        width: 42%;
-    }
-    @media (max-height: 729px) {
-        padding-bottom: 30%;
-        width: 45%;
-    }
-    @media (min-height: 730px) {
-        padding-bottom: 40%;
-        width: 60%;
-    }
-    div {
-        height: 74%;
-        margin: 10%;
+    &.previewScaled {
+        @include transition( all 0.5s ease-in-out );
+        box-shadow: 0px 0px 0px 2px #ffffff inset; /* (chnaged border solution -- created a 2px inset border rather than outside border – to address the sometimes visible space between bottom of image and bottom border) */
+        height: 0;
         opacity: 1;
-        width: 74%;
+        padding-bottom: 40%;
+        top: 5px; /* to give separation between title bar and preview */
+        width: 60%;
+
+        @media (max-height: 560px) {
+            padding-bottom: 28%;
+            width: 42%;
+        }
+        @media (max-height: 729px) {
+            padding-bottom: 30%;
+            width: 45%;
+        }
+        @media (min-height: 730px) {
+            padding-bottom: 40%;
+            width: 60%;
+        }
+        div {
+            height: 74%;
+            margin: 10%;
+            opacity: 1;
+            width: 74%;
+        }
+    }
+
+    &.previewScaled100pc {
+        //@include transform( translateY(-50%) );
+        padding-bottom: 66.6667% !important;
+        position: fixed;
+        top: 0%;
+        width: 100% !important;
     }
 }
-.previewScaled100pc {
-    //@include transform( translateY(-50%) );
-    padding-bottom: 66.6667% !important;
-    position: fixed;
-    top: 0%;
-    width: 100% !important;
-}
-
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

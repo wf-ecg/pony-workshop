@@ -20,11 +20,11 @@ define(['stack', 'gareth', 'lodash'], function (Stack, dsfs, _) {
 
 
     El = {
-        can: '#can',
-        cta: '#cta .ctaContainerInner',
-        lnk: '#download',
-        pre: '#previewPony',
-        stk: '#stickerDiv img',
+        can: 'canvas:first',
+        cta: '.ctaContainerOuter .ctaContainerInner',
+        lnk: '.js-download:first',
+        pre: '#PreviewPony',
+        stk: '#Sticker img',
     };
     stak = new Stack();
     // - - - - - - - - - - - - - - - - - -
