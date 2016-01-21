@@ -224,7 +224,8 @@ define(['jquery', 'slick'], function ($) {
         El.nextA.on('click', function () {
             gotoNextStep();
         });
-        $('.js-build').on('click', function () {
+        $('.js-build').on('click', function (evt) {
+            evt.preventDefault();
             El.introSec.hide();
             El.buildSec.css('opacity', 1);
         });

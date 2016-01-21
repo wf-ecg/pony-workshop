@@ -81,7 +81,8 @@ require(['../config'], function () {
 
             $('body').removeClass('loading');
 
-            El.email.on('click', function () {
+            El.email.on('click', function (evt) {
+                evt.preventDefault();
                 _shareResult();
             });
 
