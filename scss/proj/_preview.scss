@@ -33,11 +33,11 @@
 
     &.previewScaled {
         @include transition( all 0.5s ease-in-out );
-        box-shadow: 0px 0px 0px 2px #ffffff inset; /* (chnaged border solution -- created a 2px inset border rather than outside border – to address the sometimes visible space between bottom of image and bottom border) */
+        box-shadow: 0 0 1px 1px white inset;
         height: 0;
         opacity: 1;
         padding-bottom: 40%;
-        top: 5px; /* to give separation between title bar and preview */
+        top: 0.5em; /* to give separation between title bar and preview */
         width: 60%;
 
         @media (max-height: 560px) {
@@ -63,7 +63,7 @@
     &.previewScaled100pc {
         //@include transform( translateY(-50%) );
         padding-bottom: 66.6667% !important;
-        position: fixed;
+        //position: fixed;
         top: 0%;
         width: 100% !important;
     }
