@@ -237,10 +237,15 @@ define(['jquery', 'slick'], function ($) {
             dots: false,
             infinite: false,
             speed: 300,
-            slidesToShow: 4,
-            slidesToScroll: 3,
-            responsive: [
-                {
+            slidesToShow: 6,
+            slidesToScroll: 5,
+            responsive: [{
+                    breakpoint: 1400,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 4,
+                    }
+                }, {
                     breakpoint: 1200,
                     settings: {
                         slidesToShow: 4,
@@ -263,9 +268,9 @@ define(['jquery', 'slick'], function ($) {
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 1,
-                    }
-                } // unslick at a given breakpoint w/ settings: "unslick"
-            ]
+                    },
+                }], // unslick at a given breakpoint w/ settings: "unslick"
+
         });
     }
     // - - - - - - - - - - - - - - - - - -
