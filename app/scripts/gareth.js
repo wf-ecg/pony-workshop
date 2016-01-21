@@ -75,8 +75,8 @@ define(['jquery', 'slick'], function ($) {
             if (currentStep > bkgrStep) { // user has moved backwards from preview mode
                 removePreview();
             }
-            El.progSteps.eq(currentStep + 1).removeClass('grow2');
-            El.progSteps.eq(currentStep).addClass('grow2');
+            El.progSteps.eq(currentStep + 1).removeClass('activate');
+            El.progSteps.eq(currentStep).addClass('activate');
 
             $('#Step' + (currentStep + 1)).animate({
                 opacity: -1,
@@ -109,8 +109,8 @@ define(['jquery', 'slick'], function ($) {
                 renderPreview();
             }
 
-            El.progSteps.eq(currentStep - 1).removeClass('grow2');
-            El.progSteps.eq(currentStep).addClass('grow2');
+            El.progSteps.eq(currentStep - 1).removeClass('activate');
+            El.progSteps.eq(currentStep).addClass('activate');
 
             $('#Step' + (currentStep - 1)).animate({
                 bottom: '300px',
@@ -186,7 +186,7 @@ define(['jquery', 'slick'], function ($) {
 
     function renderPreview() {
         //after sticker step, render preview and bring in download/email buttons
-        El.cta.addClass('grow2');
+        El.cta.addClass('activate');
         El.footer.addClass('pushDown').removeClass('pushDownUndo');
         El.header.addClass('pushUp').removeClass('pushUpUndo');
         El.progBar.removeClass('pushLeftUndo').addClass('pushLeft');
@@ -197,7 +197,7 @@ define(['jquery', 'slick'], function ($) {
 
     function removePreview() {
         //leave preview mode, returning elements to normal positions
-        El.cta.removeClass('grow2');
+        El.cta.removeClass('activate');
         El.footer.addClass('pushDownUndo').removeClass('pushDown');
         El.header.addClass('pushUpUndo').removeClass('pushUp');
         El.progBar.addClass('pushLeftUndo').removeClass('pushLeft');
