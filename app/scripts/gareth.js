@@ -57,6 +57,27 @@ define(['jquery', 'slick'], function ($) {
     // - - - - - - - - - - - - - - - - - -
     // ETC
 
+    function setStep(num) {
+        num = num || 1;
+        C.log('setStep', num);
+
+        El.progSteps.removeClass('activate') //
+            .eq(num).addClass('activate');
+
+        $('#Step' + (num - 1)).animate({
+            bottom: '300px',
+            opacity: -1,
+        }, 300);
+        $('#Step' + (num + 1)).animate({
+            bottom: '-300px',
+            opacity: -1,
+        }, 300);
+        $('#Step' + num).animate({
+            bottom: '0px',
+            opacity: 1,
+        }, 300);
+    }
+
     function gotoPrevStep() {
         // if user is going back from background selection screen
         // resize pony to regular size and remove background image and sticker
@@ -70,23 +91,13 @@ define(['jquery', 'slick'], function ($) {
                 El.preview.removeClass('previewScaled');
                 El.sticker.hide();
             }
-            currentStep--;
+            setStep(--currentStep);
+
             if (currentStep > bkgrStep) { // user has moved backwards from preview mode
                 removePreview();
             }
-            El.progSteps.eq(currentStep + 1).removeClass('activate');
-            El.progSteps.eq(currentStep).addClass('activate');
 
-            $('#Step' + (currentStep + 1)).animate({
-                opacity: -1,
-                bottom: '-300px'
-            }, 300);
-            $('#Step' + currentStep).animate({
-                opacity: 1,
-                bottom: '0px'
-            }, 300);
-        }
-        if (currentStep === 1) { //reached the beginning
+        } else { // reached the beginning
             El.prevA.css('opacity', 0.3);
         }
     }
@@ -94,7 +105,8 @@ define(['jquery', 'slick'], function ($) {
     function gotoNextStep() {
         if (currentStep <= stepTotal) {
             El.prevA.css('opacity', 0.3 + (0.7 * (currentStep > 0)));
-            currentStep++;
+
+            setStep(++currentStep);
 
             if (currentStep === bkgrStep) { // move to background step
                 setBG(bkgrChoice);
@@ -105,20 +117,7 @@ define(['jquery', 'slick'], function ($) {
                 renderPreview();
             }
 
-            El.progSteps.eq(currentStep - 1).removeClass('activate');
-            El.progSteps.eq(currentStep).addClass('activate');
-
-            $('#Step' + (currentStep - 1)).animate({
-                bottom: '300px',
-                opacity: -1,
-            }, 300);
-
-            $('#Step' + currentStep).animate({
-                bottom: '0px',
-                opacity: 1,
-            }, 300);
-        }
-        if (currentStep === stepTotal) { //reached the end
+        } else { // reached the end
             El.nextA.css('opacity', 0.3);
         }
     }
