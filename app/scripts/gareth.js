@@ -1,7 +1,7 @@
 /*jslint  white:false */
 /*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- recreated drt 2015-12 (glp 2015-11)
+ recreated drt 2016-01 (glp 2015-11)
 
  USE
  wrapper for loose functions
@@ -89,9 +89,6 @@ define(['jquery', 'slick'], function ($) {
         if (currentStep === 1) { //reached the beginning
             El.prevA.css('opacity', 0.3);
         }
-        if (currentStep === (bkgrStep - 1)) {
-            //El.preview[0].classList.remove('previewScaled');
-        }
     }
 
     function gotoNextStep() {
@@ -127,7 +124,7 @@ define(['jquery', 'slick'], function ($) {
     }
 
     function push(id) {
-        var imageURL = $('#' + id + ' img')[0].src;
+        var imageURL = $('#' + id + ' img').attr('src');
         //extract string following images/thumbs but without file type
         var imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4));
         var itemType = imageFile.substring(0, 4); //extract item type from file name
@@ -136,12 +133,12 @@ define(['jquery', 'slick'], function ($) {
             bkgrChoice = imageFile;
             setBG(imageFile);
         } else if (itemType !== null) {
-            $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
+            $('#layer-' + itemType).attr('src', 'images/pieces/' + imageFile + '.png');
         }
         if (itemType === 'body') {
             itemType = 'ears';
             imageFile = imageFile.replace('body', 'ears');
-            $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
+            $('#layer-' + itemType).attr('src', 'images/pieces/' + imageFile + '.png');
         }
     }
 
@@ -191,7 +188,7 @@ define(['jquery', 'slick'], function ($) {
         El.progBar.removeClass('pushLeftUndo').addClass('pushLeft');
         El.selector.addClass('pushDown').removeClass('pushDownUndo');
         El.title.addClass('pushUp').removeClass('pushUpUndo');
-        //El.preview.addClass('previewScaled100pc');
+        El.preview.addClass('previewScaled100pc');
     }
 
     function removePreview() {
@@ -202,7 +199,7 @@ define(['jquery', 'slick'], function ($) {
         El.progBar.addClass('pushLeftUndo').removeClass('pushLeft');
         El.selector.addClass('pushDownUndo').removeClass('pushDown');
         El.title.addClass('pushUpUndo').removeClass('pushUp');
-        //El.preview.removeClass('previewScaled100pc');
+        El.preview.removeClass('previewScaled100pc');
     }
 
     function init() {
@@ -211,17 +208,17 @@ define(['jquery', 'slick'], function ($) {
         randomPony();
         gotoNextStep();
 
-        El.prevA.click(function () {
+        El.prevA.on('click', function () {
             gotoPrevStep();
         });
-        El.nextA.click(function () {
+        El.nextA.on('click', function () {
             gotoNextStep();
         });
-        $('.js-build').click(function () {
+        $('.js-build').on('click', function () {
             El.introSec.hide();
             El.buildSec.css('opacity', 1);
         });
-        $('div.step > div').click(function () {
+        $('div.step > div').on('click', function () {
             push(this.id);
         });
 
@@ -256,10 +253,7 @@ define(['jquery', 'slick'], function ($) {
                         slidesToShow: 2,
                         slidesToScroll: 1,
                     }
-                }
-                // You can unslick at a given breakpoint now by adding:
-                // settings: "unslick"
-                // instead of a settings object
+                } // unslick at a given breakpoint w/ settings: "unslick"
             ]
         });
     }
