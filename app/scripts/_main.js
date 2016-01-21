@@ -64,6 +64,16 @@ require(['../config'], function () {
         }
 
         function bindings() {
+            require(['gareth', 'flatten'], function (Gar) {
+                $('#ProgressBar .item').each(function (i, e) {
+                    var me = $(e);
+
+                    me.data('Step', i + 1).on('click', function () {
+                        Gar.roll(me.data('Step'));
+                    });
+                });
+            });
+
             $.watchInputDevice();
             $.markAgent();
             $.watchHash();
@@ -75,28 +85,20 @@ require(['../config'], function () {
                 _shareResult();
             });
 
-            $('#ProgressBar .item').each(function (i, e) {
-                var me = $(e);
-
-                me.data('Step', i + 1).on('click', function () {
-                    Gar.roll(me.data('Step'));
-                });
-            });
         }
 
         function init() {
-            _.delay(bindings, 333);
-
             // EXPOSE
             W.Main = self;
             self.El = El;
             self.relayLoc = 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/';
+
+            bindings();
         }
         // - - - - - - - - - - - - - - - - - -
         // LOADED
 
         $(init);
-        require(['flatten']);
     });
 });
 /*

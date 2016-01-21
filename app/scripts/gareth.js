@@ -272,12 +272,13 @@ define(['jquery', 'slick'], function ($) {
 
     $(init);
 
-    return (W[Nom] = {
+    W[Nom] = {
         El: El,
         set: setStep,
         next: gotoNextStep,
         prev: gotoPrevStep,
         roll: rollTo,
-    });
+    };
 
+    return W[Nom];
 });
