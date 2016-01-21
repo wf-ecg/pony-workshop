@@ -7,7 +7,8 @@
  * Copyright: 2015-06-01 @ WF via drt
  * http //ecgsolutions.hosting.wellsfargo.com/wordpress/?cat=6
  */
-var W = (W && W.window || window), C = (W.C || W.console || {});
+var W = (W && W.window || window),
+    C = (W.C || W.console || {});
 
 define(['jquery'], function ($) {
     'use strict';

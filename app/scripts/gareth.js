@@ -1,21 +1,20 @@
 /*jslint  white:false */
 /*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- recreated drt 2014
+ recreated drt 2016-01 (glp 2015-11)
 
  USE
- control of a page
+ wrapper for loose functions
 
  TODO
- document a bit
- modernize api
- loosely load
+ break up
  */
 
 define(['jquery', 'slick'], function ($) {
+    'use strict';
+
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
-        D = W.document,
         Nom = 'Gar',
         El = {
             body: 'body',
@@ -58,6 +57,27 @@ define(['jquery', 'slick'], function ($) {
     // - - - - - - - - - - - - - - - - - -
     // ETC
 
+    function setStep(num) {
+        //C.log('setStep', num);
+        num = num || 1;
+
+        El.progSteps.removeClass('activate') //
+            .eq(num).addClass('activate');
+
+        $('#Step' + (num - 1)).animate({
+            bottom: '300px',
+            opacity: -1,
+        }, 300);
+        $('#Step' + (num + 1)).animate({
+            bottom: '-300px',
+            opacity: -1,
+        }, 300);
+        $('#Step' + num).animate({
+            bottom: '0px',
+            opacity: 1,
+        }, 300);
+    }
+
     function gotoPrevStep() {
         // if user is going back from background selection screen
         // resize pony to regular size and remove background image and sticker
@@ -71,34 +91,22 @@ define(['jquery', 'slick'], function ($) {
                 El.preview.removeClass('previewScaled');
                 El.sticker.hide();
             }
-            currentStep--;
+            setStep(--currentStep);
+
             if (currentStep > bkgrStep) { // user has moved backwards from preview mode
                 removePreview();
             }
-            El.progSteps.eq(currentStep + 1).removeClass('grow2');
-            El.progSteps.eq(currentStep).addClass('grow2');
 
-            $('#Step' + (currentStep + 1)).animate({
-                opacity: -1,
-                bottom: '-300px'
-            }, 300);
-            $('#Step' + currentStep).animate({
-                opacity: 1,
-                bottom: '0px'
-            }, 300);
-        }
-        if (currentStep === 1) { //reached the beginning
+        } else { // reached the beginning
             El.prevA.css('opacity', 0.3);
-        }
-        if (currentStep === (bkgrStep - 1)) {
-            //El.preview[0].classList.remove('previewScaled');
         }
     }
 
     function gotoNextStep() {
         if (currentStep <= stepTotal) {
             El.prevA.css('opacity', 0.3 + (0.7 * (currentStep > 0)));
-            currentStep++;
+
+            setStep(++currentStep);
 
             if (currentStep === bkgrStep) { // move to background step
                 setBG(bkgrChoice);
@@ -109,26 +117,24 @@ define(['jquery', 'slick'], function ($) {
                 renderPreview();
             }
 
-            El.progSteps.eq(currentStep - 1).removeClass('grow2');
-            El.progSteps.eq(currentStep).addClass('grow2');
-
-            $('#Step' + (currentStep - 1)).animate({
-                bottom: '300px',
-                opacity: -1,
-            }, 300);
-
-            $('#Step' + currentStep).animate({
-                bottom: '0px',
-                opacity: 1,
-            }, 300);
-        }
-        if (currentStep === stepTotal) { //reached the end
+        } else { // reached the end
             El.nextA.css('opacity', 0.3);
         }
     }
 
+    function rollTo(num) {
+        if (num < 1)
+            num = 1;
+        if (num > stepTotal)
+            num = stepTotal;
+        while (num > currentStep)
+            gotoNextStep();
+        while (num < currentStep)
+            gotoPrevStep();
+    }
+
     function push(id) {
-        var imageURL = $('#' + id + ' img')[0].src;
+        var imageURL = $('#' + id + ' img').attr('src');
         //extract string following images/thumbs but without file type
         var imageFile = (imageURL.substring(imageURL.length - 11, imageURL.length - 4));
         var itemType = imageFile.substring(0, 4); //extract item type from file name
@@ -137,12 +143,12 @@ define(['jquery', 'slick'], function ($) {
             bkgrChoice = imageFile;
             setBG(imageFile);
         } else if (itemType !== null) {
-            $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
+            $('#layer-' + itemType).attr('src', 'images/pieces/' + imageFile + '.png');
         }
         if (itemType === 'body') {
             itemType = 'ears';
             imageFile = imageFile.replace('body', 'ears');
-            $('#layer-' + itemType)[0].src = 'images/pieces/' + imageFile + '.png';
+            $('#layer-' + itemType).attr('src', 'images/pieces/' + imageFile + '.png');
         }
     }
 
@@ -186,24 +192,24 @@ define(['jquery', 'slick'], function ($) {
 
     function renderPreview() {
         //after sticker step, render preview and bring in download/email buttons
-        El.cta.addClass('grow2');
+        El.cta.addClass('activate');
         El.footer.addClass('pushDown').removeClass('pushDownUndo');
         El.header.addClass('pushUp').removeClass('pushUpUndo');
         El.progBar.removeClass('pushLeftUndo').addClass('pushLeft');
         El.selector.addClass('pushDown').removeClass('pushDownUndo');
         El.title.addClass('pushUp').removeClass('pushUpUndo');
-        //El.preview.addClass('previewScaled100pc');
+        El.preview.addClass('previewScaled100pc');
     }
 
     function removePreview() {
         //leave preview mode, returning elements to normal positions
-        El.cta.removeClass('grow2');
+        El.cta.removeClass('activate');
         El.footer.addClass('pushDownUndo').removeClass('pushDown');
         El.header.addClass('pushUpUndo').removeClass('pushUp');
         El.progBar.addClass('pushLeftUndo').removeClass('pushLeft');
         El.selector.addClass('pushDownUndo').removeClass('pushDown');
         El.title.addClass('pushUpUndo').removeClass('pushUp');
-        //El.preview.removeClass('previewScaled100pc');
+        El.preview.removeClass('previewScaled100pc');
     }
 
     function init() {
@@ -212,17 +218,17 @@ define(['jquery', 'slick'], function ($) {
         randomPony();
         gotoNextStep();
 
-        El.prevA.click(function () {
+        El.prevA.on('click', function () {
             gotoPrevStep();
         });
-        El.nextA.click(function () {
+        El.nextA.on('click', function () {
             gotoNextStep();
         });
-        $('.js-build').click(function () {
+        $('.js-build').on('click', function () {
             El.introSec.hide();
             El.buildSec.css('opacity', 1);
         });
-        $('div.step > div').click(function () {
+        $('div.step > div').on('click', function () {
             push(this.id);
         });
 
@@ -257,20 +263,22 @@ define(['jquery', 'slick'], function ($) {
                         slidesToShow: 2,
                         slidesToScroll: 1,
                     }
-                }
-                // You can unslick at a given breakpoint now by adding:
-                // settings: "unslick"
-                // instead of a settings object
+                } // unslick at a given breakpoint w/ settings: "unslick"
             ]
         });
     }
     // - - - - - - - - - - - - - - - - - -
     // EXPOSE
 
-    W[Nom] = {
-        El: El,
-    };
-
     $(init);
 
+    W[Nom] = {
+        El: El,
+        set: setStep,
+        next: gotoNextStep,
+        prev: gotoPrevStep,
+        roll: rollTo,
+    };
+
+    return W[Nom];
 });

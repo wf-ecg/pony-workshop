@@ -15,82 +15,91 @@
  change 'index' data to 'eq'
  */
 require(['../config'], function () {
-require(['jquery', 'lodash', 'share', 'jqxtn'], function
-    ($, _, Share) {
-    'use strict';
+    require(['jquery', 'lodash', 'share', 'jqxtn'], function
+        ($, _, Share) {
+        'use strict';
 
-    var Nom = 'Main',
-        W = (W && W.window || window),
-        C = (W.C || W.console || {}),
-        El, self = {}, share;
+        var Nom = 'Main',
+            W = (W && W.window || window),
+            C = (W.C || W.console || {}),
+            El, self = {}, share;
 
-    El = {
-        email: '.js-email',
-        share: '.share-btn', // TODO remove
-        sharing: '.sharing',
-    };
-    // - - - - - - - - - - - - - - - - - -
-    // HELPERS
+        El = {
+            email: '.js-email',
+            share: '.share-btn', // TODO remove
+            sharing: '.sharing',
+        };
+        // - - - - - - - - - - - - - - - - - -
+        // HELPERS
 
-    function ns(str) {
-        return (str || '') + '.' + Nom;
-    }
-
-    function nameJpeg(nom) {
-        return  'src="' + self.relayLoc + 'ponies/' + nom + '.jpg"';
-    }
-
-    function _shareResult() {
-        var pic = $('.js-picture').val();
-        var nom = nameJpeg(pic.split('::')[0]);
-
-        if (share) {
-            share.disarm(); // disarm share events + do callback
+        function ns(str) {
+            return (str || '') + '.' + Nom;
         }
-        self.Share = share = new Share(El.sharing, {
-            subject: 'I created my own pony using Wells Fargo Pony Workshop',
-            picture: pic,
-            tokens: {// inside template
-                picture: nom,
-                heading: 'Take a peek at my pony!',
-                message: '',
-            },
-            callback: function () { // callback after share
-                El.sharing.hide();
-            },
-        });
 
-        El.sharing.show();
-    }
+        function nameJpeg(nom) {
+            return  'src="' + self.relayLoc + 'ponies/' + nom + '.jpg"';
+        }
 
-    function bindings() {
-        $.watchInputDevice();
-        $.markAgent();
-        $.watchHash();
-        $.reify(El);
+        function _shareResult() {
+            var pic = $('.js-picture').val();
+            var nom = nameJpeg(pic.split('::')[0]);
 
-        $('body').removeClass('loading');
+            if (share) {
+                share.disarm(); // disarm share events + do callback
+            }
+            self.Share = share = new Share(El.sharing, {
+                subject: 'I created my own pony using Wells Fargo Pony Workshop',
+                picture: pic,
+                tokens: {// inside template
+                    picture: nom,
+                    heading: 'Take a peek at my pony!',
+                    message: '',
+                },
+                callback: function () { // callback after share
+                    El.sharing.hide();
+                },
+            });
 
-        El.email.on('click', function () {
-            _shareResult();
-        });
+            El.sharing.show();
+        }
 
-    }
+        function bindings() {
+            require(['gareth', 'flatten'], function (Gar) {
+                $('#ProgressBar .item').each(function (i, e) {
+                    var me = $(e);
 
-    function init() {
-        _.delay(bindings, 333);
+                    me.data('Step', i + 1).on('click', function () {
+                        Gar.roll(me.data('Step'));
+                    });
+                });
+            });
 
-        // EXPOSE
-        W.Main = self;
-        self.El = El;
-        self.relayLoc = 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/';
-    }
-    // - - - - - - - - - - - - - - - - - -
-    // LOADED
+            $.watchInputDevice();
+            $.markAgent();
+            $.watchHash();
+            $.reify(El);
 
-    $(init);
-    require(['flatten']);
-});
+            $('body').removeClass('loading');
+
+            El.email.on('click', function () {
+                _shareResult();
+            });
+
+        }
+
+        function init() {
+            // EXPOSE
+            W.Main = self;
+            self.El = El;
+            self.relayLoc = 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/';
+
+            bindings();
+        }
+        // - - - - - - - - - - - - - - - - - -
+        // LOADED
+
+        $(init);
+    });
 });
 /*
 

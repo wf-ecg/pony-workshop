@@ -5,62 +5,53 @@
 .grow {
     @include transition( all 0.2s ease-in-out );
     cursor: pointer;
+    &:hover {
+        @include transform( scale(1.1) );
+    }
 }
-
-.grow:hover {
-    @include transform( scale(1.1) );
-}
-
-.grow2 {
-    @include nosel;
+.activate {
     @include transition( all 0.2s ease-in-out );
-    cursor: pointer;
     opacity: 1 !important;
     z-index: 998;
 }
 
-.pushDown, .pushDownUndo, .pushLeft, .pushLeftUndo, .pushUp, .pushUpUndo, .pushRight, .pushRightUndo {
+.pushDown, .pushDownUndo,
+.pushLeft, .pushLeftUndo,
+.pushUp, .pushUpUndo,
+.pushRight, .pushRightUndo {
     @include transition( all 0.2s ease-in-out );
+    opacity: 1;
 }
 
 .pushDown {
     @include transform( translateY(250px) );
-    opacity: 1;
 }
-
 .pushDownUndo {
     @include transform( translateY(0px) );
-    opacity: 1;
 }
 
 .pushUp {
     @include transform( translateY(-250px) );
     opacity: 0;
 }
-
 .pushUpUndo {
     @include transform( translateY(0px) );
-    opacity: 1;
 }
 
 .pushLeft {
     @include transform( translateX(-250px) );
     opacity: 0;
 }
-
 .pushLeftUndo {
     @include transform( translateX(0px) );
-    opacity: 1;
 }
 
 .pushRight {
     @include transform( translateX(250px) );
     opacity: 0;
 }
-
 .pushRightUndo {
     @include transform( translateX(0px) );
-    opacity: 1;
 }
 
 

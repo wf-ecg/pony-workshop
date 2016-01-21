@@ -12,10 +12,10 @@
  loosely load
  */
 
-define(['stack', 'gareth', 'lodash'], function (Stack, dsfs, _) {
-    var W = (W && W.window || window),
+define(['stack', 'gareth'], function (Stack) {
+    var Nom = 'Flatten',
+        W = (W && W.window || window),
         C = (W.C || W.console || {}),
-        D = W.document,
         U, El, self, stak;
 
 
