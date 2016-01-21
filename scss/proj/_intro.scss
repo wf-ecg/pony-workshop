@@ -3,7 +3,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #Intro {
-    color: #fff;
+    color: white;
     position: relative;
     text-align: center;
     z-index: 1;
@@ -13,9 +13,9 @@
         width: 50%;
     }
     h1 {
-        color: #fff;
+        color: white;
         display: block;
-        font-family: "Archer SSm A","Archer SSm B",serif;
+        font-family: $serif;
         font-size: 3em;
         font-weight: 600;
         margin: 80px auto 0;
@@ -23,18 +23,18 @@
         text-align: center;
     }
     h2 {
-        color: #fff;
+        color: white;
         display: block;
-        font-family: "Archer SSm A","Archer SSm B",serif;
+        font-family: $serif;
         font-size: 1.5em;
         font-weight: 400;
         padding: 0;
         text-align: center;
     }
     h3 {
-        color: #fff;
+        color: white;
         display: block;
-        font-family: "myriad-pro",sans-serif;
+        font-family: $sans;
         font-size: 1.2em;
         font-weight: 400;
         padding: 0;

@@ -3,7 +3,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #Title {
-    background-color: #fff;
+    background-color: white;
     color: #44464a;
     display: inline-block;
     font-family: $serif;
@@ -19,7 +19,7 @@
 }
 
 .alertHeight {
-    background-color: #fff;
+    background-color: white;
     color: #bb0826;
     display: none;
     font-family: $sans;
@@ -38,7 +38,7 @@
     @media (min-height: 480px), (min-width: 660px) { display: none; }
     p {
         background-color: #bb0826;
-        color: #fff;
+        color: white;
         margin: 10em auto;
         padding: 10px 5px;
         width: 50%;

@@ -3,13 +3,13 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 .ctaButtonContainer {
+    @include nosel;
     display: inline-block;
     margin: auto;
     overflow: auto;
     position: relative;
     text-align: center;
 }
-
 .ctaContainerOuter {
     bottom: 7px;
     display: inline-block;
@@ -20,10 +20,9 @@
     text-align: center;
     @include transform( translate(-50%, 0) );
 }
-
 .ctaContainerInner {
     background-color: #d1b472;
-    color: #fff;
+    color: white;
     display: inline-block;
     font-family: $sans;
     font-size: 1.3em;
@@ -32,44 +31,29 @@
     padding: 0.5em 1em 1em;
     text-align: center;
 }
-
+.ctaButton {
+    font-weight: 400;
+    font-family: $sans;
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    width: auto;
+}
 #Build {
-
     .ctaButton {
         background-color: #dedabe;
-        color: #000;
+        color: black;
         float: left;
-        font-family: "myriad-pro",sans-serif;
         font-size: 0.7em;
-        font-weight: 400;
-        margin: 0.5em;
-        padding: 0.5em 1em;
-        text-decoration: none;
-        width: auto;
     }
-    .ctaButton a {
-        color: #000;
-        text-decoration: none;
-    }
-
 }
 #Intro {
     .ctaButton {
-        background-color: #006A85;
+        background-color: #006a85;
         border-radius: 3px;
-        color: #fff;
+        color: white;
         display: inline-block;
-        font-family: "myriad-pro",sans-serif;
         font-size: 1em;
-        font-weight: 400;
-        margin: 0.5em;
-        padding: 0.5em 1em;
-        text-decoration: none;
-        width: auto;
-        a {
-            color: #fff;
-            text-decoration: none;
-        }
     }
 }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

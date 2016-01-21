@@ -64,15 +64,15 @@ define(['jquery', 'slick'], function ($) {
         El.progSteps.removeClass('activate') //
             .eq(num).addClass('activate');
 
-        $('#Step' + (num - 1)).animate({
+        $('#Step' + (num - 1)).stop().animate({
             bottom: '300px',
             opacity: -1,
         }, 300);
-        $('#Step' + (num + 1)).animate({
+        $('#Step' + (num + 1)).stop().animate({
             bottom: '-300px',
             opacity: -1,
         }, 300);
-        $('#Step' + num).animate({
+        $('#Step' + num).stop().animate({
             bottom: '0px',
             opacity: 1,
         }, 300);
