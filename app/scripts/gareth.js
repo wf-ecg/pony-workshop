@@ -1,21 +1,20 @@
 /*jslint  white:false */
 /*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- recreated drt 2014
+ recreated drt 2015-12 (glp 2015-11)
 
  USE
- control of a page
+ wrapper for loose functions
 
  TODO
- document a bit
- modernize api
- loosely load
+ break up
  */
 
 define(['jquery', 'slick'], function ($) {
+    'use strict';
+
     var W = (W && W.window || window),
         C = (W.C || W.console || {}),
-        D = W.document,
         Nom = 'Gar',
         El = {
             body: 'body',
