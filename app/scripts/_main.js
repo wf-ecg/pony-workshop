@@ -68,7 +68,7 @@ require(['../config'], function () {
                 $('#ProgressBar .item').each(function (i, e) {
                     var me = $(e);
 
-                    me.data('Step', i + 1).on('click', function () {
+                    me.data('Step', i).on('click', function () {
                         Gar.roll(me.data('Step'));
                     });
                 });

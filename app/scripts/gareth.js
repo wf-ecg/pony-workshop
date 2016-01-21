@@ -56,6 +56,16 @@ define(['jquery', 'slick'], function ($) {
         U;
     // - - - - - - - - - - - - - - - - - -
     // ETC
+    function showIntro(b) {
+        C.log('show', b);
+        if (b === false) {
+            El.introSec.hide();
+            El.buildSec.show().css('opacity', 1);
+        } else {
+            El.introSec.show();
+            El.buildSec.hide();
+        }
+    }
 
     function setStep(num) {
         //C.log('setStep', num);
@@ -104,6 +114,8 @@ define(['jquery', 'slick'], function ($) {
 
     function gotoNextStep() {
         if (currentStep <= stepTotal) {
+            showIntro(false);
+
             El.prevA.css('opacity', 0.3 + (0.7 * (currentStep > 0)));
 
             setStep(++currentStep);
@@ -123,8 +135,13 @@ define(['jquery', 'slick'], function ($) {
     }
 
     function rollTo(num) {
-        if (num < 1)
-            num = 1;
+        if (num < 0)
+            num = 0;
+        if (num === 0) {
+            currentStep = 0;
+            showIntro();
+            return;
+        }
         if (num > stepTotal)
             num = stepTotal;
         while (num > currentStep)
@@ -216,7 +233,6 @@ define(['jquery', 'slick'], function ($) {
         $.reify(El);
 
         randomPony();
-        gotoNextStep();
 
         El.prevA.on('click', function () {
             gotoPrevStep();
@@ -226,8 +242,7 @@ define(['jquery', 'slick'], function ($) {
         });
         $('.js-build').on('click', function (evt) {
             evt.preventDefault();
-            El.introSec.hide();
-            El.buildSec.css('opacity', 1);
+            gotoNextStep();
         });
         $('div.step > div').on('click', function () {
             push(this.id);
