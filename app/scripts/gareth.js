@@ -37,7 +37,7 @@ define(['jquery', 'slick'], function ($) {
         bkgrStep = 9, //  needed for actions that happen when user arrives at this step or leaves step
         bkgrChoice = 'bgrd-01', // default image to use for background
         bkgrColors = [
-            '#ffffff', '#84b3c5', '#95b73f',
+            '#333333', '#84b3c5', '#95b73f',
             '#e5b523', '#268855', '#654d7d',
             '#267f9d', '#654d7d', '#fcce30',
         ],
@@ -196,7 +196,7 @@ define(['jquery', 'slick'], function ($) {
     }
 
     function setBG(str) {
-        var num = Number(str.substr(str.length - 1));
+        var num = Number(str.substr(str.length - 1)) || 1;
 
         str += (str === 'bgrd-clear') ? '.png' : '.jpg';
         El.preview.css({
@@ -204,7 +204,7 @@ define(['jquery', 'slick'], function ($) {
             backgroundImage: 'url(images/backgrounds/' + str + ')',
         });
         El.fade.css({
-            backgroundColor: bkgrColors[num] || 'white',
+            backgroundColor: bkgrColors[num] || 'black',
             opacity: 1,
         });
     }
