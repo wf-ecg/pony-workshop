@@ -30,6 +30,7 @@ define(['jquery', 'slick'], function ($) {
             progBar: '#ProgressBar',
             progSteps: '#ProgressBar div',
             selector: '.outerSelector:first',
+            sliders: '#Step1, #Step2, #Step3, #Step4, #Step5, #Step6, #Step7, #Step8, #Step9, #Step10',
             sticker: '#Sticker img',
             title: '#Title',
         },
@@ -57,7 +58,12 @@ define(['jquery', 'slick'], function ($) {
     // - - - - - - - - - - - - - - - - - -
     // ETC
     function showIntro(b) {
+        //C.log('showIntro', b);
         if (b === false) {
+            $(El.sliders).stop().animate({
+                bottom: '300px',
+                opacity: 0,
+            }, 300);
             El.introSec.hide();
             El.buildSec.show().css('opacity', 1);
         } else {
@@ -68,18 +74,19 @@ define(['jquery', 'slick'], function ($) {
 
     function setStep(num) {
         //C.log('setStep', num);
-        num = num || 1;
-
+        if (!num) {
+            return;
+        }
         El.progSteps.removeClass('activate') //
             .eq(num).addClass('activate');
 
         $('#Step' + (num - 1)).stop().animate({
             bottom: '300px',
-            opacity: -1,
+            opacity: 0,
         }, 300);
         $('#Step' + (num + 1)).stop().animate({
             bottom: '-300px',
-            opacity: -1,
+            opacity: 0,
         }, 300);
         $('#Step' + num).stop().animate({
             bottom: '0px',
@@ -88,33 +95,30 @@ define(['jquery', 'slick'], function ($) {
     }
 
     function stepCheck() {
-        // prev
-        if (currentStep < bkgrStep) { // moving backwards from backgrounds selection
+        if (!currentStep) {
+            showIntro(true);
+        } else if (currentStep < bkgrStep) { // moving backwards from backgrounds selection
             // clearBackground
             setBG('bgrd-clear');
             El.body.css('backgroundImage', 'url(images/backgrounds/bgrd-body.jpg)');
             El.fade.css('opacity', 0);
             El.preview.removeClass('previewScaled');
             El.sticker.hide();
-        }
-        if (currentStep > bkgrStep) { // user has moved backwards from preview mode
-            removePreview();
-        }
-        // next
-        if (currentStep === bkgrStep) { // move to background step
+        } else if (currentStep === bkgrStep) { // move to background step
             setBG(bkgrChoice);
             El.preview.addClass('previewScaled');
             El.sticker.show();
-        }
-        if (currentStep === (bkgrStep + 2)) { // move to preview mode
+        } else if (currentStep > (bkgrStep + 1)) { // move to preview mode
             renderPreview();
+        } else {
+            removePreview(); // user has moved backwards from preview mode
         }
     }
 
     function gotoPrevStep() {
         // if user is going back from background selection screen
         // resize pony to regular size and remove background image and sticker
-        if (currentStep > 1) {
+        if (currentStep > 0) {
             El.nextA.css('opacity', 1);
             setStep(--currentStep);
 
@@ -140,12 +144,6 @@ define(['jquery', 'slick'], function ($) {
     function rollTo(num) {
         if (num < 0)
             num = 0;
-        if (num === 0) {
-            currentStep = 0;
-            stepCheck();
-            showIntro();
-            return;
-        }
         if (num > stepTotal)
             num = stepTotal;
         while (num > currentStep)
@@ -252,7 +250,7 @@ define(['jquery', 'slick'], function ($) {
             push(this.id);
         });
 
-        $('#Step1, #Step2, #Step3, #Step4, #Step5, #Step6, #Step7, #Step8, #Step9, #Step10').slick({
+        $(El.sliders).slick({
             dots: false,
             infinite: false,
             speed: 300,
