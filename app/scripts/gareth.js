@@ -171,28 +171,26 @@ define(['jquery', 'slick'], function ($) {
         }
     }
 
-    function randoPad(limit) {
-        var num = (Math.random() * limit);
-
-        num = Math.floor(num + 1);
-        num = (num < 10 ? '0' : '') + num;
-
-        return num;
-    }
-
     function randomPony() {
-        var randomBody = randoPad(10);
-        var randomMane = randoPad(9);
-        var randomNose = randoPad(8);
-        var randomSock = randoPad(4);
-        var randomFeet = randoPad(5);
-
-        $('#layer-body').attr('src', 'images/pieces/body-' + randomBody + '.png');
-        $('#layer-ears').attr('src', 'images/pieces/ears-' + randomBody + '.png'); // ears match body
-        $('#layer-mane').attr('src', 'images/pieces/mane-' + randomMane + '.png');
-        $('#layer-nose').attr('src', 'images/pieces/nose-' + randomNose + '.png');
-        $('#layer-sock').attr('src', 'images/pieces/sock-' + randomSock + '.png');
-        $('#layer-foot').attr('src', 'images/pieces/foot-' + randomFeet + '.png');
+        function randoPad(limit) {
+            var num = (Math.random() * limit);
+            num = Math.floor(num + 1);
+            num = (num < 10 ? '0' : '') + num;
+            return num;
+        }
+        var rando = {
+            a: randoPad(10),
+            b: randoPad(9),
+            c: randoPad(8),
+            d: randoPad(4),
+            e: randoPad(5),
+        };
+        $('#layer-body').attr('src', 'images/pieces/body-' + rando.a + '.png');
+        $('#layer-ears').attr('src', 'images/pieces/ears-' + rando.a + '.png'); // ears match body
+        $('#layer-mane').attr('src', 'images/pieces/mane-' + rando.b + '.png');
+        $('#layer-nose').attr('src', 'images/pieces/nose-' + rando.c + '.png');
+        $('#layer-sock').attr('src', 'images/pieces/sock-' + rando.d + '.png');
+        $('#layer-foot').attr('src', 'images/pieces/foot-' + rando.e + '.png');
     }
 
     function setBG(str) {
