@@ -1,7 +1,7 @@
 /*jslint white:false */
 /*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- created drt 2014
+ recreated drt 2016
 
  USE
  hook up various sub systems
@@ -10,9 +10,6 @@
 
  TODO
  document a bit
- modernize api
- loosely load
- change 'index' data to 'eq'
  */
 require(['../config'], function () {
     require(['jquery', 'lodash', 'share', 'jqxtn'], function
@@ -22,12 +19,17 @@ require(['../config'], function () {
         var Nom = 'Main',
             W = (W && W.window || window),
             C = (W.C || W.console || {}),
-            El, self = {}, share;
+            El, self, share;
 
         El = {
             email: '.js-email',
+            progitems: '#ProgressBar .item',
             share: '.share-btn', // TODO remove
             sharing: '.sharing',
+        };
+        self = {
+            imageDir: 'ponies/',
+            relayLoc: 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/',
         };
         // - - - - - - - - - - - - - - - - - -
         // HELPERS
@@ -36,24 +38,26 @@ require(['../config'], function () {
             return (str || '') + '.' + Nom;
         }
 
-        function nameJpeg(nom) {
-            return  'src="' + self.relayLoc + 'ponies/' + nom + '.jpg"';
+        function makeSrcAttr(nom) {
+            return 'src="' + self.relayLoc + self.imageDir + nom + '.jpg"';
         }
 
-        function _shareResult() {
+        function shareResult(evt) {
+            evt.preventDefault();
+
             var pic = $('.js-picture').val();
-            var nom = nameJpeg(pic.split('::')[0]);
+            var src = makeSrcAttr(pic.split('::')[0]);
 
             if (share) {
                 share.disarm(); // disarm share events + do callback
             }
-            self.Share = share = new Share(El.sharing, {
-                subject: 'I created my own pony using Wells Fargo Pony Workshop',
+            share = new Share(El.sharing, {
                 picture: pic,
+                subject: 'I created my own pony using Wells Fargo Pony Workshop',
                 tokens: {// inside template
-                    picture: nom,
                     heading: 'Take a peek at my pony!',
                     message: '',
+                    picture: src,
                 },
                 callback: function () { // callback after share
                     El.sharing.hide();
@@ -63,50 +67,48 @@ require(['../config'], function () {
             El.sharing.show();
         }
 
-        function bindings() {
+        function activateTOC() {
             require(['gareth', 'flatten'], function (Gar) {
-                $('#ProgressBar .item').each(function (i, e) {
+                $(El.progitems).each(function (i, e) {
                     var me = $(e);
 
-                    me.data('Step', i).on('click', function () {
+                    me.data('Step', i).on(ns('click'), function () {
                         Gar.roll(me.data('Step'));
                     });
                 });
             });
+        }
 
-            $.watchInputDevice();
-            $.markAgent();
+        function bindings() {
             $.watchHash();
-            $.reify(El);
+            $.watchInputDevice();
 
-            $('body').removeClass('loading');
+            activateTOC();
 
-            El.email.on('click', function (evt) {
-                evt.preventDefault();
-                _shareResult();
-            });
-
+            El.email.on(ns('click'), shareResult);
         }
 
         function init() {
-            // EXPOSE
-            W.Main = self;
-            self.El = El;
-            self.relayLoc = 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/';
-
+            $.doneLoading();
+            $.markAgent();
+            $.reify(El);
             bindings();
+
+            // EXPOSE
+            if (W.debug > 0) {
+                self.El = El;
+                self.Share = share;
+                C.info(Nom, self);
+            }
+            W[Nom] = self;
         }
         // - - - - - - - - - - - - - - - - - -
-        // LOADED
-
         $(init);
     });
 });
 /*
 
- /adp2.hosting.wellsfargo.com/
- /ecgsolutions.hosting.wellsfargo.com/
- /10.89.101.100/wf-ecg/pony-workshop/0/
+
 
 
  */
