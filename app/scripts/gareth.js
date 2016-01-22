@@ -57,7 +57,6 @@ define(['jquery', 'slick'], function ($) {
     // - - - - - - - - - - - - - - - - - -
     // ETC
     function showIntro(b) {
-        C.log('show', b);
         if (b === false) {
             El.introSec.hide();
             El.buildSec.show().css('opacity', 1);
