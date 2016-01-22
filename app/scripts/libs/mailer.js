@@ -1,14 +1,14 @@
 /*jslint  white:false */
-/*globals define, window */
+/*global define, window, Main */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- created drt 2015-09
+ recreated drt 2016-01
 
  USE
- prepare obj/json for sending to relay.php
+ prepare obj/json for sending to php relay
 
  TODO
  document a bit
- loosely load
+
  */
 
 define(['jquery'], function
@@ -21,8 +21,6 @@ define(['jquery'], function
         C = (W.C || W.console || {});
 
     function Mailer(to, from, sub, msg, cc, pic) {
-        var relay = W.Main.relayLoc + 'lib/relay2.php';
-
         this.to = to;
         this.from = from;
         this.sub = sub || 'Howdy';
@@ -30,13 +28,10 @@ define(['jquery'], function
         this.cc = cc || '';
         this.pic = pic || '';
         this.key = '***';
-        this.relay = relay;
+        this.relayFile = 'lib/relay2.php';
 
-        this.setRelay = function (url) {
-            relay = url;
-        };
         this.getRelay = function () {
-            return relay;
+            return Main.relayServ + this.relayFile;
         };
         this.encodeObj = function () {
             var key, str = '';
@@ -52,15 +47,9 @@ define(['jquery'], function
             }
             return str.slice(1);
         };
-        this.preview = function () {
-            return this.getRelay() + '?' + this.encodeObj();
-        };
-        this.locate = function () {
-            W.location.href = this.preview();
-        };
         this.post = function (cb) {
             $.ajax({
-                url: relay,
+                url: this.getRelay(),
                 type: 'post',
                 datatype: 'json',
                 data: {

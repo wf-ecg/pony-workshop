@@ -31,7 +31,7 @@ function Main($, _, Share) {
     };
     self = {
         imageDir: 'ponies/',
-        relayLoc: 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/',
+        relayServ: 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/',
     };
     // - - - - - - - - - - - - - - - - - -
     // HELPERS
@@ -41,7 +41,7 @@ function Main($, _, Share) {
     }
 
     function makeSrcAttr(nom) {
-        return 'src="' + self.relayLoc + self.imageDir + nom + '.jpg"';
+        return 'src="' + self.relayServ + self.imageDir + nom + '.jpg"';
     }
 
     function shareResult(evt) {
