@@ -30,7 +30,7 @@ define(['jquery', 'slick'], function ($) {
             progBar: '#ProgressBar',
             progSteps: '#ProgressBar div',
             selector: '.outerSelector:first',
-            sliders: '#Step1, #Step2, #Step3, #Step4, #Step5, #Step6, #Step7, #Step8, #Step9, #Step10',
+            sliders: '#Slider1, #Slider2, #Slider3, #Slider4, #Slider5, #Slider6, #Slider7, #Slider8, #Slider9, #Slider10',
             sticker: '#Sticker img',
             title: '#Title',
         },
@@ -80,15 +80,15 @@ define(['jquery', 'slick'], function ($) {
         El.progSteps.removeClass('activate') //
             .eq(num).addClass('activate');
 
-        $('#Step' + (num - 1)).stop().animate({
+        $('#Slider' + (num - 1)).stop().animate({
             bottom: '300px',
             opacity: 0,
         }, 300);
-        $('#Step' + (num + 1)).stop().animate({
+        $('#Slider' + (num + 1)).stop().animate({
             bottom: '-300px',
             opacity: 0,
         }, 300);
-        $('#Step' + num).stop().animate({
+        $('#Slider' + num).stop().animate({
             bottom: '0px',
             opacity: 1,
         }, 300);
