@@ -23,7 +23,9 @@ img.step {
     padding: 0;
     position: relative;
     width: 60%;
-
+    .slick-slide {
+        margin: 0;
+    }
     .step {
         bottom: -1000px;
         display: inline-block;
@@ -41,7 +43,7 @@ img.step {
             background-image: url(../images/_common/thumbBG_tile300bg.jpg);
             cursor: pointer;
             height: 100px;
-            margin: 0;
+            margin: auto;
             padding: 0;
             width: 100px;
         }
