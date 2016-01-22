@@ -27,15 +27,13 @@ define(['stack', 'gareth'], function (Stack) {
         stk: '#Sticker img',
     };
     stak = new Stack();
-    // - - - - - - - - - - - - - - - - - -
-    // PRIVATE
 
-    function db(num) {
-        return W.debug > (num || 0);
-    }
     function ns(str) {
         return (str || '') + '.' + Nom;
     }
+    // - - - - - - - - - - - - - - - - - -
+    // PRIVATE
+
     function _makeStream(can, lvl) {
         return can.toDataURL('image/jpeg', lvl || 0.5);
     }
@@ -91,7 +89,7 @@ define(['stack', 'gareth'], function (Stack) {
             return;
         }
 
-        img.on('load', function () {
+        img.on(ns('load'), function () {
             stak.insertLayer(img[0], 1, 0, 0);
             stak.addLayer(El.stk[0], 0, 0);
             stak.drawOn(El.can[0]);
@@ -111,12 +109,12 @@ define(['stack', 'gareth'], function (Stack) {
         $.reify(El);
 
         El.can.css({
-            opacity: 0.0001 + (db(2) ? 1 : 0),
+            opacity: 0.0001 + ((W.debug > 2) ? 1 : 0),
             position: 'absolute',
             zIndex: 0,
         });
 
-        El.cta.on('mouseenter', flatten);
+        El.cta.on(ns('mouseenter'), flatten);
 
         W.flatten = self = {
             stak: stak,
