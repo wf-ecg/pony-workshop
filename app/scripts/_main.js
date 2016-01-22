@@ -26,7 +26,6 @@ function Main($, _, Share) {
         cta: '.ctaContainerOuter .ctaContainerInner',
         email: '.js-email',
         progitems: '#ProgressBar .item',
-        share: '.share-btn', // TODO remove
         sharing: '.sharing',
     };
     self = {
