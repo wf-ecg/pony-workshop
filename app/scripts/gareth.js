@@ -32,7 +32,7 @@ define(['jquery', 'slick'], function ($) {
             selector: '.outerSelector:first',
             sliders: '#Slider1, #Slider2, #Slider3, #Slider4, #Slider5, #Slider6, #Slider7, #Slider8, #Slider9, #Slider10',
             sticker: '#Sticker img',
-            title: '#Title',
+            title: 'h2',
         },
         bkgrStep = 9, //  needed for actions that happen when user arrives at this step or leaves step
         bkgrChoice = 'bgrd-01', // default image to use for background
