@@ -23,6 +23,7 @@ function Main($, _, Share) {
         El, self, share;
 
     El = {
+        cta: '.ctaContainerOuter .ctaContainerInner',
         email: '.js-email',
         progitems: '#ProgressBar .item',
         share: '.share-btn', // TODO remove
@@ -68,23 +69,26 @@ function Main($, _, Share) {
         El.sharing.show();
     }
 
-    function activateTOC() {
-        require(['gareth', 'flatten'], function (Gar) {
-            $(El.progitems).each(function (i, e) {
-                var me = $(e);
+    function activateTOC(Gar) {
+        $(El.progitems).each(function (i, e) {
+            var me = $(e);
 
-                me.data('Step', i).on(ns('click'), function () {
-                    Gar.roll(me.data('Step'));
-                });
+            me.data('Step', i).on(ns('click'), function () {
+                Gar.roll(me.data('Step'));
             });
         });
+    }
+
+    function gatherLayers(Flatten) {
+        El.cta.on(ns('mouseenter'), Flatten.ponyLayers);
     }
 
     function bindings() {
         $.watchHash();
         $.watchInputDevice();
 
-        activateTOC();
+        require(['gareth'], activateTOC);
+        require(['flatten'], gatherLayers);
 
         El.email.on(ns('click'), shareResult);
     }
@@ -97,13 +101,13 @@ function Main($, _, Share) {
 
         // EXPOSE
         if (W.debug > 0) {
-            self.El = El;
-            self.Share = share;
+            self.el = El;
+            self.share = share;
             C.info(Nom, self);
         }
-        W[Nom] = self;
     }
     // - - - - - - - - - - - - - - - - - -
+    W[Nom] = self;
     $(init);
 }
 /*

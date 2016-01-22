@@ -1,7 +1,7 @@
 /*jslint  white:false */
 /*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- recreated drt 2016
+ recreated drt 2016-01
 
  USE
  hackey as hell
@@ -19,7 +19,6 @@ define(['jquery', 'stack', 'gareth'], function ($, Stack) {
 
     El = {
         can: 'canvas:first',
-        cta: '.ctaContainerOuter .ctaContainerInner',
         lnk: '.js-download:first',
         pic: '.js-picture',
         pre: '#PreviewPony',
@@ -29,6 +28,7 @@ define(['jquery', 'stack', 'gareth'], function ($, Stack) {
         el: El,
         stack: stack,
         msg: '<h4>Right-click to save your pony or set as background.</h4>',
+        ponyLayers: _ponyLayers,
     };
     // - - - - - - - - - - - - - - - - - -
     // HELPERS
@@ -36,18 +36,18 @@ define(['jquery', 'stack', 'gareth'], function ($, Stack) {
     function ns(str) {
         return (str || '') + '.' + Nom;
     }
-    function _makeStream(can, lvl) {
+    function makeStream(can, lvl) {
         return can.toDataURL('image/jpeg', lvl || 0.5);
     }
-    function _makeName() {
+    function makeName() {
         return 'pony' + $.now() + '::';
     }
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE
 
     function makeDownloadLink(lnk, can, nom) {
-        var dataUrl = _makeStream(can);
-        var nomTime = _makeName();
+        var dataUrl = makeStream(can);
+        var nomTime = makeName();
 
         // store POST data
         El.pic.val(dataUrl.replace(/^data:image\/jpeg;base64\,/, nomTime));
@@ -80,7 +80,7 @@ define(['jquery', 'stack', 'gareth'], function ($, Stack) {
         }
     }
 
-    function gatherLayers() {
+    function _ponyLayers() {
         var src = El.pre.css('background-image');
         var img = $('<img>').appendTo('body');
 
@@ -114,8 +114,6 @@ define(['jquery', 'stack', 'gareth'], function ($, Stack) {
             position: 'absolute',
             zIndex: 0,
         });
-        // trigger this mess
-        El.cta.on(ns('mouseenter'), gatherLayers);
     }
 
     function init() {
@@ -123,10 +121,14 @@ define(['jquery', 'stack', 'gareth'], function ($, Stack) {
         binding();
 
         // EXPOSE
-        W[Nom] = self;
+        if (W.debug > 0) {
+            C.info(Nom, W[Nom] = self);
+        }
     }
     // - - - - - - - - - - - - - - - - - -
     $(init);
+
+    return self;
 });
 /*
 
