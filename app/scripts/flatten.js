@@ -1,126 +1,136 @@
 /*jslint  white:false */
 /*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- recreated drt 2014
+ recreated drt 2016
 
  USE
- control of a page
+ hackey as hell
 
  TODO
  document a bit
- modernize api
- loosely load
  */
 
-define(['stack', 'gareth'], function (Stack) {
+define(['jquery', 'stack', 'gareth'], function ($, Stack) {
     var Nom = 'Flatten',
         W = (W && W.window || window),
         C = (W.C || W.console || {}),
-        U, El, self, stak;
-
+        U, El, self,
+        stack = new Stack();
 
     El = {
         can: 'canvas:first',
         cta: '.ctaContainerOuter .ctaContainerInner',
         lnk: '.js-download:first',
+        pic: '.js-picture',
         pre: '#PreviewPony',
         stk: '#Sticker img',
     };
-    stak = new Stack();
+    self = {
+        el: El,
+        stack: stack,
+        msg: '<h4>Right-click to save your pony or set as background.</h4>',
+    };
+    // - - - - - - - - - - - - - - - - - -
+    // HELPERS
 
     function ns(str) {
         return (str || '') + '.' + Nom;
     }
-    // - - - - - - - - - - - - - - - - - -
-    // PRIVATE
-
     function _makeStream(can, lvl) {
         return can.toDataURL('image/jpeg', lvl || 0.5);
     }
-
     function _makeName() {
         return 'pony' + $.now() + '::';
     }
+    // - - - - - - - - - - - - - - - - - -
+    // PRIVATE
 
-    function _linkDownloadName(lnk, can, nom) {
-        var dat = _makeStream(can);
-        var gen = _makeName();
+    function makeDownloadLink(lnk, can, nom) {
+        var dataUrl = _makeStream(can);
+        var nomTime = _makeName();
 
-        // set POST data
-        $('.js-picture').val(dat.replace(/^data:image\/jpeg;base64\,/, gen));
+        // store POST data
+        El.pic.val(dataUrl.replace(/^data:image\/jpeg;base64\,/, nomTime));
 
-        lnk[0]['download'] = nom + '.jpg'; // try for download awareness
-
+        lnk[0]['download'] = (nom + '.jpg');
+        // has browser accepted download this property/attr?
         if (lnk.attr('download')) {
             lnk.attr({
-                href: dat,
+                href: dataUrl,
             });
         } else { // using crap browser
             lnk.attr({
                 download: null,
-                href: dat, //.replace(/^data:image\/[^;]/, 'data:application/octet-stream'),
+                href: dataUrl,
                 target: '_blank',
             });
         }
+        // override link for msie and make new window
         if (W.SHIET.trident) {
             lnk[0].href = '#';
             lnk[0].onclick = function (evt) {
                 evt.preventDefault();
-                var win;
-                win = W.open('preview.html');
-                win.document.writeln('<h4>Right-click to save your pony or set as background.</h4>');
-                win.document.writeln('<img width=100% src="' + dat + '">');
+
+                var win = W.open('preview.html');
+
+                win.document.writeln(self.msg);
+                win.document.writeln('<img width=100% src="' + dataUrl + '">');
                 win.document.close();
             };
         }
     }
-    // - - - - - - - - - - - - - - - - - -
-    // DEPENZ
 
-    function flatten() {
+    function gatherLayers() {
         var src = El.pre.css('background-image');
         var img = $('<img>').appendTo('body');
 
+        // attach css background as img for extraction
         src = src.match(/(http:.+jpg)/g);
-
         if (src && src[0]) {
             img.attr('src', src[0]);
         } else {
             return;
         }
-
+        // all layers are loaded
         img.on(ns('load'), function () {
-            stak.insertLayer(img[0], 1, 0, 0);
-            stak.addLayer(El.stk[0], 0, 0);
-            stak.drawOn(El.can[0]);
+            stack.insertLayer(img[0], 1, 0, 0);
+            stack.addLayer(El.stk[0], 0, 0);
+            stack.drawOn(El.can[0]);
 
-            _linkDownloadName(El.lnk, El.can[0], 'ponypic');
+            makeDownloadLink(El.lnk, El.can[0], 'ponypic');
             img.remove();
         });
-
-        stak.setOrigin(444, 111);
-        El.pre.find('div img').not(El.stk) //
-            .each(function (i, e) {
-                stak.addLayer(e);
-            });
+        // inset for pony parts
+        stack.setOrigin(444, 111);
+        // layer each part
+        El.pre.find('div img').not(El.stk).each(function (i, e) {
+            stack.addLayer(e);
+        });
     }
 
-    function init() {
-        $.reify(El);
-
-        El.can.css({
+    function binding() {
+        El.can.css({// do not readily show the canvas
             opacity: 0.0001 + ((W.debug > 2) ? 1 : 0),
             position: 'absolute',
             zIndex: 0,
         });
-
-        El.cta.on(ns('mouseenter'), flatten);
-
-        W.flatten = self = {
-            stak: stak,
-            ele: El,
-        };
+        // trigger this mess
+        El.cta.on(ns('mouseenter'), gatherLayers);
     }
 
+    function init() {
+        $.reify(El);
+        binding();
+
+        // EXPOSE
+        W[Nom] = self;
+    }
+    // - - - - - - - - - - - - - - - - - -
     $(init);
 });
+/*
+
+ .replace(/^data:image\/[^;]/, 'data:application/octet-stream'),
+
+
+ */
