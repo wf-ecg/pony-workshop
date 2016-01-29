@@ -3,7 +3,7 @@
 header('Access-Control-Allow-Origin: *');
 $OK = false;
 $SERV = $_SERVER;
-$dbg = 1;
+$dbg = 0;
 $dir = '../ponies/';
 #
 ?>
@@ -58,10 +58,11 @@ $dir = '../ponies/';
           }
           if (!empty($pair[1])) {
               ensureDir($dir);
-              file_put_contents($dir . $pair[0] . '.jpg', base64_decode($pair[1]));
+              $nom = "$pair[0].jpg";
+              file_put_contents($dir . $nom, base64_decode($pair[1]));
           }
-          if ($dbg) {
-              //print_r($pair);
+          if (!$dbg) {
+              print_r($nom);
           }
       }
 
@@ -136,7 +137,8 @@ $dir = '../ponies/';
           'stat' => $OK ? 'sent' : 'fail',
           'refr' => "$SERV[HTTP_REFERER]"
       ));
-      ?><script>
+      ?>
+    <script>
           var W = window,
               R = <?php echo $REZ; ?>,
               S = (R.stat === 'fail') ? 3 : 1;
