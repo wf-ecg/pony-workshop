@@ -1,7 +1,9 @@
 <?php
 #
 header('Access-Control-Allow-Origin: *');
-$dbg = 1;
+
+$SERV = $_SERVER;
+$dbg = 0;
 $dir = '../ponies/';
 #
 ?>
@@ -17,6 +19,24 @@ $dir = '../ponies/';
           echo '<pre>';
           print_r($SERV);
       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       function splitData($pic) {
           $arr = preg_split('/::/', $pic);
@@ -38,14 +58,16 @@ $dir = '../ponies/';
           }
           if (!empty($pair[1])) {
               ensureDir($dir);
-              file_put_contents($dir . $pair[0] . '.jpg', base64_decode($pair[1]));
+              $nom = "$pair[0].jpg";
+              file_put_contents($dir . $nom, base64_decode($pair[1]));
           }
-          if ($dbg) {
-              //print_r($pair);
+          if (!$dbg) {
+              print_r($nom);
           }
       }
 
       picSaver($_POST[pic]);
+
       ?>
   </body>
 </html>
