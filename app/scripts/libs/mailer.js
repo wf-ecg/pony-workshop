@@ -28,7 +28,7 @@ define(['jquery'], function
         this.cc = cc || '';
         this.pic = pic || '';
         this.key = '***';
-        this.relayFile = 'lib/relay2.php';
+        this.relayFile = 'lib/picsave.php';
 
         this.getRelay = function () {
             return Main.relayServ + this.relayFile;

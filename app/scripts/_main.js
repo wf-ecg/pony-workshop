@@ -30,7 +30,7 @@ function Main($, _, Share) {
     };
     self = {
         imageDir: 'ponies/',
-        relayServ: 'http:/' + '/ecgsolutions.hosting.wellsfargo.com/',
+        relayServ: 'http:/' + '/10.89.101.100/wf-ecg/pony-workshop/0/',
     };
     // - - - - - - - - - - - - - - - - - -
     // HELPERS
