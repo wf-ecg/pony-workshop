@@ -57,18 +57,18 @@ module.exports = function (grunt) {
                         dest: '/web/<%= pkg.group %>/',
                     }],
                 //pretend: true,
-                updateOnly: false, // true = Don't remove any files from `dest` (works around 30% faster)
+                updateOnly: false,
                 updateAndDelete: true,
                 verbose: true,
                 compareUsing: 'md5', // 'mtime'
             },
-            update: {
+            qt: {
                 files: [{
                         cwd: 'app',
                         src: ['**/*'],
                         dest: '/web/<%= pkg.group %>/',
                     }],
-                //pretend: true,
+                updateOnly: true, // Don't remove any files from `dest` (works around 30% faster)
             },
             // https://github.com/tomusdrw/grunt-sync
         },
@@ -104,7 +104,7 @@ module.exports = function (grunt) {
                     livereload: '<%= pkg.port0 %>',
                 },
                 files: ['app/**/*', '!app/**/*.map'], // '<%= jshint.files %>',
-                tasks: ['jshint', 'sync:update'], // 'qunit'
+                tasks: ['jshint', 'sync:qt'], // 'qunit'
             },
             wait: {
                 options: {
@@ -156,7 +156,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['jshint', 'qunit']);
 
-    grunt.registerTask('default', ['jshint', 'sass:full', 'sync:clean', 'connect:full', 'watch']);
+    grunt.registerTask('default', ['jshint', 'sass:full', 'sync:qt', 'connect:full', 'watch']);
     grunt.registerTask('package', ['jshint', 'sass:full', 'requirejs', 'sync:clean']);
 };
 
