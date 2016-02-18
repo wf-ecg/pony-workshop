@@ -100,7 +100,7 @@ define(['jquery', 'slick'], function ($) {
         } else if (currentStep < bkgrStep) { // moving backwards from backgrounds selection
             // clearBackground
             setBG('bgrd-clear');
-            El.body.css('backgroundImage', 'url(images/backgrounds/bgrd-body.jpg)');
+            El.body.css('backgroundImage', 'url(images/pieces/bgrd-body.jpg)');
             El.fade.css('opacity', 0);
             El.preview.removeClass('previewScaled');
             El.sticker.hide();
@@ -199,7 +199,7 @@ define(['jquery', 'slick'], function ($) {
         str += (str === 'bgrd-clear') ? '.png' : '.jpg';
         El.preview.css({
             backgroundSize: 'contain',
-            backgroundImage: 'url(images/backgrounds/' + str + ')',
+            backgroundImage: 'url(images/pieces/' + str + ')',
         });
         El.fade.css({
             backgroundColor: bkgrColors[num] || 'black',
