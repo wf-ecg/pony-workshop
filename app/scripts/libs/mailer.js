@@ -1,14 +1,14 @@
 /*jslint  white:false */
-/*globals define, window */
+/*global define, window, Main */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- created drt 2015-09
+ recreated drt 2016-01
 
  USE
- prepare obj/json for sending to relay.php
+ prepare obj/json for sending to php relay
 
  TODO
  document a bit
- loosely load
+
  */
 
 define(['jquery'], function
@@ -16,13 +16,11 @@ define(['jquery'], function
     'use strict'; // semi-static closure
 
 //CLASS
-    var Nom = 'Mailer';
-    var W = (W && W.window || window), C = (W.C || W.console || {});
-    var Db = W.debug > 1;
+    var Nom = 'Mailer',
+        W = (W && W.window || window),
+        C = (W.C || W.console || {});
 
     function Mailer(to, from, sub, msg, cc, pic) {
-        var relay = W.Main.relayLoc + 'lib/relay2.php';
-
         this.to = to;
         this.from = from;
         this.sub = sub || 'Howdy';
@@ -30,13 +28,10 @@ define(['jquery'], function
         this.cc = cc || '';
         this.pic = pic || '';
         this.key = '***';
-        this.relay = relay;
+        this.relayFile = 'lib/relay2.php';
 
-        this.setRelay = function (url) {
-            relay = url;
-        };
         this.getRelay = function () {
-            return relay;
+            return Main.relayServ + this.relayFile;
         };
         this.encodeObj = function () {
             var key, str = '';
@@ -52,30 +47,9 @@ define(['jquery'], function
             }
             return str.slice(1);
         };
-        this.preview = function () {
-            return this.getRelay() + '?' + this.encodeObj();
-        };
-        this.locate = function () {
-            W.location.href = this.preview();
-        };
-        this.get = function (cb) {
-            var test = $('<div>'),
-                text = this.preview();
-
-            $.ajaxSetup({
-                cache: false,
-            });
-
-            test.appendTo('body').hide() //
-                .load(text, function (rez) {
-                    C.log(text, rez);
-                    cb();
-                    test.remove();
-                });
-        };
         this.post = function (cb) {
             $.ajax({
-                url: relay,
+                url: this.getRelay(),
                 type: 'post',
                 datatype: 'json',
                 data: {
@@ -87,19 +61,20 @@ define(['jquery'], function
                     pic: this.pic,
                     key: this.key,
                 },
-                success: function (from) {
-                    C.debug('success', from);
-                    cb();
-                    // close relay
+                success: function () {
+                    if (W.debug > 1) {
+                        C.debug(Nom, 'success', arguments);
+                    }
+                    cb(); // close relay
                 },
                 error: function () {
                     // probably done but origin access prohibited
-                    C.debug('forced post', from);
+                    C.debug(Nom, 'forced post', arguments);
                     cb();
                 },
             });
         };
-    };
+    }
 
     return Mailer;
 });

@@ -5,7 +5,7 @@ var W = (W && W.window || window),
     C = (W.C || W.console || {});
 
 W.SHIET = {};
-W.debug = Number(new Date('2016/01/01') > new Date());
+W.debug = (new Date('2016/01/01') > new Date()) ? 1 : 0;
 
 require.config({
     baseUrl: 'scripts',
@@ -60,8 +60,6 @@ require(['console', 'lodash'], function () {
     }, 1e3);
 
     /// CUSTOM
-
     statToken = statToken || 'PONY-Work';
-    //require(['_main']);
 });
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

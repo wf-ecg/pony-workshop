@@ -1,5 +1,5 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
-/* PROJ / Base */
+/* PROJ/_base.scss */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 * {
     box-sizing: border-box;
@@ -15,7 +15,7 @@ body {
     @media (max-height: 500px) { font-size: 70%; }
     @media (max-height: 560px) { font-size: 80%; }
     @media (max-height: 729px) { font-size: 90%; }
-    background-image: url(../images/backgrounds/bgrd-body.jpg);
+    background-image: url(../images/pieces/bgrd-body.jpg);
     background-position: center center;
     font-size: 100%;
     margin: 0;
@@ -26,7 +26,7 @@ body {
 footer {
     background-color: #44464a;
     bottom: 0;
-    color: #fff;
+    color: white;
     display: block;
     font-family: $sans;
     font-size: 11px;

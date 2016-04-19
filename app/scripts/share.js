@@ -13,7 +13,7 @@
  */
 
 define(['jquery', 'mailer'], function
-    KLASS($, Mail) {
+    KLASS($, Mailer) {
     'use strict';
 
     var Nom = "Share";
@@ -31,12 +31,10 @@ define(['jquery', 'mailer'], function
     // - - - - - - - - - - - - - - - - - -
     // PRIVATE
 
-    function db(num) {
-        return W.debug > (num || 0);
-    }
     function ns(str) {
         return (str || '') + '.' + Nom;
     }
+
     var K = {
         isGoodEmail: function (str) {
             if (!str || !str.match('wellsfargo')) {
@@ -46,7 +44,7 @@ define(['jquery', 'mailer'], function
         },
         checkEmail: function (ele) {
             ele = $(ele.originalEvent ? ele.target : ele);
-            if (db(1)) {
+            if (W.debug > 1) {
                 ele.val(Df.test);
             }
             var str = $(ele).val();
@@ -107,7 +105,7 @@ define(['jquery', 'mailer'], function
             ele.theirs.on(ns('blur'), K.checkEmail);
             reset();
 
-            if (db()) {
+            if (W.debug > 0) {
                 api[Nom + ':' + sel] = {
                     _closure: KLASS,
                     cf: cf,
@@ -151,18 +149,18 @@ define(['jquery', 'mailer'], function
             };
             obj.cc = obj.from;
             // to, from, sub, msg, cc
-            return new Mail(obj.to, obj.from, obj.sub, obj.msg, obj.cc, obj.pic);
+            return new Mailer(obj.to, obj.from, obj.sub, obj.msg, obj.cc, obj.pic);
         }
         function _sendMail() {
-            var mail, mele = $('<div>').appendTo('body');
+            var mailer, mele = $('<div>').appendTo('body');
 
             mele.load(cf.template, function () {
-                mail = _makeMailFrom(mele);
+                mailer = _makeMailFrom(mele);
 
-                mail['post'](function () {
-                    if (db(2)) {
-                        C.log(Nom, mail);
-                        $('body').html(mail.msg);
+                mailer.post(function () { // callback
+                    if (W.debug > 2) {
+                        C.log(Nom, mailer);
+                        $('body').html(mailer.msg);
                     } else {
                         W.alert('Sent!');
                         mele.remove();

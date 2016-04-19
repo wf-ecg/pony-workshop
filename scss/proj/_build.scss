@@ -1,17 +1,16 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
-/* PROJ / Build */
+/* PROJ/_build.scss */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #Build {
     height: 100%;
     opacity: 0;
     position: relative;
-
 }
 
 #ProgressBar {
     background: none;
-    color: #fff;
+    color: white;
     font-family: Verdana,Arial,sans-serif;
     font-size: 1em;
     height: auto;
