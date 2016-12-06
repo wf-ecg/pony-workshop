@@ -11,32 +11,32 @@ var W = (W && W.window || window),
     C = (W.C || W.console || {});
 
 define(['jquery'], function ($) {
-    'use strict';
+  'use strict';
 
-    W.SHIET = {
-        trident: Boolean(W.navigator.userAgent.indexOf('rident') + 1),
-        init: function () {
-            if (!$.fn)
-                throw new Error('init requires jquery');
-            if (this.trident)
-                $('html').addClass('msie');
-            return this;
-        }
-    };
+  W.SHIET = {
+    trident: Boolean(W.navigator.userAgent.indexOf('rident') + 1),
+    init: function () {
+      if (!$.fn)
+        throw new Error('init requires jquery');
+      if (this.trident)
+        $('html').addClass('msie');
+      return this;
+    }
+  };
 
-    (function (c) {
-        W.C = W.console = c;
+  (function (c) {
+    W.C = W.console = c;
 
-        if (W.window !== window || !C.debug) {
-            throw new Error('probably old IE');
-        }
-    }(function () {
-        try {
-            return C || C.log();
-        } catch (e) {
-            W.alert('Minimum requirement: IE8 or greater.\n' + e);
-        }
-    }()));
+    if (W.window !== window || !C.debug) {
+      throw new Error('probably old IE');
+    }
+  }(function () {
+    try {
+      return C || C.log();
+    } catch (e) {
+      W.alert('Minimum requirement: IE8 or greater.\n' + e);
+    }
+  }()));
 });
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -3,66 +3,66 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #Title {
-    background-color: white;
-    color: #44464a;
-    display: inline-block;
-    font-family: $serif;
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0;
-    margin-top: 40px;
-    padding: 3px;
-    position: relative;
-    text-align: center;
-    width: 100%;
-    z-index: 2;
+  background-color: white;
+  color: #44464a;
+  display: inline-block;
+  font-family: $serif;
+  font-size: 1.3em;
+  font-weight: 600;
+  margin: 0;
+  margin-top: 40px;
+  padding: 3px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
 }
 
 .alertHeight {
-    background-color: white;
-    color: #bb0826;
-    display: none;
-    font-family: $sans;
-    font-size: 1.5em;
-    height: 100%;
-    left: 0;
-    margin: 0;
-    opacity: 0.9;
-    padding: 0;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-    @media (max-height: 479px), (max-width: 659px) { display: block; }
-    @media (min-height: 480px), (min-width: 660px) { display: none; }
-    p {
-        background-color: #bb0826;
-        color: white;
-        margin: 10em auto;
-        padding: 10px 5px;
-        width: 50%;
-    }
+  background-color: white;
+  color: #bb0826;
+  display: none;
+  font-family: $sans;
+  font-size: 1.5em;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  opacity: 0.9;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  @media (max-height: 479px), (max-width: 659px) { display: block; }
+  @media (min-height: 480px), (min-width: 660px) { display: none; }
+  p {
+    background-color: #bb0826;
+    color: white;
+    margin: 10em auto;
+    padding: 10px 5px;
+    width: 50%;
+  }
 }
 
 .backgroundFaded {
-    height: 100%;
-    left: 0;
-    margin: 0;
-    opacity: 1;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  opacity: 1;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
 }
 
 .preload {
-    bottom: -9999px;
-    left: -9999px;
-    position: absolute;
-    img {
-        height: 1px;
-        width: 1px;
-    }
+  bottom: -9999px;
+  left: -9999px;
+  position: absolute;
+  img {
+    height: 1px;
+    width: 1px;
+  }
 }

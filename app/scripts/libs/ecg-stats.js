@@ -16,113 +16,113 @@
 
 define(['jquery', 'lodash', 'beacon'], function
     KLASS($, _, Beacon) {
-    'use strict';
+  'use strict';
 
-    var Nom = 'Stats', self;
-    var W = (W && W.window || window),
-        C = (W.C || W.console || {});
-    var Db = W.debug > 0;
-    var Df = {// DEFAULTS
-        controls: 'a, button, input',
-        key: 'ECG-Stats',
-        lastAction: null,
-        time: 1.5,
-    };
+  var Nom = 'Stats', self;
+  var W = (W && W.window || window),
+      C = (W.C || W.console || {});
+  var Db = W.debug > 0;
+  var Df = {// DEFAULTS
+    controls: 'a, button, input',
+    key: 'ECG-Stats',
+    lastAction: null,
+    time: 1.5,
+  };
 
-    function Stats() {
-    }
+  function Stats() {
+  }
 
 // HELPERS (defaults dependancy only)
-    function _dump(msg) {
-        if (Db && msg) {
-            C.debug(Nom, '(dump)', [Df.key, msg]);
-        }
+  function _dump(msg) {
+    if (Db && msg) {
+      C.debug(Nom, '(dump)', [Df.key, msg]);
     }
-    function _send(msg) {
-        if (W.ga && msg) {
-            ga('send',
-                'event', // hit type
-                Df.key, //  category
-                msg, //     action, // [label], // [value],
-                {'nonInteraction': true} // EvtCf?
-            );
-        }
+  }
+  function _send(msg) {
+    if (W.ga && msg) {
+      ga('send',
+          'event', // hit type
+          Df.key, //  category
+          msg, //     action, // [label], // [value],
+          {'nonInteraction': true} // EvtCf?
+      );
     }
+  }
 
 // PRIVATE
-    function _getActive() {
-        if (W.lastAction !== Df.lastAction) {
-            Df.lastAction = W.lastAction;
-            self.update();
-        }
+  function _getActive() {
+    if (W.lastAction !== Df.lastAction) {
+      Df.lastAction = W.lastAction;
+      self.update();
     }
-    function _getString(me) {
-        return (me.children()[0] ||
-            me.get(0)).innerText ||
-            me.attr('href') ||
-            me.children().first().attr('alt');
-    }
-    function _makeMessage(evt) {
-        var me, msg, str, tag, type;
+  }
+  function _getString(me) {
+    return (me.children()[0] ||
+        me.get(0)).innerText ||
+        me.attr('href') ||
+        me.children().first().attr('alt');
+  }
+  function _makeMessage(evt) {
+    var me, msg, str, tag, type;
 
-        me = $(evt.currentTarget);
-        msg = me.data('stat') || '';
-        str = _getString(me);
-        tag = me.prop('tagName');
-        type = evt.type;
+    me = $(evt.currentTarget);
+    msg = me.data('stat') || '';
+    str = _getString(me);
+    tag = me.prop('tagName');
+    type = evt.type;
 
-        if (!msg) {
-            switch (tag) {
-                case 'A':
-                    msg = ('Link:' + str);
-                    break;
-                case 'BUTTON':
-                    msg = ('Button:' + me.get(0).textContent);
-                    break;
-                default:
-                    msg = me.parent().get(0).className;
-            }
-        }
-        if (msg) {
-            msg = type + ':' + msg;
-        }
-        return msg;
+    if (!msg) {
+      switch (tag) {
+        case 'A':
+          msg = ('Link:' + str);
+          break;
+        case 'BUTTON':
+          msg = ('Button:' + me.get(0).textContent);
+          break;
+        default:
+          msg = me.parent().get(0).className;
+      }
     }
-    function _bindings() {
-        Df.beacon = new Beacon(Df.time * 10, Df.key);
+    if (msg) {
+      msg = type + ':' + msg;
+    }
+    return msg;
+  }
+  function _bindings() {
+    Df.beacon = new Beacon(Df.time * 10, Df.key);
 
-        $('body').on('click keypress', Df.controls, function (evt) {
-            W.lastAction = _makeMessage(evt);
-        });
-        W.setInterval(_getActive, Df.time * 100); // record last activity
-    }
+    $('body').on('click keypress', Df.controls, function (evt) {
+      W.lastAction = _makeMessage(evt);
+    });
+    W.setInterval(_getActive, Df.time * 100); // record last activity
+  }
 
 // PUBLIC
-    function update(msg) {
-        (W.ga ? _send : _dump)(Df.lastAction);
-        W.lastAction = '';
+  function update(msg) {
+    (W.ga ? _send : _dump)(Df.lastAction);
+    W.lastAction = '';
+  }
+  function init(key, sel) {
+    if (Db) {
+      self.Df = Df;
+      C.debug('[[init]]', self);
     }
-    function init(key, sel) {
-        if (Db) {
-            self.Df = Df;
-            C.debug('[[init]]', self);
-        }
-        Df.key = key || Df.key;
-        Df.controls = sel || Df.controls;
+    Df.key = key || Df.key;
+    Df.controls = sel || Df.controls;
 
-        _bindings();
-        return self;
-    }
+    _bindings();
+    return self;
+  }
 
 // INIT
-    self = new Stats();
+  self = new Stats();
 
-    $.extend(true, self, {
-        init: _.once(init),
-        update: _.debounce(update, Df.time * 1000),
-    });
+  $.extend(true, self, {
+    init: _.once(init),
+    update: _.debounce(update, Df.time * 1000),
+  });
 
-    return self;
+  return self;
 });
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

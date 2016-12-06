@@ -3,89 +3,89 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 .grow {
-    @include transition( all 0.2s ease-in-out );
-    cursor: pointer;
-    &:hover {
-        @include transform( scale(1.1) );
-    }
+  @include transition( all 0.2s ease-in-out );
+  cursor: pointer;
+  &:hover {
+    @include transform( scale(1.1) );
+  }
 }
 .activate {
-    @include transition( all 0.2s ease-in-out );
-    opacity: 1 !important;
-    z-index: 998;
+  @include transition( all 0.2s ease-in-out );
+  opacity: 1 !important;
+  z-index: 998;
 }
 
 .pushDown, .pushDownUndo,
 .pushLeft, .pushLeftUndo,
 .pushUp, .pushUpUndo,
 .pushRight, .pushRightUndo {
-    @include transition( all 0.2s ease-in-out );
-    opacity: 1;
+  @include transition( all 0.2s ease-in-out );
+  opacity: 1;
 }
 
 .pushDown {
-    @include transform( translateY(250px) );
+  @include transform( translateY(250px) );
 }
 .pushDownUndo {
-    @include transform( translateY(0px) );
+  @include transform( translateY(0px) );
 }
 
 .pushUp {
-    @include transform( translateY(-250px) );
-    opacity: 0;
+  @include transform( translateY(-250px) );
+  opacity: 0;
 }
 .pushUpUndo {
-    @include transform( translateY(0px) );
+  @include transform( translateY(0px) );
 }
 
 .pushLeft {
-    @include transform( translateX(-250px) );
-    opacity: 0;
+  @include transform( translateX(-250px) );
+  opacity: 0;
 }
 .pushLeftUndo {
-    @include transform( translateX(0px) );
+  @include transform( translateX(0px) );
 }
 
 .pushRight {
-    @include transform( translateX(250px) );
-    opacity: 0;
+  @include transform( translateX(250px) );
+  opacity: 0;
 }
 .pushRightUndo {
-    @include transform( translateX(0px) );
+  @include transform( translateX(0px) );
 }
 
 
 @-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 @keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 
 * { -webkit-transition: opacity 1s ease-out; }
 
 body {
-    //background: url('../images/help/loading.gif') 50% 50% no-repeat;
-    //background-size: 0%;
+  //background: url('../images/help/loading.gif') 50% 50% no-repeat;
+  //background-size: 0%;
 }
 body.loading {
-    background-color: $lite;
-    background-size: 6%;
+  background-color: $lite;
+  background-size: 6%;
 }
 body.loading * {
-    opacity: 0.1;
+  opacity: 0.1;
 }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

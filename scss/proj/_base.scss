@@ -2,61 +2,61 @@
 /* PROJ/_base.scss */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 html, body {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-family: $sans;
-    height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: $sans;
+  height: 100%;
 }
 body {
-    @include background-size( cover );
-    @media (max-height: 500px) { font-size: 70%; }
-    @media (max-height: 560px) { font-size: 80%; }
-    @media (max-height: 729px) { font-size: 90%; }
-    background-image: url(../images/pieces/bgrd-body.jpg);
-    background-position: center center;
-    font-size: 100%;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
+  @include background-size( cover );
+  @media (max-height: 500px) { font-size: 70%; }
+  @media (max-height: 560px) { font-size: 80%; }
+  @media (max-height: 729px) { font-size: 90%; }
+  background-image: url(../images/pieces/bgrd-body.jpg);
+  background-position: center center;
+  font-size: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
 }
 
 footer {
-    background-color: #44464a;
-    bottom: 0;
-    color: white;
-    display: block;
-    font-family: $sans;
-    font-size: 11px;
-    height: auto;
-    left: 0;
-    padding: 10px 20px;
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    z-index: 1000;
+  background-color: #44464a;
+  bottom: 0;
+  color: white;
+  display: block;
+  font-family: $sans;
+  font-size: 11px;
+  height: auto;
+  left: 0;
+  padding: 10px 20px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 1000;
 }
 
 header {
-    background-color: #bb0826;
-    background-image: url(../images/_common/wf-logo-bg.png);
-    background-repeat: repeat-x;
-    height: 40px;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    text-align: center;
-    top: 0;
-    width: 100%;
-    z-index: 998;
+  background-color: #bb0826;
+  background-image: url(../images/_common/wf-logo-bg.png);
+  background-repeat: repeat-x;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 998;
 
-    img {
-        height: 40px;
-        margin: 0 auto;
-        width: 300px;
-    }
+  img {
+    height: 40px;
+    margin: 0 auto;
+    width: 300px;
+  }
 }
 
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

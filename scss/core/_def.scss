@@ -47,9 +47,9 @@ $grey: lighten($gray, 20%);
 
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 @include keyframes(throb) {
-    33% { opacity: 1.0; }
-    44% { opacity: 0.7; }
-    55% { opacity: 0.8; }
-    66% { opacity: 0.6; }
-    77% { opacity: 1.0; }
+  33% { opacity: 1.0; }
+  44% { opacity: 0.7; }
+  55% { opacity: 0.8; }
+  66% { opacity: 0.6; }
+  77% { opacity: 1.0; }
 }

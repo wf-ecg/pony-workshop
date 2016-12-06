@@ -13,15 +13,15 @@ $dark: #333;
 $foot: #4e4e4e;
 
 @mixin shadgrad($clr1: rgba(11, 11, 11, 0.5), $clr2: rgba(0, 0, 0, 0) ){
-    @include background-image( linear-gradient(top, $clr1 70%, $clr2 90%) );
+  @include background-image( linear-gradient(top, $clr1 70%, $clr2 90%) );
 }
 @mixin darktext(){
-    color: $dark;
-    text-shadow: $lite 0px 1px 1px;
+  color: $dark;
+  text-shadow: $lite 0px 1px 1px;
 }
 @mixin litetext(){
-    color: $lite;
-    text-shadow: $dark 0px 1px 1px;
+  color: $lite;
+  text-shadow: $dark 0px 1px 1px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

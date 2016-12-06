@@ -11,124 +11,124 @@
  */
 
 define(['jquery', 'stack', 'gareth'], function ($, Stack) {
-    var Nom = 'Flatten',
-        W = (W && W.window || window),
-        C = (W.C || W.console || {}),
-        U, El, self,
-        stack = new Stack();
+  var Nom = 'Flatten',
+      W = (W && W.window || window),
+      C = (W.C || W.console || {}),
+      U, El, self,
+      stack = new Stack();
 
-    El = {
-        can: 'canvas:first',
-        lnk: '.js-download:first',
-        pic: '.js-picture',
-        pre: '#PreviewPony',
-        stk: '#Sticker img',
-    };
-    self = {
-        el: El,
-        stack: stack,
-        msg: '<h4>Right-click to save your pony or set as background.</h4>',
-        ponyLayers: _ponyLayers,
-    };
-    // - - - - - - - - - - - - - - - - - -
-    // HELPERS
+  El = {
+    can: 'canvas:first',
+    lnk: '.js-download:first',
+    pic: '.js-picture',
+    pre: '#PreviewPony',
+    stk: '#Sticker img',
+  };
+  self = {
+    el: El,
+    stack: stack,
+    msg: '<h4>Right-click to save your pony or set as background.</h4>',
+    ponyLayers: _ponyLayers,
+  };
+  // - - - - - - - - - - - - - - - - - -
+  // HELPERS
 
-    function ns(str) {
-        return (str || '') + '.' + Nom;
+  function ns(str) {
+    return (str || '') + '.' + Nom;
+  }
+  function makeStream(can, lvl) {
+    return can.toDataURL('image/jpeg', lvl || 0.5);
+  }
+  function makeName() {
+    return 'pony' + $.now() + '::';
+  }
+  // - - - - - - - - - - - - - - - - - -
+  // PRIVATE
+
+  function makeDownloadLink(lnk, can, nom) {
+    var dataUrl = makeStream(can);
+    var nomTime = makeName();
+
+    // store POST data
+    El.pic.val(dataUrl.replace(/^data:image\/jpeg;base64\,/, nomTime));
+
+    lnk[0]['download'] = (nom + '.jpg');
+    // has browser accepted download this property/attr?
+    if (lnk.attr('download')) {
+      lnk.attr({
+        href: dataUrl,
+      });
+    } else { // using crap browser
+      lnk.attr({
+        download: null,
+        href: dataUrl,
+        target: '_blank',
+      });
     }
-    function makeStream(can, lvl) {
-        return can.toDataURL('image/jpeg', lvl || 0.5);
+    // override link for msie and make new window
+    if (W.SHIET.trident) {
+      lnk[0].href = '#';
+      lnk[0].onclick = function (evt) {
+        evt.preventDefault();
+
+        var win = W.open('preview.html');
+
+        win.document.writeln(self.msg);
+        win.document.writeln('<img width=100% src="' + dataUrl + '">');
+        win.document.close();
+      };
     }
-    function makeName() {
-        return 'pony' + $.now() + '::';
+  }
+
+  function _ponyLayers() {
+    var src = El.pre.css('background-image');
+    var img = $('<img>').appendTo('body');
+
+    // attach css background as img for extraction
+    src = src.match(/(http:.+jpg)/g);
+    if (src && src[0]) {
+      img.attr('src', src[0]);
+    } else {
+      return;
     }
-    // - - - - - - - - - - - - - - - - - -
-    // PRIVATE
+    // all layers are loaded
+    img.on(ns('load'), function () {
+      stack.insertLayer(img[0], 1, 0, 0);
+      stack.addLayer(El.stk[0], 0, 0);
+      stack.drawOn(El.can[0]);
 
-    function makeDownloadLink(lnk, can, nom) {
-        var dataUrl = makeStream(can);
-        var nomTime = makeName();
+      makeDownloadLink(El.lnk, El.can[0], 'ponypic');
+      img.remove();
+    });
+    // inset for pony parts
+    stack.setOrigin(444, 111);
+    // layer each part
+    El.pre.find('div img').not(El.stk).each(function (i, e) {
+      stack.addLayer(e);
+    });
+  }
 
-        // store POST data
-        El.pic.val(dataUrl.replace(/^data:image\/jpeg;base64\,/, nomTime));
+  function binding() {
+    El.can.css({// do not readily show the canvas
+      opacity: 0.0001 + ((W.debug > 2) ? 1 : 0),
+      position: 'absolute',
+      zIndex: 0,
+    });
+  }
 
-        lnk[0]['download'] = (nom + '.jpg');
-        // has browser accepted download this property/attr?
-        if (lnk.attr('download')) {
-            lnk.attr({
-                href: dataUrl,
-            });
-        } else { // using crap browser
-            lnk.attr({
-                download: null,
-                href: dataUrl,
-                target: '_blank',
-            });
-        }
-        // override link for msie and make new window
-        if (W.SHIET.trident) {
-            lnk[0].href = '#';
-            lnk[0].onclick = function (evt) {
-                evt.preventDefault();
+  function init() {
+    $.reify(El);
+    binding();
 
-                var win = W.open('preview.html');
-
-                win.document.writeln(self.msg);
-                win.document.writeln('<img width=100% src="' + dataUrl + '">');
-                win.document.close();
-            };
-        }
+    // EXPOSE
+    if (W.debug > 0) {
+      C.info(Nom, W[Nom] = self);
     }
+  }
+  // - - - - - - - - - - - - - - - - - -
+  $(init);
 
-    function _ponyLayers() {
-        var src = El.pre.css('background-image');
-        var img = $('<img>').appendTo('body');
-
-        // attach css background as img for extraction
-        src = src.match(/(http:.+jpg)/g);
-        if (src && src[0]) {
-            img.attr('src', src[0]);
-        } else {
-            return;
-        }
-        // all layers are loaded
-        img.on(ns('load'), function () {
-            stack.insertLayer(img[0], 1, 0, 0);
-            stack.addLayer(El.stk[0], 0, 0);
-            stack.drawOn(El.can[0]);
-
-            makeDownloadLink(El.lnk, El.can[0], 'ponypic');
-            img.remove();
-        });
-        // inset for pony parts
-        stack.setOrigin(444, 111);
-        // layer each part
-        El.pre.find('div img').not(El.stk).each(function (i, e) {
-            stack.addLayer(e);
-        });
-    }
-
-    function binding() {
-        El.can.css({// do not readily show the canvas
-            opacity: 0.0001 + ((W.debug > 2) ? 1 : 0),
-            position: 'absolute',
-            zIndex: 0,
-        });
-    }
-
-    function init() {
-        $.reify(El);
-        binding();
-
-        // EXPOSE
-        if (W.debug > 0) {
-            C.info(Nom, W[Nom] = self);
-        }
-    }
-    // - - - - - - - - - - - - - - - - - -
-    $(init);
-
-    return self;
+  return self;
 });
 /*
 
